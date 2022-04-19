@@ -15,6 +15,10 @@ RUN git clone https://github.com/Melledy/Grasscutter /Grasscutter
 # Missing file
 COPY missing/ missing/
 
+# Bug fix
+COPY bug/ bug/
+RUN cp bug/ResourceLoader.java  /Grasscutter/src/main/java/emu/grasscutter/data/
+
 # Sweet Home Alabama :)
 WORKDIR /Grasscutter
 
@@ -42,7 +46,10 @@ EXPOSE 22102
 # FOR GAME LOG
 EXPOSE 8888
 
-RUN ls resources/BinOutput/Talent/EquipTalents
+#PR: https://stackoverflow.com/questions/43292243/how-to-modify-a-keys-value-in-a-json-file-from-command-line
+#FOR https://github.com/Melledy/Grasscutter/blob/59d01209f931440ad09697f995a5d456c7840084/src/main/java/emu/grasscutter/server/dispatch/DispatchServer.java#L107
+#LOG: The connection to '172.17.0.2' failed. <br />Error: TimedOut (0x274c). AKA CODE ERROR 4206
+RUN apk add npm && npm install -g json
 
 # yay
 COPY entrypoint.sh .
