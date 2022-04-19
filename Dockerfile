@@ -31,15 +31,20 @@ WORKDIR /Grasscutter
 RUN chmod +x gradlew && ./gradlew jar
 
 # Generated Resources
-RUN mkdir resources &&\
-    cp -r /Install/GenshinData/*                           resources &&\
-    # gi-bin-output for Fix skill animasi etc
+RUN mkdir resources && mkdir resources/BinOutput &&\    
+    # gi-bin-output for Fix skill animasi etc (Outdated 2.2>2.5)
     cp -r /Install/gi-bin-output/2.2/Data/_BinOutput/*     resources/BinOutput &&\    
-    cp -r /Install/gi-bin-output/2.5.52/Data/_BinOutput/*  resources/BinOutput &&\ 
+    cp -r /Install/gi-bin-output/2.5.52/Data/_BinOutput/*  resources/BinOutput &&\
+    # GenshinData (latest 2.6^)
+    cp -r /Install/GenshinData/*                           resources &&\
     # missing file
     cp -r /Install/missing/*                               resources/ExcelBinOutput &&\
     # just remove it
-    rm -R /Install/* &&\
+    rm -R -f src/* &&\
+    rm -R -f build/* &&\
+    rm -R -f /Install/* &&\
+    rm -R -f .gradle/* &&\
+    rm -R -f gradle/* &&\
     # dev need fix this 
     cp resources/TextMap/TextMapEN.json resources
 
