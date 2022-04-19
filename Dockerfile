@@ -3,6 +3,11 @@ FROM lwieske/java-8:jdk-8u202-slim
 # Base Install
 RUN apk add git
 
+#PR: https://stackoverflow.com/questions/43292243/how-to-modify-a-keys-value-in-a-json-file-from-command-line
+#FOR https://github.com/Melledy/Grasscutter/blob/59d01209f931440ad09697f995a5d456c7840084/src/main/java/emu/grasscutter/server/dispatch/DispatchServer.java#L107
+#LOG: The connection to '172.17.0.2' failed. <br />Error: TimedOut (0x274c). AKA CODE ERROR 4206
+RUN apk add npm && npm install -g json
+
 WORKDIR /Install
 
 # Building Data Source
@@ -10,7 +15,7 @@ RUN git clone https://github.com/Dimbreath/GenshinData &&\
     git clone https://github.com/radioegor146/gi-bin-output
 
 # Building Grasscutter Source
-RUN git clone https://github.com/Melledy/Grasscutter /Grasscutter
+RUN git clone --recurse-submodules https://github.com/Melledy/Grasscutter /Grasscutter
 
 # Missing file
 COPY missing/ missing/
@@ -49,11 +54,6 @@ EXPOSE 443
 EXPOSE 22102
 # FOR GAME LOG
 EXPOSE 8888
-
-#PR: https://stackoverflow.com/questions/43292243/how-to-modify-a-keys-value-in-a-json-file-from-command-line
-#FOR https://github.com/Melledy/Grasscutter/blob/59d01209f931440ad09697f995a5d456c7840084/src/main/java/emu/grasscutter/server/dispatch/DispatchServer.java#L107
-#LOG: The connection to '172.17.0.2' failed. <br />Error: TimedOut (0x274c). AKA CODE ERROR 4206
-RUN apk add npm && npm install -g json
 
 # yay
 COPY entrypoint.sh .
