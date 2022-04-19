@@ -10,7 +10,7 @@ RUN git clone https://github.com/Dimbreath/GenshinData &&\
     git clone https://github.com/radioegor146/gi-bin-output
 
 # Building Grasscutter Source
-RUN git clone https://github.com/Melledy/Grasscutter
+RUN git clone https://github.com/Melledy/Grasscutter /Grasscutter
 
 # Missing file
 COPY missing/ missing/
@@ -31,7 +31,7 @@ RUN mkdir resources &&\
     cp resources/TextMap/TextMapEN.json resources
 
 # GM Handbook Generated stuff
-RUN ls /resources/BinOutput\Talent\EquipTalents && java -jar grasscutter.jar -handbook
+RUN java -jar grasscutter.jar -handbook
 
 # FOR WEB STUFF WITH HTTP MODE
 EXPOSE 80 
@@ -39,6 +39,10 @@ EXPOSE 80
 EXPOSE 443
 # FOR GAME SERVER?
 EXPOSE 22102
+# FOR GAME LOG
+EXPOSE 8888
+
+RUN ls resources/BinOutput/Talent/EquipTalents
 
 # yay
 COPY entrypoint.sh .
