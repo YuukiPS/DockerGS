@@ -22,7 +22,8 @@ COPY missing/ missing/
 
 # Bug fix
 COPY bug/ bug/
-RUN cp bug/ResourceLoader.java  /Grasscutter/src/main/java/emu/grasscutter/data/
+RUN cp bug/ResourceLoader.java      /Grasscutter/src/main/java/emu/grasscutter/data/
+RUN cp bug/DispatchServer.java      /Grasscutter/src/main/java/emu/grasscutter/server/dispatch/
 
 # Sweet Home Alabama :)
 WORKDIR /Grasscutter
