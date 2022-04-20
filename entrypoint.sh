@@ -39,8 +39,11 @@ fi
 
 sed -i "s/127.0.0.1/$IPSERVER/" config.json
 
-# Public ip stuff
+# Config ip
 json -I -f config.json -e "this.DispatchServerPublicIp='$IPSERVERPB'"
 json -I -f config.json -e "this.GameServerPublicIp='$IPSERVERPB'"
+# Config game
+json -I -f config.json -e "this.ServerOptions.AutomaticallyCreateAccounts='true'"
+json -I -f config.json -e "this.ServerOptions.WelcomeMotd='Hi, Welcome to Yuuki Server and thank Grasscutter Team for making this emulator we like you guys, please enjoy :)'"
 
 java -jar grasscutter.jar

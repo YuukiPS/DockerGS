@@ -14,16 +14,17 @@ WORKDIR /Install
 RUN git clone https://github.com/Dimbreath/GenshinData &&\
     git clone https://github.com/radioegor146/gi-bin-output
 
-# Building Grasscutter Source
+# Building Grasscutter Source (with bypass cache https://stackoverflow.com/a/36996107)
+ADD https://api.github.com/repos/Grasscutters/Grasscutter/commits /tmp/bustcache
 RUN git clone -b development --recurse-submodules https://github.com/Grasscutters/Grasscutter.git /Grasscutter
 
 # Missing file
 COPY missing/ missing/
 
-# Bug fix
-COPY bug/ bug/
-RUN cp bug/ResourceLoader.java      /Grasscutter/src/main/java/emu/grasscutter/data/
-RUN cp bug/DispatchServer.java      /Grasscutter/src/main/java/emu/grasscutter/server/dispatch/
+# Bug fix (fast mode)
+#COPY bug/ bug/
+#RUN cp bug/ResourceLoader.java      /Grasscutter/src/main/java/emu/grasscutter/data/
+#RUN cp bug/DispatchServer.java      /Grasscutter/src/main/java/emu/grasscutter/server/dispatch/
 
 # Sweet Home Alabama :)
 WORKDIR /Grasscutter
