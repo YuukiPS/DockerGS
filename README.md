@@ -18,4 +18,10 @@ https://github.com/Melledy/Grasscutter
 - Login with user yuuki then password random/whatever then login already🙂
 
 ## Bro, I don't want to make a server, so can I just join to your server?
-Yes, Simple way is to just change localhost in file in pastebin to the address of the server you want to connect to.
+Yes, Simple way is to just change localhost in file in pastebin to address server you want to connect to.
+
+## SERVER TESTING MODE
+```sh
+game.yuuki.me
+```
+This server is located in Germany so Asian players will get high ping, you can login with "user1-10" for example "user1", for user11-50 it will be created again when we get a more stable version or at least have a password feature so you now you can login without a password on the account, the account data will be reset when the datebase is reset/error and sometimes the server is automatically disconnected due to an error/bug/update.
