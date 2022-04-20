@@ -15,7 +15,7 @@ RUN git clone https://github.com/Dimbreath/GenshinData &&\
     git clone https://github.com/radioegor146/gi-bin-output
 
 # Building Grasscutter Source
-RUN git clone --recurse-submodules https://github.com/Melledy/Grasscutter /Grasscutter
+RUN git clone -b development --recurse-submodules https://github.com/Grasscutters/Grasscutter.git /Grasscutter
 
 # Missing file
 COPY missing/ missing/
