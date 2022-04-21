@@ -10,10 +10,8 @@ RUN apk add --no-cache git npm &&\
 
 # Building Grasscutter Source (with bypass cache https://stackoverflow.com/a/36996107)
 ADD https://api.github.com/repos/Grasscutters/Grasscutter/commits /tmp/bustcache
-RUN git clone -b development --recursive https://github.com/Grasscutters/Grasscutter.git &&\
-    # Copy proto?
-    cd Grasscutter && mkdir proto &&\
-    cp -rf Grasscutter-Protos/proto/* proto &&\
+RUN git clone -b development https://github.com/Grasscutters/Grasscutter.git &&\
+    cd Grasscutter && \
     # Need utf-8
     export GRADLE_OPTS="-Dfile.encoding=utf-8"  &&\
     # Run it :)
