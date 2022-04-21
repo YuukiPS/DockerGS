@@ -9,19 +9,20 @@ RUN apk add git \
 
 # Building Grasscutter Source (with bypass cache https://stackoverflow.com/a/36996107)
 ADD https://api.github.com/repos/Grasscutters/Grasscutter/commits /tmp/bustcache
-RUN git clone -b development --recurse-submodules https://github.com/Grasscutters/Grasscutter.git /Grasscutter
-
-# Missing file
-COPY missing/ missing/
+RUN git clone -b dev-fixes --recurse-submodules https://github.com/Grasscutters/Grasscutter.git /Grasscutter
 
 # Sweet Home Alabama :)
 WORKDIR /Grasscutter
+
+# Missing file
+COPY missing/ missing/
 
 # Buat yuk
 RUN chmod +x gradlew && ./gradlew jar
 
 # TODO: remove file that not need and Missing
-RUN ls && echo tes1
+RUN rm -R -f LICENSE README.md build build.gradle gradle gradlew gradlew.bat proxy.py proxy_config.py run.cmd settings.gradle src &&\
+    ls && echo abc1
 
 # FOR WEB STUFF WITH HTTP MODE
 EXPOSE 80 

@@ -12,15 +12,6 @@ do
     esac
 done
 
-if [ -z "$DBIP" ]
-then
-      echo "Server datebase run at localhost"
-else
-      # If you have a database outside
-      sed -i "s/localhost:27017/$DBIP/" config.json
-      echo "Server datebase: $DBIP"
-fi
-
 if [ -z "$IPSERVER" ]
 then
       IPSERVER=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
@@ -71,9 +62,21 @@ then
     echo "Copy file 2.6"
     cp -rf install/GenshinData/*                            resources
     echo "Copy file missing"
-    cp -rf Install/missing/*                                resources/ExcelBinOutput
-    echo "create table id and config.json"
-    java -jar grasscutter.jar -handbook
+    cp -rf missing/*                                        resources/ExcelBinOutput    
+fi
+
+if [ ! -f "config.json" ]; then
+ echo "create table id and config.json"
+ java -jar grasscutter.jar -handbook
+fi
+
+if [ -z "$DBIP" ]
+then
+      echo "Server datebase run at localhost"
+else
+      # If you have a database outside
+      sed -i "s/localhost:27017/$DBIP/" config.json
+      echo "Server datebase: $DBIP"
 fi
 
 # Config ip
