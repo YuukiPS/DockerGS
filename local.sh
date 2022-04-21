@@ -1,2 +1,2 @@
 #!/bin/bash
-git clone -b development --recurse-submodules https://github.com/Grasscutters/Grasscutter.git /Grasscutter
+git clone -b development --recurse-submodules https://github.com/Grasscutters/Grasscutter.git

@@ -1,34 +1,30 @@
 FROM lwieske/java-8:jdk-8u202-slim
 
-# Base Install
-RUN apk add git \
-    #PR: https://stackoverflow.com/questions/43292243/how-to-modify-a-keys-value-in-a-json-file-from-command-line
-    #FOR https://github.com/Melledy/Grasscutter/blob/59d01209f931440ad09697f995a5d456c7840084/src/main/java/emu/grasscutter/server/dispatch/DispatchServer.java#L107
-    #LOG: The connection to '172.17.0.2' failed. <br />Error: TimedOut (0x274c). AKA CODE ERROR 4206
-    npm && npm install -g json
+# Sweet Home Alabama :)
+WORKDIR /home
 
-# Missing file
-COPY bug/ bug/
+# Base Install
+RUN apk add --no-cache git npm &&\
+    # for config.json stuff
+    npm install -g json
 
 # Building Grasscutter Source (with bypass cache https://stackoverflow.com/a/36996107)
 ADD https://api.github.com/repos/Grasscutters/Grasscutter/commits /tmp/bustcache
-RUN git clone -b development --recurse-submodules https://github.com/Grasscutters/Grasscutter.git /Grasscutter &&\
-    cd Grasscutter && \
-    # Bug id so back to stable version
-    git reset --hard 9c136859eb9ed842e43905868d81414e8848928f &&\
-    # More bug ehyaaa
-    cp -rf /bug/ResourceLoader.java src/main/java/emu/grasscutter/data/ResourceLoader.java &&\
+RUN git clone -b development --recursive https://github.com/Grasscutters/Grasscutter.git &&\
+    # Copy proto?
+    cd Grasscutter && mkdir proto &&\
+    cp -rf Grasscutter-Protos/proto/* proto &&\
+    # Need utf-8
+    export GRADLE_OPTS="-Dfile.encoding=utf-8"  &&\
+    # Run it :)
     chmod +x gradlew && ./gradlew jar &&\
-    # We delete it because it is only needed during building process
-    rm -R -f LICENSE README.md build build.gradle gradle gradlew gradlew.bat proxy.py proxy_config.py run.cmd settings.gradle src Grasscutter-Protos lib
+    # We delete it because it is only needed during building process.
+    rm -R -f Grasscutter-Protos LICENSE README.md build build.gradle gradle gradlew gradlew.bat lib proxy.py proxy_config.py run.cmd settings.gradle src
 
 # FOR WEB HTTPS MODE
 EXPOSE 443
 # FOR GAME SERVER
 EXPOSE 22102
-
-# Sweet Home Alabama :)
-WORKDIR /Grasscutter
 
 # Missing file
 COPY missing/ missing/

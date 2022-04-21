@@ -1,5 +1,6 @@
 #!/bin/bash
-version="dev-1.6";
+cd Grasscutter
+version="dev-1.7";
 update=false
 while getopts d:b:v:m:f: flag
 do
@@ -17,7 +18,7 @@ then
       IPSERVER=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
       echo "Server grasscutter run private $IPSERVER"
 else
-      # If you run grasscutter outside      
+      # If you run grasscutter outside
       echo "Server grasscutter run private $IPSERVER"
 fi
 
@@ -26,7 +27,7 @@ then
       IPSERVERPB=localhost
       echo "Server grasscutter run public $IPSERVERPB"
 else
-      # If you run grasscutter outside      
+      # If you run grasscutter outside
       echo "Server grasscutter run public $IPSERVERPB"
 fi
 
@@ -36,6 +37,7 @@ then
 fi
 
 # Building Data Source and Generated Resources
+ls
 if [ -d "resources" ] 
 then
     echo "The resources folder already exists..."
@@ -64,7 +66,7 @@ then
     echo "Copy file missing"
     cp -rf missing/*                                        resources/ExcelBinOutput    
 fi
-
+ls
 if [ ! -f "config.json" ]; then
  echo "create table id and config.json"
  java -jar grasscutter.jar -handbook
@@ -75,8 +77,8 @@ then
       echo "Server datebase run at localhost"
 else
       # If you have a database outside
-      sed -i "s/localhost:27017/$DBIP/" config.json
-      echo "Server datebase: $DBIP"
+      echo "Set: Server Datebase MongoDB: $DBIP"
+      json -I -f config.json -e "this.DatabaseUrl='$DBIP'"
 fi
 
 # Config ip
