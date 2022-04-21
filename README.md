@@ -5,7 +5,7 @@ Running Grasscutter (*some anime game* server reimplementation) with Docker
 - Install Docker+MongoDB
 - Open Terminal and Enter:
 ```sh
-docker run --rm -it -v resources:/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-1.4 -d '2.0.0.100:27017' -b 'localhost' -f 'yes'
+docker run --rm -it -v resources:/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-1.3 -d '2.0.0.100:27017' -b 'localhost' -f 'yes'
 ```
 - done 🙂
 

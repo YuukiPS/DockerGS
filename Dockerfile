@@ -7,10 +7,15 @@ RUN apk add git \
     #LOG: The connection to '172.17.0.2' failed. <br />Error: TimedOut (0x274c). AKA CODE ERROR 4206
     npm && npm install -g json
 
+# Missing file
+COPY bug/ bug/
+
 # Building Grasscutter Source (with bypass cache https://stackoverflow.com/a/36996107)
 ADD https://api.github.com/repos/Grasscutters/Grasscutter/commits /tmp/bustcache
-RUN git clone -b dev-fixes --recurse-submodules https://github.com/Grasscutters/Grasscutter.git /Grasscutter &&\
-    cd Grasscutter && chmod +x gradlew && ./gradlew jar &&\
+RUN git clone -b development --recurse-submodules https://github.com/Grasscutters/Grasscutter.git /Grasscutter &&\    
+    cd Grasscutter && \
+    cp -rf /bug/ResourceLoader.java src/main/java/emu/grasscutter/data/ResourceLoader.java &&\
+    chmod +x gradlew && ./gradlew jar &&\
     # We delete it because it is only needed during building process
     rm -R -f LICENSE README.md build build.gradle gradle gradlew gradlew.bat proxy.py proxy_config.py run.cmd settings.gradle src Grasscutter-Protos lib
 
