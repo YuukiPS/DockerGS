@@ -5,7 +5,7 @@ Running Grasscutter (*some anime game* server reimplementation) with Docker
 - Install Docker+MongoDB
 - Open Terminal and Enter:
 ```sh
-docker run --rm -it -v resources:/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-1.3 -d '2.0.0.100:27017' -b 'localhost' -f 'yes'
+docker run --rm -it -v resources:/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-1.5 -d '2.0.0.100:27017' -b 'localhost' -f 'yes'
 ```
 - done 🙂
 
@@ -32,7 +32,7 @@ This server is located in Germany so Asian players will get high ping, you can l
 ## HELP
 | Func | Info |
 | ------ | ------ |
-| d | is ip address for your database server |
+| d | is ip address for your database server , note: use computer ip if you want to run on your own pc, no "localhost" because it is ip in container |
 | b | ip public server |
 | v | ip private server |
 | m | Welcome message for users |
