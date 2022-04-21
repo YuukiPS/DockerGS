@@ -1,9 +1,12 @@
 # DockerGC
-Running Grasscutter (Genshin Impact Emulator) with Docker
+Running Grasscutter (*some anime game* server reimplementation) with Docker
 
 ## How to create a server:
 - Install Docker+MongoDB
-- Open Terminal and enter "docker pull siakbary/dockergc" (1,5GB download)
+- Open Terminal and enter:
+```html
+docker run --rm -it -p 22102:22102/udp -v /${PWD}/resources:/Grasscutter/resources -p 443:443/tcp -p 80:80/tcp siakbary/dockergc:dev-1.4 -d '2.0.0.100:27017' -b 'localhost' -f 'yes'
+```
 - done 🙂
 
 If you want a version without docker but it's complicated:

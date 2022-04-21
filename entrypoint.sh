@@ -1,12 +1,14 @@
 #!/bin/bash
-# docker run -e BOT="false" -e DEBUG_BOT="true" -e NOTIF="false" -e DEBUG_NOTIF="true" -e DEBUG_LIVE="true" -e DEBUG_LIVE_MORE="false" --rm -it -p 3000:3000/tcp repo.volcanoyt.com/vyt_early:last
-
-while getopts d:b:v: flag
+version="dev-1.4";
+update=false
+while getopts d:b:v:m:f: flag
 do
     case "${flag}" in
         d) DBIP=${OPTARG};;
         b) IPSERVERPB=${OPTARG};;
         v) IPSERVER=${OPTARG};;
+        m) msgserver=${OPTARG};;
+        f) force=${OPTARG};;
     esac
 done
 
@@ -34,16 +36,53 @@ then
       echo "Server grasscutter run public $IPSERVERPB"
 else
       # If you run grasscutter outside      
-      echo "Server grasscutter run publik $IPSERVERPB"
+      echo "Server grasscutter run public $IPSERVERPB"
 fi
 
-sed -i "s/127.0.0.1/$IPSERVER/" config.json
+if [ -z "$msgserver" ]
+then
+      msgserver="Hi, Welcome to Yuuki Server and thank Grasscutter Team for making this emulator we like you guys, please enjoy :). Currently running on server version $version"
+fi
+
+# Building Data Source and Generated Resources
+if [ -d "resources" ] 
+then
+    echo "The resources folder already exists..."
+    if [ $force = "yes" ]; then
+     echo "But keep update it"
+     update=true
+    fi
+    # TODO: check vaild file and update maybe next time? 
+else
+    update=true
+fi
+
+if $update
+then 
+    mkdir install && cd install 
+    echo "Clone time..."
+    git clone https://github.com/Dimbreath/GenshinData
+    git clone https://github.com/radioegor146/gi-bin-output
+    cd ..
+    mkdir -p resources/BinOutput
+    echo "Copy file 2.5"
+    cp -r install/gi-bin-output/2.2/Data/_BinOutput/*      resources/BinOutput
+    cp -r install/gi-bin-output/2.5.52/Data/_BinOutput/*   resources/BinOutput
+    echo "Copy file 2.6"
+    cp -r install/GenshinData/*                            resources
+    echo "Copy file missing"
+    cp -r Install/missing/*                                resources/ExcelBinOutput
+    echo "create table id and config.json"
+    java -jar grasscutter.jar -handbook
+fi
 
 # Config ip
+sed -i "s/127.0.0.1/$IPSERVER/" config.json
 json -I -f config.json -e "this.DispatchServerPublicIp='$IPSERVERPB'"
 json -I -f config.json -e "this.GameServerPublicIp='$IPSERVERPB'"
+
 # Config game
 json -I -f config.json -e "this.ServerOptions.AutomaticallyCreateAccounts='true'"
-json -I -f config.json -e "this.ServerOptions.WelcomeMotd='Hi, Welcome to Yuuki Server and thank Grasscutter Team for making this emulator we like you guys, please enjoy :)'"
+json -I -f config.json -e "this.ServerOptions.WelcomeMotd='$msgserver'"
 
 java -jar grasscutter.jar
