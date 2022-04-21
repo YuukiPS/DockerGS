@@ -9,20 +9,10 @@ RUN apk add git \
 
 # Building Grasscutter Source (with bypass cache https://stackoverflow.com/a/36996107)
 ADD https://api.github.com/repos/Grasscutters/Grasscutter/commits /tmp/bustcache
-RUN git clone -b dev-fixes --recurse-submodules https://github.com/Grasscutters/Grasscutter.git /Grasscutter
-
-# Sweet Home Alabama :)
-WORKDIR /Grasscutter
-
-# Missing file
-COPY missing/ missing/
-
-# Buat yuk
-RUN chmod +x gradlew && ./gradlew jar
-
-# TODO: remove file that not need and Missing
-RUN rm -R -f LICENSE README.md build build.gradle gradle gradlew gradlew.bat proxy.py proxy_config.py run.cmd settings.gradle src &&\
-    ls && echo abc1
+RUN git clone -b dev-fixes --recurse-submodules https://github.com/Grasscutters/Grasscutter.git /Grasscutter &&\
+    cd Grasscutter && chmod +x gradlew && ./gradlew jar &&\
+    # We delete it because it is only needed during building process
+    rm -R -f LICENSE README.md build build.gradle gradle gradlew gradlew.bat proxy.py proxy_config.py run.cmd settings.gradle src Grasscutter-Protos lib
 
 # FOR WEB STUFF WITH HTTP MODE
 EXPOSE 80 
@@ -33,6 +23,12 @@ EXPOSE 22102
 # FOR GAME LOG
 EXPOSE 8888
 
-# yay
+# Sweet Home Alabama :)
+WORKDIR /Grasscutter
+
+# Missing file
+COPY missing/ missing/
+
+# Rock
 COPY entrypoint.sh .
 ENTRYPOINT ["sh", "entrypoint.sh"]
