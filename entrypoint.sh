@@ -66,7 +66,7 @@ then
     echo "Copy file missing"
     cp -rf missing/*                                        resources/ExcelBinOutput    
 fi
-ls
+
 if [ ! -f "config.json" ]; then
  echo "create table id and config.json"
  java -jar grasscutter.jar -handbook
@@ -89,5 +89,7 @@ json -I -f config.json -e "this.GameServerPublicIp='$IPSERVERPB'"
 # Config game
 json -I -f config.json -e "this.ServerOptions.AutomaticallyCreateAccounts='true'"
 json -I -f config.json -e "this.ServerOptions.WelcomeMotd='$msgserver'"
+
+#ls
 
 java -jar grasscutter.jar
