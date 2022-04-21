@@ -66,12 +66,12 @@ then
     cd ..
     mkdir -p resources/BinOutput
     echo "Copy file 2.5"
-    cp -r install/gi-bin-output/2.2/Data/_BinOutput/*      resources/BinOutput
-    cp -r install/gi-bin-output/2.5.52/Data/_BinOutput/*   resources/BinOutput
+    cp -rf install/gi-bin-output/2.2/Data/_BinOutput/*      resources/BinOutput
+    cp -rf install/gi-bin-output/2.5.52/Data/_BinOutput/*   resources/BinOutput
     echo "Copy file 2.6"
-    cp -r install/GenshinData/*                            resources
+    cp -rf install/GenshinData/*                            resources
     echo "Copy file missing"
-    cp -r Install/missing/*                                resources/ExcelBinOutput
+    cp -rf Install/missing/*                                resources/ExcelBinOutput
     echo "create table id and config.json"
     java -jar grasscutter.jar -handbook
 fi
