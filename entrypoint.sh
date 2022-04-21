@@ -1,5 +1,5 @@
 #!/bin/bash
-version="dev-1.5";
+version="dev-1.6";
 update=false
 while getopts d:b:v:m:f: flag
 do
@@ -78,8 +78,6 @@ else
       sed -i "s/localhost:27017/$DBIP/" config.json
       echo "Server datebase: $DBIP"
 fi
-
-#ls resources/BinOutPut/Scene/Point
 
 # Config ip
 sed -i "s/127.0.0.1/$IPSERVER/" config.json
