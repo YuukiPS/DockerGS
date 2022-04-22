@@ -1,0 +1,26 @@
+# Base https://gist.github.com/suggoitanoshi/8aa4eccc0b1df4ca63a01beceb65546a
+# For home use, you don't need to edit anymore, but if it's for public, it's better to use Nginx Proxy Manager so only port game need to be opened.
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - data:/data/db
+  grasscutter:
+    image: siakbary/dockergc:dev-1.8
+    command: -d 'mongodb://mongodb:27017' -b 'localhost' -f 'yes'
+    volumes:
+      - resources:/home/Grasscutter/resources
+    ports:
+      - "22102:22102/udp"
+      - "443:443/tcp"
+      - "80:80/tcp"
+    depends_on:
+      - mongodb
+    stdin_open: true
+    tty: true
+volumes:
+ data:
+ resources:

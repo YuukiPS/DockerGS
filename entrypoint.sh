@@ -1,6 +1,6 @@
 #!/bin/bash
 cd Grasscutter
-version="dev-1.7";
+version="dev-1.8";
 update=false
 while getopts d:b:v:m:f: flag
 do
@@ -51,6 +51,7 @@ fi
 
 if $update
 then 
+    apk add --no-cache git
     mkdir install && cd install 
     echo "Clone time..."
     git clone https://github.com/Dimbreath/GenshinData
@@ -63,7 +64,8 @@ then
     echo "Copy file 2.6"
     cp -rf install/GenshinData/*                            resources
     echo "Copy file missing"
-    cp -rf missing/*                                        resources/ExcelBinOutput    
+    cp -rf /home/missing/*                                  resources/ExcelBinOutput
+    apk del git && apk cache clean
 fi
 
 if [ ! -f "config.json" ]; then
