@@ -6,7 +6,7 @@ WORKDIR /home
 # Base Install
 RUN apk add --no-cache git npm &&\
     # for config.json stuff
-    npm install -g json
+    npm install --unsafe-perm -g json
 
 # Building Grasscutter Source (with bypass cache https://stackoverflow.com/a/36996107)
 ADD https://api.github.com/repos/Grasscutters/Grasscutter/commits /tmp/bustcache
