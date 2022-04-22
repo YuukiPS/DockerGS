@@ -5,7 +5,11 @@ Running Grasscutter (*some anime game* server reimplementation) with Docker
 - Install Docker + MongoDB
 - Open Terminal and Enter:
 ```sh
-docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-1.7 -d 'mongodb://2.0.0.100:27017' -b 'localhost' -f 'yes'
+docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-1.8 -d 'mongodb://2.0.0.100:27017' -b 'localhost' -f 'yes'
+```
+or (if you have compose)
+```sh
+docker compose up
 ```
 - Then type "account create yuuki" if there is a new response open the game.
 - done 🙂
@@ -45,4 +49,4 @@ This server is located in Germany so Asian players will get high ping, you can l
 | 22102 | game communication with udp line |
 
 Power by Grasscutter ❤️
-https://github.com/Melledy/Grasscutter
+> https://github.com/Melledy/Grasscutter
