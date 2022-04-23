@@ -1,4 +1,4 @@
 #!/bin/bash
-version="dev-1.9"
+version="dev-2.0"
 docker build -t "siakbary/dockergc:$version" -f Dockerfile .;
-docker push siakbary/dockergc:$version
+#docker push siakbary/dockergc:$version

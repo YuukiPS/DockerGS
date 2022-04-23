@@ -1,4 +1,4 @@
-FROM openjdk:18-jdk-alpine as build 
+FROM openjdk:18-jdk-alpine as build
 
 # Work work work!
 WORKDIR /work
@@ -7,16 +7,14 @@ WORKDIR /work
 RUN apk add --no-cache git
 
 # Building Grasscutter Source
-RUN echo update dev-1.9 && java -version && \
+RUN echo update dev-2.0.2 && \
     git clone -b development https://github.com/Grasscutters/Grasscutter.git && cd Grasscutter && \
-    # bug PlayerBirthday need fix later
-    git reset --hard bdfd92e7a3799e9560b2927ec5b2c00fbb81cace &&\
     # Need utf-8
     export GRADLE_OPTS="-Dfile.encoding=utf-8"  && \
     # Run it :)
     chmod +x gradlew && ./gradlew jar && \
     # We delete it because it is only needed during building process.
-    rm -R -f /root/* Grasscutter-Protos LICENSE README.md build build.gradle gradle gradlew gradlew.bat lib proxy.py proxy_config.py run.cmd settings.gradle src
+    rm -R -f start_config.cmd start.cmd Grasscutter-Protos LICENSE README.md build build.gradle gradle gradlew gradlew.bat lib proxy.py proxy_config.py run.cmd settings.gradle src
 
 FROM openjdk:18-jdk-alpine
 

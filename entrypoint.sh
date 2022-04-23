@@ -1,6 +1,6 @@
 #!/bin/bash
 cd Grasscutter
-version="dev-1.9";
+version="dev-2.0";
 update=false
 while getopts d:b:v:m:f: flag
 do
@@ -80,20 +80,23 @@ else
       # If you have a database outside
       echo "Set: Server Datebase MongoDB: $DBIP"
       json -I -f config.json -e "this.DatabaseUrl='$DBIP'"
+      #json -I -f config.json -e "this.GameServer.DispatchServerDatabaseUrl='$DBIP'"
 fi
 
 # Config ip
 sed -i "s/0.0.0.0/$IPSERVER/" config.json
+
 json -I -f config.json -e "this.DispatchServer.PublicIp='$IPSERVERPB'"
 json -I -f config.json -e "this.GameServer.PublicIp='$IPSERVERPB'"
 
 # Config game
+# json -I -f config.json -e "this.DispatchServer.UseSSL='false'"
 json -I -f config.json -e "this.DispatchServer.AutomaticallyCreateAccounts='true'"
 json -I -f config.json -e "this.GameServer.WelcomeMotd='$msgserver'"
 
 json -I -f config.json -e "this.GameServer.Name='Yuuki|German'"
 #json -I -f config.json -e "this.DispatchServer.RegionInfo.Title='German'"
 
-#ls
+ls
 
 java -jar grasscutter.jar
