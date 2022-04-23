@@ -1,6 +1,6 @@
 #!/bin/bash
 cd Grasscutter
-version="dev-1.8";
+version="dev-1.9";
 update=false
 while getopts d:b:v:m:f: flag
 do
