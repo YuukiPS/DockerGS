@@ -7,7 +7,7 @@ WORKDIR /work
 RUN apk add --no-cache git
 
 # Building Grasscutter Source
-RUN echo update dev-2.1.0 && \
+RUN echo update dev-2.2.0 && \
     git clone -b development https://github.com/Grasscutters/Grasscutter.git && cd Grasscutter && \
     # Need utf-8
     export GRADLE_OPTS="-Dfile.encoding=utf-8"  && \
@@ -29,7 +29,6 @@ EXPOSE 443 22102
 
 # Copy files
 COPY --from=build /work/Grasscutter ./Grasscutter
-COPY missing ./missing
 
 # Rock
 COPY entrypoint.sh .
