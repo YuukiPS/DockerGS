@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="dev-2.2";
+version="dev-2.3";
 update=false
 
 folder_gc="/home/Grasscutter"
@@ -79,10 +79,11 @@ then
     mkdir -p $folder_resources/Readable &&       cp -rf GenshinData/Readable/*             $folder_resources/Readable
     mkdir -p $folder_resources/ExcelBinOutput && cp -rf GenshinData/ExcelBinOutput/*       $folder_resources/ExcelBinOutput
                                                  cp -rf GenshinData/BinOutput/*            $folder_resources/BinOutput
-    echo "Copy file miss (fix stats)"
-    idbk="104c21c6530885e450975b13830639e9ca649799"
-    wget --backups=1 $GSDATA/raw/$idbk/ExcelBinOutput/ReliquaryMainPropExcelConfigData.json -P $folder_resources/ExcelBinOutput/
-    wget --backups=1 $GSDATA/raw/$idbk/ExcelBinOutput/ReliquaryAffixExcelConfigData.json -P $folder_resources/ExcelBinOutput/
+    echo "Copy file miss (fix main stats and sub stats by switch branches)"
+    id_main_stats="104c21c6530885e450975b13830639e9ca649799"
+    id_sub_stats="a92b5842daa911c095f47ef235b2bcd4b388d65a"
+    wget --backups=1 $GSDATA/raw/$id_main_stats/ExcelBinOutput/ReliquaryMainPropExcelConfigData.json -P $folder_resources/ExcelBinOutput/
+    wget --backups=1 $GSDATA/raw/$id_sub_stats/ExcelBinOutput/ReliquaryAffixExcelConfigData.json -P $folder_resources/ExcelBinOutput/
     echo "remove file no need"
     rm -R -f *
     apk del git wget
