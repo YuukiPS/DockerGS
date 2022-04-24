@@ -9,7 +9,7 @@ services:
     volumes:
       - data:/data/db
   grasscutter:
-    image: siakbary/dockergc:dev-1.7
+    image: siakbary/dockergc:dev-2.1
     command: -d 'mongodb://mongodb:27017' -b 'localhost' -f 'yes'
     volumes:
       - resources:/home/Grasscutter/resources

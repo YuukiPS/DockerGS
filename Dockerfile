@@ -7,7 +7,7 @@ WORKDIR /work
 RUN apk add --no-cache git
 
 # Building Grasscutter Source
-RUN echo update dev-2.0.2 && \
+RUN echo update dev-2.1.0 && \
     git clone -b development https://github.com/Grasscutters/Grasscutter.git && cd Grasscutter && \
     # Need utf-8
     export GRADLE_OPTS="-Dfile.encoding=utf-8"  && \

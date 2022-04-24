@@ -5,11 +5,11 @@ Running Grasscutter (*some anime game* server reimplementation) with Docker
 - Install Docker + MongoDB
 - Open Terminal and Enter:
 ```sh
-docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-1.7 -d 'mongodb://2.0.0.100:27017' -b 'localhost' -f 'yes'
+docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-2.1 -d 'mongodb://2.0.0.100:27017' -b 'localhost' -f 'yes'
 ```
 or (if you have compose)
 ```sh
-docker compose up
+"docker compose up" or "docker-compose up"
 ```
 - Then type "account create yuuki" if there is a new response open the game.
 - done 🙂
@@ -25,12 +25,12 @@ Yes, Simple way is to just change localhost in file in pastebin to address serve
 
 ## SERVER FOR TESTING
 ```sh
-Server IP:
-game.yuuki.me
-
+Server Game: 
+game.yuuki.me (German, 200ms)
+jkt.game.yuuki.me (Jakarta, Indonesia 30-40ms)
 * In order to access command, please contact me *
+* You can login with random username and password, account data will be reset when datebase is reset,error,testing and sometimes server is automatically disconnected due to an error,bug,update. *
 ```
-This server is located in Germany so Asian players will get high ping, you can login with random username and password, account data will be reset when datebase is reset/error and sometimes server is automatically disconnected due to an error/bug/update.
 
 ## HELP
 | Func | Info |
@@ -39,7 +39,7 @@ This server is located in Germany so Asian players will get high ping, you can l
 | b | ip public server |
 | v | ip private server |
 | m | Welcome message for users |
-| f | re-download resources if you type "yes" this is useful if you already have a resources folder but there is the latest update |
+| f | re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
 
 ## Port
 | Port | Info |
