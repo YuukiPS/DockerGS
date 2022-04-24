@@ -1,11 +1,11 @@
 # DockerGC
 Running Grasscutter (*some anime game* server reimplementation) with Docker
-
+[![dockeri.co](https://dockeri.co/image/siakbary/dockergc)](https://hub.docker.com/r/siakbary/dockergc)
 ## How to create a server:
 - Install Docker + MongoDB
 - Open Terminal and Enter:
 ```sh
-docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-2.1 -d 'mongodb://2.0.0.100:27017' -b 'localhost' -f 'yes'
+docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-2.2 -d 'mongodb://2.0.0.100:27017' -b 'localhost' -f 'yes'
 ```
 or (if you have compose)
 ```sh
