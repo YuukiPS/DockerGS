@@ -40,6 +40,7 @@ jkt.game.yuuki.me (Jakarta, Indonesia 30-40ms)
 | v | ip private server |
 | m | Welcome message for users |
 | f | re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
+| p | running proxy for android user (https://platinmods.com/threads/intercepting-https-traffic-from-apps-on-android-7-and-above-root.131373/) but need a patch from here https://github.com/Grasscutters/Grasscutter/pull/105 |
 
 ## Port
 | Port | Info |
@@ -47,6 +48,7 @@ jkt.game.yuuki.me (Jakarta, Indonesia 30-40ms)
 | 80 | web server for http, useless so far |
 | 443 | web server for https game only works on https so make sure you have ssl or proxy stuff |
 | 22102 | game communication with udp line |
+| 8080 | proxy mitmproxy |
 
 Power by Grasscutter ❤️
 > https://github.com/Melledy/Grasscutter

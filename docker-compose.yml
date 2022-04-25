@@ -4,6 +4,7 @@ version: '3'
 services:
   mongodb:
     image: mongo
+    restart: unless-stopped
     ports:
       - "27017:27017"
     volumes:
@@ -11,6 +12,7 @@ services:
   grasscutter:
     image: siakbary/dockergc:dev-2.3
     command: -d 'mongodb://mongodb:27017' -b 'localhost' -f 'yes'
+    restart: unless-stopped
     volumes:
       - resources:/home/Grasscutter/resources
     ports:

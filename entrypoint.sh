@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="dev-2.3";
+version="dev-entity-2.4";
 update=false
 
 folder_gc="/home/Grasscutter"
@@ -8,7 +8,7 @@ folder_resources="$folder_gc/resources"
 
 cd $folder_gc
 
-while getopts d:b:v:m:f: flag
+while getopts d:b:v:m:f:p: flag
 do
     case "${flag}" in
         d) DBIP=${OPTARG};;
@@ -16,6 +16,7 @@ do
         v) IPSERVER=${OPTARG};;
         m) msgserver=${OPTARG};;
         f) force=${OPTARG};;
+        p) proxy=${OPTARG};;
     esac
 done
 
@@ -97,6 +98,17 @@ if [ ! -f "config.json" ]; then
  java -jar grasscutter.jar -handbook
 fi
 
+if [ $proxy = "yes" ]; then
+     echo "Proxy Server..."     
+     # Install mitmproxy for proxy android.
+     echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+     apk add --update --no-cache build-base ca-certificates openssl-dev libxml2-dev musl-dev libffi-dev python3 python3-dev py3-pip py3-setuptools-rust
+     pip3 install mitmproxy
+     sed -i "s/127.0.0.1/$IPSERVERPB/" proxy_config.py     
+     #sed -i "s/True/False/" proxy_config.py
+     mitmdump -s proxy.py -k --allow-hosts ".*.yuanshen.com|.*.mihoyo.com|.*.hoyoverse.com" &
+fi
+
 if [ -z "$DBIP" ]
 then
       echo "Server datebase run at localhost"
@@ -109,7 +121,6 @@ fi
 
 # Config ip
 sed -i "s/0.0.0.0/$IPSERVER/" config.json
-
 json -I -f config.json -e "this.DispatchServer.PublicIp='$IPSERVERPB'"
 json -I -f config.json -e "this.GameServer.PublicIp='$IPSERVERPB'"
 
