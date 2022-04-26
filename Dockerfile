@@ -6,11 +6,11 @@ WORKDIR /work
 # Base Install
 RUN apk add --no-cache git
 
-ARG version=tes
+COPY VERSION .
 
 # Building Grasscutter Source
-RUN echo update: $version && \
-    git clone -b dev-entity https://github.com/Grasscutters/Grasscutter.git && cd Grasscutter && \
+RUN version=$(cat VERSION) && echo update: $version && \
+    git clone -b development https://github.com/Grasscutters/Grasscutter.git && cd Grasscutter && \
     # Need utf-8
     export GRADLE_OPTS="-Dfile.encoding=utf-8"  && \
     # Run it :)
@@ -34,8 +34,5 @@ COPY --from=build /work/Grasscutter ./Grasscutter
 
 # Rock
 COPY entrypoint.sh .
-#  You need to add version variable as Environment (ENV) variable since ARG are only available during build time. 
-ARG version=tes
-ENV version=$version
+COPY VERSION .
 ENTRYPOINT ["sh", "entrypoint.sh"]
-CMD ["version", $version]

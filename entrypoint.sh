@@ -1,5 +1,6 @@
 #!/bin/bash
 
+version=$(cat VERSION)
 echo "Start server: version $version" #TODO: check if empty string
 
 update=false
