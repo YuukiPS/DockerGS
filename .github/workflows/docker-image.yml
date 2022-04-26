@@ -16,6 +16,6 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image
-      run: docker build . --build-arg version=auto-$(date +%s) --file Dockerfile --tag siakbary/dockergc:auto-$(date +%s)
+      run: docker build . -t "siakbary/dockergc:auto-${GITHUB_SHA::7}" --build-arg version=auto-${GITHUB_SHA::7}  -f Dockerfile 
     - name: Docker Push
-      run: docker push siakbary/dockergc
+      run: docker push siakbary/dockergc:auto-${GITHUB_SHA::7}
