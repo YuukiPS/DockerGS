@@ -13,15 +13,13 @@ RUN version=$(cat VERSION) && echo update: $version && \
     git clone -b development https://github.com/Grasscutters/Grasscutter.git && cd Grasscutter && \
     # Need utf-8
     export GRADLE_OPTS="-Dfile.encoding=utf-8"  && \
-    # bug cmd fix
-    #sed -i "s/0.9.12/0.10.2/" build.gradle &&\
-    sed -i 's/Reflections()/Reflections("emu.grasscutter.command.commands")/' src/main/java/emu/grasscutter/Grasscutter.java &&\
     # server version
     sed -i "s#Hello#Server <a href='https://github.com/akbaryahya/DockerGC'>DockerGC $version</a>#" src/main/java/emu/grasscutter/server/dispatch/DispatchServer.java &&\
     # Run it :)
     chmod +x gradlew && ./gradlew jar && \
     # We delete it because it is only needed during building process.
-    rm -R -f start_config.cmd start.cmd Grasscutter-Protos LICENSE README.md build build.gradle gradle gradlew gradlew.bat lib run.cmd settings.gradle src
+    rm -R -f start_config.cmd start.cmd Grasscutter-Protos LICENSE *.md build build.gradle gradle gradlew gradlew.bat lib run.cmd settings.gradle src &&\
+    cp grasscutter-*.jar grasscutter.jar && rm grasscutter-*.jar
 
 FROM openjdk:18-jdk-alpine
 RUN  \

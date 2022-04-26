@@ -49,7 +49,7 @@ fi
 if [ -d "$folder_resources" ] 
 then
     echo "Resources folder already exists..."
-    if [ $force = "yes" ]; then
+    if [ "$force" == "yes" ];then
      echo "But keep update it"
      update=true
     fi
@@ -87,6 +87,9 @@ then
     id_sub_stats="a92b5842daa911c095f47ef235b2bcd4b388d65a"
     wget --backups=1 $GSDATA/raw/$id_main_stats/ExcelBinOutput/ReliquaryMainPropExcelConfigData.json -P $folder_resources/ExcelBinOutput/
     wget --backups=1 $GSDATA/raw/$id_sub_stats/ExcelBinOutput/ReliquaryAffixExcelConfigData.json -P $folder_resources/ExcelBinOutput/
+    echo "Fix Avatar"
+    sed -i 's/BPAMNILGFPK/AvatarId/' $folder_resources/ExcelBinOutput/AvatarCostumeExcelConfigData.json
+    sed -i 's/OBACDKHOCAM/CostumeId/' $folder_resources/ExcelBinOutput/AvatarCostumeExcelConfigData.json
     echo "remove file no need"
     rm -R -f *
     apk del git wget
@@ -100,7 +103,7 @@ if [ ! -f "config.json" ]; then
  java -jar grasscutter.jar -handbook
 fi
 
-if [ $proxy = "yes" ]; then
+if [ "$proxy" == "yes" ];then
      echo "Proxy Server..."     
      # Install mitmproxy for proxy android.
      echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
