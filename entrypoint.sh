@@ -1,6 +1,7 @@
 #!/bin/bash
 
-version="dev-entity-2.4";
+echo "Start server: version $version" #TODO: check if empty string
+
 update=false
 
 folder_gc="/home/Grasscutter"
