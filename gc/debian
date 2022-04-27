@@ -1,0 +1,39 @@
+FROM openjdk:18-jdk-slim as build
+
+# Work work work!
+WORKDIR /work
+
+# Copy Version
+COPY VERSION .
+
+# Building Grasscutter Source
+RUN version=$(cat VERSION) && echo update: $version &&\
+    apt-get update && apt-get install -y git &&\
+    # Clone Time (Protos is included in build.gradle)
+    git clone -b fixes https://github.com/Grasscutters/Grasscutter.git && cp VERSION Grasscutter/ && cd Grasscutter &&\
+    # Server Version
+    sed -i "s#Hello#Server <a href='https://github.com/akbaryahya/DockerGC'>DockerGC $version</a>#" src/main/java/emu/grasscutter/server/dispatch/DispatchServer.java &&\
+    # Run it :)
+    chmod +x gradlew && ./gradlew jar && \
+    # We delete it because it is only needed during building process.
+    rm -R -f start_config.cmd start.cmd Grasscutter-Protos LICENSE *.md build build.gradle gradle gradlew gradlew.bat lib run.cmd settings.gradle src &&\
+    cp grasscutter-*.jar grasscutter.jar && rm grasscutter-*.jar
+
+FROM openjdk:18-jdk-slim
+RUN  \
+     # Install json utilities for config.json and net-tools for check ip config
+     apt-get update && apt-get install -y npm net-tools && npm install -g json
+
+# Sweet Home Alabama :)
+WORKDIR /home
+
+# EXPOSE Web (https) and Game Server
+EXPOSE 443 22102
+
+# Copy files
+COPY --from=build /work/Grasscutter ./Grasscutter
+COPY --from=siakbary/dockergc_data:public-0.1 /resources ./Grasscutter/resources
+
+# Rock
+COPY entrypoint.sh .
+ENTRYPOINT ["sh", "entrypoint.sh"]

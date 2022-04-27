@@ -1,9 +1,7 @@
-name: DockerGC
+name: DockerGC_data
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  paths:
+    - 'data/**'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set variables
       run: |
-        VER=$(cat VERSION)
+        VER=$(cat data/VERSION)
         echo "VERSION=$VER" >> $GITHUB_ENV
     - name: docker login
       env:
@@ -20,6 +18,6 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image
-      run: docker build . -t "siakbary/dockergc:${{env.VERSION}}" -f Dockerfile 
+      run: docker build . -t "siakbary/dockergc_data:${{env.VERSION}}" -f Dockerfile data
     - name: Docker Push
-      run: docker push siakbary/dockergc:${{env.VERSION}}
+      run: docker push siakbary/dockergc_data:${{env.VERSION}}
