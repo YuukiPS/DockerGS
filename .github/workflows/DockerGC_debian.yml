@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set variables
       run: |
-        VER=$(cat data/VERSION)
+        VER=$(cat gc/VERSION)
         echo "VERSION=$VER" >> $GITHUB_ENV
     - name: docker login
       env:
@@ -19,7 +19,5 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Build Docker image
-      run: cd gc && chmod +x b_gc_d.sh && sh b_gc_d.sh
-    - name: Docker Push
-      run: docker push siakbary/dockergc:debian-${{env.VERSION}}
+    - name: Build Docker image & Push
+      run: cd gc && chmod +x b_gc_d.sh && sh b_gc_d.sh push
