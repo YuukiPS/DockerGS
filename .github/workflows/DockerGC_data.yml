@@ -1,6 +1,7 @@
 name: DockerGC_data
 on:
-  paths:
+  push:
+    paths:
     - 'data/**'
 jobs:
   build:
