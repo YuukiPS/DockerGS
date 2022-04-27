@@ -32,8 +32,10 @@ WORKDIR /home
 # EXPOSE Web (https) and Game Server
 EXPOSE 443 22102
 
-# Copy files
+# Copy files Grasscutter
 COPY --from=build /work/Grasscutter ./Grasscutter
+# Copy files Resources
+COPY --from=siakbary/dockergc_data:public-0.4 /resources ./Grasscutter/resources
 
 # Rock
 COPY entrypoint.sh .

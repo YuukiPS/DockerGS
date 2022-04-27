@@ -1,8 +1,9 @@
-name: DockerGC Data
+name: DockerGC Debian
 on:
   push:
     paths:
-    - 'data/**'
+    - 'gc/debian'
+    - 'VERSION'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,6 +20,6 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image
-      run: cd data && chmod +x b_data.sh && sh b_data.sh
+      run: cd gc && chmod +x b_gc_d.sh && sh b_gc_d.sh
     - name: Docker Push
-      run: docker push siakbary/dockergc_data:${{env.VERSION}}
+      run: docker push siakbary/dockergc:debian-${{env.VERSION}}
