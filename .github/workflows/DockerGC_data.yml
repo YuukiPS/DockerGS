@@ -19,6 +19,6 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image
-      run: docker build . -t "siakbary/dockergc_data:${{env.VERSION}}" -f Dockerfile data
+      run: docker build -t "siakbary/dockergc_data:${{env.VERSION}}" -f Dockerfile data;
     - name: Docker Push
       run: docker push siakbary/dockergc_data:${{env.VERSION}}
