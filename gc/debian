@@ -32,7 +32,7 @@ EXPOSE 443 22102
 
 # Copy files
 COPY --from=build /work/Grasscutter ./Grasscutter
-COPY --from=siakbary/dockergc_data:public-0.1 /resources ./Grasscutter/resources
+COPY --from=siakbary/dockergc_data:latest /resources ./Grasscutter/resources
 
 # Rock
 COPY entrypoint.sh .
