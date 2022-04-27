@@ -10,7 +10,7 @@ COPY VERSION .
 RUN version=$(cat VERSION) && echo update: $version &&\
     apt-get update && apt-get install -y git &&\
     # Clone Time (Protos is included in build.gradle)
-    git clone -b fixes https://github.com/Grasscutters/Grasscutter.git && cp VERSION Grasscutter/ && cd Grasscutter &&\
+    git clone -b development https://github.com/Grasscutters/Grasscutter.git && cp VERSION Grasscutter/ && cd Grasscutter &&\
     # Server Version
     sed -i "s#Hello#Server <a href='https://github.com/akbaryahya/DockerGC'>DockerGC $version</a>#" src/main/java/emu/grasscutter/server/dispatch/DispatchServer.java &&\
     # Run it :)
