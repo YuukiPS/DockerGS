@@ -3,7 +3,7 @@ on:
   push:
     paths:
     - 'gc/debian'
-    - 'VERSION'
+    - 'gc/VERSION'
 jobs:
   build:
     runs-on: ubuntu-latest
