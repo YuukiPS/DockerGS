@@ -22,7 +22,7 @@ or (if you have compose)
 
 ## Bro, I don't want to make a server, so can I just join to your server?
 Yes, Simple way is to just change localhost in file in pastebin to address server you want to connect to.<br>
-For server list please join:
+For server list please join:<bz>
 [![DockerGC](https://discordapp.com/api/guilds/964119462188040202/widget.png?style=banner2)](https://discord.gg/tRYMG7Nm2D)
 
 ## HELP
