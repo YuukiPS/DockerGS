@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir resources && cd resources
+mkdir -p resources && cd resources
 GSDATA="https://github.com/Dimbreath/GenshinData"
 git clone $GSDATA
 git clone https://github.com/radioegor146/gi-bin-output
