@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 folder_gc="/home/Grasscutter"
 folder_resources="$folder_gc/resources"
+update=false
 
 cd $folder_gc
 
@@ -11,13 +12,14 @@ version=$(cat VERSION)
 
 echo "Start server: version $version - $OSVS" #TODO: check if empty string
 
-while getopts d:b:v:m: flag
+while getopts d:b:v:m:f: flag
 do
     case "${flag}" in
         d) DBIP=${OPTARG};;
         b) IPSERVERPB=${OPTARG};;
         v) IPSERVER=${OPTARG};;
         m) msgserver=${OPTARG};;
+        f) force=${OPTARG};;
     esac
 done
 
@@ -44,7 +46,26 @@ then
       msgserver="Hi, Welcome to Yuuki Server and thank Grasscutter Team for making this emulator we like you guys, please enjoy :). Currently running on server version $version"
 fi
 
-#TODO cek config
+# Building Data Source and Generated Resources
+if [ -d "$folder_resources" ] 
+then
+    echo "Resources folder already exists..."
+    if [ "$force" = "yes" ]; then
+     echo "But keep update it"
+     update=true
+    fi
+    # TODO: check vaild file and update maybe next time? 
+else
+    update=true
+fi
+
+if $update
+then 
+   git clone https://gitlab.com/akbaryahya91/dockergc-data.git
+   ls
+   cp -rf dockergc-data/resources/* resources   
+   rm -R -f dockergc-data ls
+fi
 
 if [ ! -f "config.json" ]; then
  echo "create table id and config.json"
@@ -67,7 +88,7 @@ json -I -f config.json -e "this.DispatchServer.PublicIp='$IPSERVERPB'"
 json -I -f config.json -e "this.GameServer.PublicIp='$IPSERVERPB'"
 
 # Config game
-# json -I -f config.json -e "this.DispatchServer.UseSSL='false'"
+json -I -f config.json -e "this.DispatchServer.defaultPermissions=['server.spawn','server.drop','player.give','player.godmode','player.clearartifacts','player.setstats','player.heal','player.changescene','player.givechar','player.setworldlevel','server.killall','player.giveall']"
 json -I -f config.json -e "this.DispatchServer.AutomaticallyCreateAccounts='true'"
 json -I -f config.json -e "this.GameServer.WelcomeMotd='$msgserver'"
 

@@ -1,5 +1,5 @@
 # DockerGC
-Running Grasscutter (*some anime game* server reimplementation) with Docker
+Running Grasscutter (*some anime game* server reimplementation) with Docker<br>
 [![dockeri.co](https://dockeri.co/image/siakbary/dockergc)](https://hub.docker.com/r/siakbary/dockergc)
 ## How to create a server:
 - Install Docker + MongoDB
@@ -11,26 +11,19 @@ or (if you have compose)
 ```sh
 "docker compose up" or "docker-compose up"
 ```
-- Then type "account create yuuki" if there is a new response open the game.
+- Then type "account create yourusername" if there is a new response open the game.
 - done 🙂
 
 ## How to connect:
 - Before starting, open game first and then logout if you have logged in before and then exit again.
 - Install Fiddler then open Fiddler then click Tools -> Options -> HTTPS Print "Capture Https" and "Decrypt Https" then click "Actions" then click "Trues Root" then click yes if a popup appears.
 - In Fiddler in "FiddlerScript" tab, copy script from https://pastebin.com/raw/rfhpS7U5 then click save.
-- Login with user yuuki then password random/whatever then login already 🙂
+- Login with your username then password with random then login. 🙂
 
 ## Bro, I don't want to make a server, so can I just join to your server?
-Yes, Simple way is to just change localhost in file in pastebin to address server you want to connect to.
-
-## SERVER FOR TESTING
-```sh
-Server Game: 
-game.yuuki.me (German, 200ms)
-jkt.game.yuuki.me (Jakarta, Indonesia 30-40ms)
-* In order to access command, please contact me *
-* You can login with random username and password, account data will be reset when datebase is reset,error,testing and sometimes server is automatically disconnected due to an error,bug,update. *
-```
+Yes, Simple way is to just change localhost in file in pastebin to address server you want to connect to.<br>
+For server list please join:
+[![DockerGC](https://discordapp.com/api/guilds/964119462188040202/widget.png?style=banner2)](https://discord.gg/tRYMG7Nm2D)
 
 ## HELP
 | Func | Info |
@@ -50,5 +43,5 @@ jkt.game.yuuki.me (Jakarta, Indonesia 30-40ms)
 | 22102 | game communication with udp line |
 | 8080 | proxy mitmproxy |
 
-Power by Grasscutter ❤️
+Power by Grasscutter ❤️<br>
 > https://github.com/Melledy/Grasscutter
