@@ -24,7 +24,7 @@ RUN version=$(cat VERSION) && echo update: $version &&\
 FROM openjdk:18-jdk-alpine
 RUN  \
      # Install json utilities for config.json
-     apk add --no-cache npm && npm install --unsafe-perm -g json
+     apk add --no-cache npm git && npm install --unsafe-perm -g json
 
 # Sweet Home Alabama :)
 WORKDIR /home
