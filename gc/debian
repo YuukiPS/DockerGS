@@ -8,7 +8,7 @@ COPY ./Grasscutter Grasscutter
 
 # Building Grasscutter Source
 RUN \
-    ls && cd Grasscutter && ls && version=$(cat VERSION) && echo update: $version &&\
+    ls && cd Grasscutter && ls && version=$(cat VERSION) && echo update: $version t2 &&\
     # Run it :)
     chmod +x gradlew && ./gradlew jar && \
     # We delete it because it is only needed during building process.
