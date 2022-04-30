@@ -5,7 +5,7 @@ Running Grasscutter (*some anime game* server reimplementation) with Docker<br>
 - Install Docker + MongoDB
 - Open Terminal and Enter:
 ```sh
-docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:dev-2.8 -d 'mongodb://2.0.0.100:27017' -b 'localhost' -f 'yes'
+docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:debian-dev-3.4 -d 'mongodb://2.0.0.100:27017' -b 'localhost' -f 'yes'
 ```
 or (if you have compose)
 ```sh
@@ -17,13 +17,14 @@ or (if you have compose)
 ## How to connect: (PC)
 - Before starting, open game first and then logout if you have logged in before and then exit again.
 - Install Fiddler then Open Fiddler then click Tools -> Options -> HTTPS -> Check "Capture Https" and "Decrypt Https" then click "Actions" then click "Trues Root" then click yes if a popup appears.
-- In Fiddler in "FiddlerScript" tab, copy script from https://pastebin.com/raw/rfhpS7U5 then click save.
+- In Fiddler in "FiddlerScript" tab, copy script from [directed.cs](directed.cs) then click save.
 - Login with your username then password with random then login. 🙂
 
  ## How to connect: (Android) (Fiddler)
 - Open Fiddler then click Tools -> Options -> HTTPS -> Check "Capture Https" and "Decrypt Https".
-- After you follow it, Go to Tools -> Options -> Connection -> Check "Allow remote computer to connect" and make sure the windows firewall is off and don't forget to change the port other than 8888 (change it like 8887) https://www.telerik.com/blogs/how-to-capture-android-traffic-with-fiddler
-- On phone, Install Magisk+MagiskTrustUserCerts https://platinmods.com/threads/intercepting-https-traffic-from-apps-on-android-7-and-above-root.131373/
+- After you follow it, Go to Tools -> Options -> Connection -> Check "Allow remote computer to connect" and make sure the windows firewall is off and don't forget to change the port other than 8888 (change it like 8887) - [more info](https://www.telerik.com/blogs/how-to-capture-android-traffic-with-fiddler)
+- In Fiddler in "FiddlerScript" tab, copy script from [directed.cs](directed.cs) then click save.
+- On Phone (Android 7+), Install Magisk+MagiskTrustUserCerts - [more info](https://platinmods.com/threads/intercepting-https-traffic-from-apps-on-android-7-and-above-root.131373/)
 - Change proxy on wifi settings with your server ip
 - Login with your username then password with random then login. 🙂
 
