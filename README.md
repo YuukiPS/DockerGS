@@ -39,9 +39,10 @@ For server list please join:<br>
 | d | is ip address for your database server , note: use computer ip if you want to run on your own pc, no "localhost" because it is ip in container |
 | b | ip public server |
 | v | ip private server |
-| m | Welcome message for users |
+| m | Chat Welcome message |
+| e | Email Welcome when registering for the first time |
 | f | re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
-| p | Running Proxy, if "yes" |
+| p | running proxy, if "yes" |
 
 ## Port
 | Port | Info |
