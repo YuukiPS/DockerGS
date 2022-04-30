@@ -2,13 +2,12 @@ FROM openjdk:18-jdk-slim as build
 
 # Work work work!
 WORKDIR /work
-
-#Local work
 COPY ./Grasscutter Grasscutter
+COPY ./VERSION Grasscutter
 
 # Building Grasscutter Source
 RUN \
-    ls && cd Grasscutter && ls && version=$(cat VERSION) && echo update: $version t4 &&\
+    cd Grasscutter && version=$(cat VERSION) && echo update: $version &&\
     # Run it :)
     chmod +x gradlew && ./gradlew jar && \
     # We delete it because it is only needed during building process.
