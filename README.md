@@ -1,11 +1,16 @@
 # DockerGC
-Running Grasscutter (*some anime game* server reimplementation) with Docker<br>
+DockerGC is a container that runs Grasscutter (*some anime game* server reimplementation) with just a single command.<br>
 [![dockeri.co](https://dockeri.co/image/siakbary/dockergc)](https://hub.docker.com/r/siakbary/dockergc)
 ## How to create a server:
 - Install Docker + MongoDB
 - Open Terminal and Enter:
 ```sh
-docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:debian-dev-3.4 -d 'mongodb://2.0.0.100:27017' -b 'localhost' -f 'yes'
+# Network (just once)
+docker network create gc
+# Datebase (just once) (db:27017 change ip and delete this if you already have a database)
+docker run --rm -it --network gc --name db -d mongo &
+# Game server (just once download resources with -f 'yes' after that you can set -f 'no')
+docker run --rm -it --network gc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:debian-dev-3.6 -d 'mongodb://db:27017' -b 'localhost' -f 'yes'
 ```
 or (if you have compose)
 ```sh
@@ -47,10 +52,10 @@ For server list please join:<br>
 ## Port
 | Port | Info |
 | ------ | ------ |
-| 80 | Web Server for HTTP. (NONEED) |
-| 443 | Web Server for HTTPS. *NEED* |
-| 22102 | Game Communication (UDP) |
-| 8080 | Mitmproxy (NONEED) |
+| 80 | Web Server for HTTP. (Not required) |
+| 443 | Web Server for HTTPS. (required) |
+| 22102 | Game Communication (udp) (required) |
+| 8080 | Mitmproxy (Not required) |
 
 Power by Grasscutter ❤️<br>
 > https://github.com/Melledy/Grasscutter

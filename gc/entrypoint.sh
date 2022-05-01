@@ -108,7 +108,7 @@ if [ ! -f "config.json" ]; then
  json -q -I -f config.json -e "this.GameServer.PublicIp='$IPSERVERPB'"
 
  # Config Game
- json -q -I -f config.json -e "this.DispatchServer.defaultPermissions=['server.spawn','server.drop','player.give','player.godmode','player.clearinv','player.setstats','player.heal','player.changescene','player.givechar','player.setworldlevel','server.killall','player.giveall','player.resetconstellation','player.giveart']"
+ json -q -I -f config.json -e "this.DispatchServer.defaultPermissions=['server.spawn','server.drop','player.give','player.godmode','player.clearinv','player.setstats','player.heal','player.changescene','player.givechar','player.setworldlevel','server.killall','player.giveall','player.resetconstellation','player.giveart','player.setfetterlevel']"
  json -q -I -f config.json -e "this.DispatchServer.AutomaticallyCreateAccounts='true'"
 
  # Config Email

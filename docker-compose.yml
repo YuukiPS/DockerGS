@@ -10,7 +10,7 @@ services:
     volumes:
       - data:/data/db
   grasscutter:
-    image: siakbary/dockergc:debian-dev-3.4
+    image: siakbary/dockergc:debian-dev-3.6
     command: -d 'mongodb://mongodb:27017' -b 'localhost' -f 'yes'
     restart: unless-stopped
     volumes:
