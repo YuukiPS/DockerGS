@@ -65,7 +65,8 @@ if [ ! -f "config.json" ]; then
  echo "No config file was found, try to use from command file"
  # get config.json
  java -jar grasscutter.jar -handbook
-
+ # gacha for id name (or just use -f 'yes' for download miss file)
+ # java -jar grasscutter.jar -gachamap
  # Ip private node to node
  if [ -z "$IPSERVER" ]; then
   IPSERVER=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
@@ -84,7 +85,7 @@ if [ ! -f "config.json" ]; then
 
  # Welcome message
  if [ -z "$msgserver" ]; then
-  msgserver="Currently server run in version $version\n\nUse !help for help\n\n~Yuuki"
+  msgserver="Currently server run in version DockerGC $version\n\nUse !help for help\n\n~Yuuki"
  fi
 
  # Send Email When Registration
