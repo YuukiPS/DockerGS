@@ -104,7 +104,9 @@ if [ ! -f "config.json" ]; then
  fi
 
  # Config ip
- sed -i "s/0.0.0.0/$IPSERVER/" config.json
+ json -q -I -f config.json -e "this.GameServer.Ip='$IPSERVER'"
+ json -q -I -f config.json -e "this.DispatchServer.Ip='$IPSERVER'"
+
  json -q -I -f config.json -e "this.DispatchServer.PublicIp='$IPSERVERPB'"
  json -q -I -f config.json -e "this.GameServer.PublicIp='$IPSERVERPB'"
 
@@ -123,8 +125,6 @@ else
  # If found config file
  echo "Found config files, ignore from command"
 fi
-
-ls
 
 # Game Server
 java -jar grasscutter.jar
