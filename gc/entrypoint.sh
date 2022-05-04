@@ -55,7 +55,7 @@ if [ "$proxy" = "yes" ]; then
      echo "Proxy Server..."
      apt-get update && apt-get --no-install-recommends install -y python3 python3-pip && apt-get autoremove && apt-get clean
      pip3 install mitmproxy
-     #sed -i "s/127.0.0.1/$IPSERVERPB/" proxy_config.py
+     sed -i "s/game.yuuki.me/$IPSERVERPB/" proxy_config.py
      #sed -i "s/True/False/" proxy_config.py
      mitmdump -s proxy.py -k --allow-hosts ".*.yuanshen.com|.*.mihoyo.com|.*.hoyoverse.com" &
 fi
@@ -129,6 +129,8 @@ else
  # If found config file
  echo "Found config files, ignore from command"
 fi
+
+#printenv
 
 # Game Server
 java -jar grasscutter.jar

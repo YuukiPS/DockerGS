@@ -1,5 +1,5 @@
 # Base https://gist.github.com/suggoitanoshi/8aa4eccc0b1df4ca63a01beceb65546a
-# For home use, you don't need to edit anymore, but if it's for public, it's better to use Nginx Proxy Manager so only port game need to be opened.
+# For home use, you don't need to edit anymore.
 version: '3'
 services:
   mongodb:
@@ -10,7 +10,7 @@ services:
     volumes:
       - data:/data/db
   grasscutter:
-    image: siakbary/dockergc:debian-dev-3.6
+    image: siakbary/dockergc:debian-dev-4.2
     command: -d 'mongodb://mongodb:27017' -b 'localhost' -f 'yes'
     restart: unless-stopped
     volumes:

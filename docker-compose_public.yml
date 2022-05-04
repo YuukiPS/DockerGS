@@ -1,0 +1,37 @@
+# Use this if you would like to put in public ip vps and change yourdomain.com with your domain name.
+# After that, please add DNS Subdomain with type A and IP that leads to your VPS. then open yourip:81 for config nginx (this should be very easy to do).
+version: '3'
+services:
+  web:
+    image: jc21/nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data_web:/data
+      - ./letsencrypt:/etc/letsencrypt
+  mongodb:
+    restart: unless-stopped
+    image: mongo
+    ports:
+      - "6969:27017"
+    volumes:
+      - ./data_db:/data/db
+    environment:
+     MONGO_INITDB_ROOT_USERNAME: nani
+     MONGO_INITDB_ROOT_PASSWORD: moemoekyu
+  grasscutter:
+    restart: unless-stopped
+    container_name: dockergc
+    image: siakbary/dockergc:debian-dev-4.2
+    command: -d 'mongodb://nani:moemoekyu@mongodb:27017' -b 'yourdomain.com' -f 'yes'
+    volumes:
+      - ./resources:/home/Grasscutter/resources
+    ports:
+      - "22102:22102/udp"
+    depends_on:
+      - mongodb
+    stdin_open: true
+    tty: true
