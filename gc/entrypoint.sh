@@ -113,6 +113,8 @@ if [ ! -f "config.json" ]; then
  # Config Game
  json -q -I -f config.json -e "this.DispatchServer.defaultPermissions=['server.spawn','server.drop','player.give','player.godmode','player.clearinv','player.setstats','player.heal','player.changescene','player.givechar','player.setworldlevel','server.killall','player.giveall','player.resetconstellation','player.giveart','player.setfetterlevel']"
  json -q -I -f config.json -e "this.DispatchServer.AutomaticallyCreateAccounts='true'"
+ #json -q -I -f config.json -e "this.DebugMode='ALL'" 
+ #json -q -I -f config.json -e "this.GameServer.CMD_NoGiveTes='true'"
 
  # Config Email
  json -q -I -f config.json -e "this.GameServer.WelcomeMotd='$msgserver'"
@@ -120,6 +122,8 @@ if [ ! -f "config.json" ]; then
  json -q -I -f config.json -e 'this.GameServer.WelcomeMailItems=[{"itemId": 223,"itemCount": 1000,"itemLevel": 1},{"itemId": 224,"itemCount": 1000,"itemLevel": 1},{"itemId": 202,"itemCount": 1000000,"itemLevel": 1},{"itemId": 201,"itemCount": 10000,"itemLevel": 1},{"itemId": 1002,"itemCount": 1,"itemLevel": 1},{"itemId": 1066,"itemCount": 1,"itemLevel": 1},{"itemId": 1016,"itemCount": 1,"itemLevel": 1},{"itemId": 1052,"itemCount": 1,"itemLevel": 1}]'
 
  # [1002,1003,1005,1006,1007,1014,1015,1016,1020,1021,1022,1023,1024,1025,1026,1027,1029,1030,1031,1032,1033,1034,1035,1036,1037,1038,1039,1041,1042,1043,1044,1045,1046,1047,1048,1049,1050,1051,1052,1053,1054,1055,1056,1057,1058,1062,1063,1064]
+
+ #cat config.json
  
 else
  # If found config file
