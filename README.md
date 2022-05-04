@@ -48,7 +48,7 @@ pipx install mitmproxy
 ```
 - Now download proxy config: 
 ```sh
-wget https://github.com/akbaryahya/Grasscutter/raw/Patch/proxy.py
+wget https://github.com/akbaryahya/Grasscutter/raw/Patch/proxy_config.py
 ```
 - Now run mitmproxy: 
 ```sh
