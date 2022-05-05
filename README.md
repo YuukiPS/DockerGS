@@ -49,11 +49,12 @@ pipx install mitmproxy
 ```
 - Now download proxy config: 
 ```sh
+wget https://github.com/akbaryahya/Grasscutter/raw/Patch/proxy.py (Need to modify for your server) 
 wget https://github.com/akbaryahya/Grasscutter/raw/Patch/proxy_config.py
 ```
 - Now run mitmproxy: 
 ```sh
-mitmdump -s proxy_config.py -k --ssl-insecure --set block_global=false
+mitmdump -s proxy.py -k
 ```
 - Then go to wifi settings and set proxy to 127.0.0.1 and 8080. Note that proxies are ignored if you are using a VPN.
 - Open http://mitm.it/ in your browser, download certificate. Then go to settings and install it.
