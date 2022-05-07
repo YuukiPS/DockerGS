@@ -8,19 +8,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
       with:
        submodules: true
     - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: '17'
+      uses: actions/setup-java@v3
+      with:
+       distribution: temurin
+       java-version: '17'
     - name: Set variables
       run: |
         VER=$(cat gc/Grasscutter/VERSION)
         echo "VERSION=$VER" >> $GITHUB_ENV
-    - name: docker login
+    - name: Docker Login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
