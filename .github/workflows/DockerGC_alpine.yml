@@ -3,7 +3,7 @@ on:
   push:
     paths:
     - 'gc/alpine'
-    - 'gc/VERSION'
+    - 'gc/Grasscutter/VERSION'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,7 +13,7 @@ jobs:
        submodules: true
     - name: Set variables
       run: |
-        VER=$(cat gc/VERSION)
+        VER=$(cat gc/Grasscutter/VERSION)
         echo "VERSION=$VER" >> $GITHUB_ENV
     - name: docker login
       env:
@@ -22,4 +22,4 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image & Push
-      run: cd gc && chmod +x b_gc_a.sh && sh b_gc_a.sh push
+      run: cd gc && chmod +x b_gc_a.sh make && sh b_gc_a.sh push

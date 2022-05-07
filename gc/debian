@@ -1,19 +1,3 @@
-FROM openjdk:18-jdk-slim as build
-
-# Work work work!
-WORKDIR /work
-COPY ./Grasscutter Grasscutter
-COPY ./VERSION Grasscutter
-
-# Building Grasscutter Source
-RUN \
-    cd Grasscutter && version=$(cat VERSION) && echo update: $version t6 && ls -a &&\
-    # Run it :)
-    chmod +x gradlew && ./gradlew jar && \
-    # We delete it because it is only needed during building process.
-    ls -a && rm -R -f build build.gradle gradle gradlew lib proto settings.gradle src sync.sh &&\
-    cp grasscutter-*.jar grasscutter.jar && rm grasscutter-*.jar && ls -a
-
 FROM openjdk:18-jdk-slim
 RUN  \
      # Install json utilities for config.json, net-tools for check ip config, git for resources
@@ -26,7 +10,7 @@ WORKDIR /home
 EXPOSE 443 22102
 
 # Copy files Grasscutter
-COPY --from=build /work/Grasscutter ./Grasscutter
+COPY work ./Grasscutter
 
 # Rock
 COPY entrypoint.sh .

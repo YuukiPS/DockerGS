@@ -1,15 +1,4 @@
 # Grasscutter
-Grasscutter/LICENSE
-Grasscutter/README.md
-Grasscutter/.git
-Grasscutter/.gitignore
-Grasscutter/.gradle
-Grasscutter/build
-Grasscutter/bin
-Grasscutter/resources
-Grasscutter/logs
-Grasscutter/plugins
-Grasscutter/*.jar
-Grasscutter/config.json
-!Grasscutter/lib/*.jar
-Grasscutter/src/generated
+work/logs
+work/resources
+work/config.json
