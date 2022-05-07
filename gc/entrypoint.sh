@@ -35,6 +35,7 @@ done
 # Building Data Source and Generated Resources
 if [ -d "$folder_resources" ] 
 then
+    ls -a $folder_resources
     echo "Resources folder already exists..."
     if [ "$force" = "yes" ]; then
      echo "But keep update it"
