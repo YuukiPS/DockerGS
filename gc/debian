@@ -7,12 +7,12 @@ COPY ./VERSION Grasscutter
 
 # Building Grasscutter Source
 RUN \
-    cd Grasscutter && version=$(cat VERSION) && echo update: $version t2 &&\
+    cd Grasscutter && version=$(cat VERSION) && echo update: $version t2 && ls -a &&\
     # Run it :)
     chmod +x gradlew && ./gradlew jar && \
     # We delete it because it is only needed during building process.
     rm -R -f LICENSE *.md build build.gradle gradle gradlew lib settings.gradle src proto .git .gradle .gitignore sync.sh &&\
-    ls && cp grasscutter-*.jar grasscutter.jar && rm grasscutter-*.jar
+    ls -a && cp grasscutter-*.jar grasscutter.jar && rm grasscutter-*.jar
 
 FROM openjdk:18-jdk-slim
 RUN  \

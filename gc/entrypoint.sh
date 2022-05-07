@@ -7,6 +7,8 @@ timems=date
 
 cd $folder_gc
 
+ls languages
+
 OSVS=$(. /etc/os-release && printf '%s\n' "$NAME")
 SUB="Alpine"
 version=$(cat VERSION)
