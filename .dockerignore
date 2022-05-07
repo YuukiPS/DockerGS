@@ -1,2 +1,10 @@
 LICENSE
 README.md
+
+# Grasscutter
+gc/Grasscutter/resources/
+gc/Grasscutter/logs/
+gc/Grasscutter/plugins/
+gc/Grasscutter/*.jar
+!gc/Grasscutter/lib/*.jar
+gc/Grasscutter/src/generated/
