@@ -1,0 +1,25 @@
+name: DockerGC Alpine
+on:
+  push:
+    paths:
+    - 'gc/alpine'
+    - 'gc/VERSION'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+       submodules: true
+    - name: Set variables
+      run: |
+        VER=$(cat gc/VERSION)
+        echo "VERSION=$VER" >> $GITHUB_ENV
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run:
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build Docker image & Push
+      run: cd gc && chmod +x b_gc_a.sh && sh b_gc_a.sh push

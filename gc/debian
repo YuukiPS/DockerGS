@@ -11,7 +11,7 @@ RUN \
     # Run it :)
     chmod +x gradlew && ./gradlew jar && \
     # We delete it because it is only needed during building process.
-    ls -a && rm -R -f LICENSE *.md build build.gradle gradle gradlew lib settings.gradle src proto .git .gradle .gitignore sync.sh &&\
+    ls -a && rm -R -f build build.gradle gradle gradlew lib proto settings.gradle src sync.sh &&\
     cp grasscutter-*.jar grasscutter.jar && rm grasscutter-*.jar && ls -a
 
 FROM openjdk:18-jdk-slim

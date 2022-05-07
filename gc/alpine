@@ -1,25 +1,18 @@
-FROM openjdk:18-jdk-alpine as build
+FROM openjdk:18-jdk-slim as build
 
 # Work work work!
 WORKDIR /work
-
-COPY VERSION .
+COPY ./Grasscutter Grasscutter
+COPY ./VERSION Grasscutter
 
 # Building Grasscutter Source
-RUN version=$(cat VERSION) && echo update: $version &&\
-    apk add --no-cache git &&\
-    git clone -b development https://github.com/Grasscutters/Grasscutter.git && cp VERSION Grasscutter/ && cd Grasscutter && \
-    # NEED HELP FIX: "Execution failed for task generateProto" (by update protobuf 3.18.1 & glibc maybe) but I can't do it, so go back to 
-    git reset --hard 30d4fec9d4a225d4dceac2de747a3aa97a5b908c &&\
-    # Need utf-8
-    export GRADLE_OPTS="-Dfile.encoding=utf-8"  &&\
-    # server version
-    sed -i "s#Hello#Server <a href='https://github.com/akbaryahya/DockerGC'>DockerGC $version</a>#" src/main/java/emu/grasscutter/server/dispatch/DispatchServer.java &&\
+RUN \
+    cd Grasscutter && version=$(cat VERSION) && echo update: $version t6 && ls -a &&\
     # Run it :)
-    chmod +x gradlew && ./gradlew jar &&\
+    chmod +x gradlew && ./gradlew jar && \
     # We delete it because it is only needed during building process.
-    rm -R -f start_config.cmd start.cmd Grasscutter-Protos LICENSE *.md build build.gradle gradle gradlew gradlew.bat lib run.cmd settings.gradle src &&\
-    cp grasscutter-*.jar grasscutter.jar && rm grasscutter-*.jar
+    ls -a && rm -R -f build build.gradle gradle gradlew lib proto settings.gradle src sync.sh &&\
+    cp grasscutter-*.jar grasscutter.jar && rm grasscutter-*.jar && ls -a
 
 FROM openjdk:18-jdk-alpine
 RUN  \
@@ -34,8 +27,6 @@ EXPOSE 443 22102
 
 # Copy files Grasscutter
 COPY --from=build /work/Grasscutter ./Grasscutter
-# Copy files Resources
-COPY --from=siakbary/dockergc_data:public-0.4 /resources ./Grasscutter/resources
 
 # Rock
 COPY entrypoint.sh .

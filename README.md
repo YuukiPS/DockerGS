@@ -75,7 +75,7 @@ For server list please join:<br>
 | m | Chat Welcome message |
 | e | Email Welcome when registering for the first time |
 | f | re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
-| p | running proxy, if "yes" |
+| j | -Xms500M -Xmx8G [more info](https://www.baeldung.com/ops/docker-jvm-heap-size) |
 
 ## Port
 | Port | Info |
@@ -83,7 +83,6 @@ For server list please join:<br>
 | 80 | Web Server for HTTP. (Not required) |
 | 443 | Web Server for HTTPS. (required) |
 | 22102 | Game Communication (udp) (required) |
-| 8080 | Mitmproxy (Not required) |
 
 Power by Grasscutter ❤️<br>
 > https://github.com/Melledy/Grasscutter

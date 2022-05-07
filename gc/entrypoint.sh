@@ -7,8 +7,6 @@ timems=date
 
 cd $folder_gc
 
-ls languages
-
 OSVS=$(. /etc/os-release && printf '%s\n' "$NAME")
 SUB="Alpine"
 version=$(cat VERSION)
@@ -19,7 +17,7 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 echo "$(date) - Start Server: version $version - $OSVS" #TODO: check if empty string
 
-while getopts d:b:v:m:e:f:p: flag
+while getopts d:b:v:m:e:f:j: flag
 do
     case "${flag}" in
         d) DBIP=${OPTARG};;
@@ -28,14 +26,19 @@ do
         m) msgserver=${OPTARG};;
         e) msgemail=${OPTARG};;
         f) force=${OPTARG};;
-        p) proxy=${OPTARG};;
+        j) JAVA_OPTS=${OPTARG};;
     esac
 done
+
+#  JVM sets its heap size to approximately 25% of the available RAM. In this example, it allocated 4GB on a system with 16GB.
+if [ -z "$JAVA_OPTS" ]; then
+ JAVA_OPTS="-Xms500M -Xmx8G"
+fi
+java -XX:+PrintFlagsFinal -version | grep -iE 'HeapSize|PermSize|ThreadStackSize'
 
 # Building Data Source and Generated Resources
 if [ -d "$folder_resources" ] 
 then
-    ls -a $folder_resources
     echo "Resources folder already exists..."
     if [ "$force" = "yes" ]; then
      echo "But keep update it"
@@ -48,19 +51,8 @@ fi
 if $update
 then 
    git clone https://gitlab.com/akbaryahya91/dockergc-data.git
-   ls
    cp -rf dockergc-data/resources/* resources   
-   rm -R -f dockergc-data ls
-fi
-
-# Proxy Mode
-if [ "$proxy" = "yes" ]; then
-     echo "Proxy Server..."
-     apt-get update && apt-get --no-install-recommends install -y python3 python3-pip && apt-get autoremove && apt-get clean
-     pip3 install mitmproxy
-     sed -i "s/game.yuuki.me/$IPSERVERPB/" proxy_config.py
-     #sed -i "s/True/False/" proxy_config.py
-     mitmdump -s proxy.py -k --allow-hosts ".*.yuanshen.com|.*.mihoyo.com|.*.hoyoverse.com" &
+   rm -R -f dockergc-data
 fi
 
 if [ ! -f "config.json" ]; then
@@ -129,7 +121,5 @@ else
  echo "Found config files, ignore from command"
 fi
 
-#printenv
-
 # Game Server
-java -jar grasscutter.jar
+java -jar grasscutter.jar $JAVA_OPTS
