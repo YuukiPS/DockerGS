@@ -1,8 +1,10 @@
 #!/bin/bash
 
 if [ "$1" = "sync" ];then
+ cd Grasscutter
  git pull https://github.com/Grasscutters/Grasscutter.git development
  #git pull https://github.com/Akka0/Grasscutter.git tower
+ cd ..
 fi
 
 if [ "$1" = "make" ];then
