@@ -19,7 +19,7 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 echo "$(date) - Start Server: version $version - $OSVS" #TODO: check if empty string
 
-while getopts d:b:v:m:e:f:j: flag
+while getopts d:b:v:m:e:f:j:l: flag
 do
     case "${flag}" in
         d) DBIP=${OPTARG};;
@@ -29,14 +29,20 @@ do
         e) msgemail=${OPTARG};;
         f) force=${OPTARG};;
         j) JAVA_OPTS=${OPTARG};;
+        l) lang=${OPTARG};;
     esac
-done
+done 
 
 #  JVM sets its heap size to approximately 25% of the available RAM. In this example, it allocated 4GB on a system with 16GB.
 if [ -z "$JAVA_OPTS" ]; then
  JAVA_OPTS="-Xms500M -Xmx8G"
 fi
 java -XX:+PrintFlagsFinal -version | grep -iE 'HeapSize|PermSize|ThreadStackSize'
+
+# languages
+if [ -z "$lang" ]; then
+ lang="en_US"
+fi
 
 # Building Data Source and Generated Resources
 if [ -d "$folder_resources" ] 
@@ -52,9 +58,11 @@ else
 fi
 if $update
 then 
-   git clone https://gitlab.com/akbaryahya91/dockergc-data.git
-   cp -rf dockergc-data/resources/* resources   
-   rm -R -f dockergc-data
+   rm -R -f resources
+   mkdir -p resources
+   git clone https://github.com/Koko-boya/Grasscutter_Resources
+   cp -rf Grasscutter_Resources/Resources/* resources
+   rm -R -f Grasscutter_Resources
 fi
 
 if [ ! -f "config.json" ]; then
@@ -110,6 +118,8 @@ if [ ! -f "config.json" ]; then
  # Config Game
  json -q -I -f config.json -e "this.DispatchServer.defaultPermissions=['server.spawn','server.drop','player.give','player.godmode','player.clearinv','player.setstats','player.heal','player.changescene','player.givechar','player.setworldlevel','server.killall','player.giveall','player.resetconstellation','player.giveart','player.setfetterlevel','player.enterdungeon','player.settalent','player.killcharacter','player.teleport','player.weather']"
  json -q -I -f config.json -e "this.DispatchServer.AutomaticallyCreateAccounts='true'"
+ json -q -I -f config.json -e "this.LocaleLanguage='$lang'"
+ json -q -I -f config.json -e "this.DefaultLanguage='$lang'"
  #json -q -I -f config.json -e "this.DebugMode='ALL'" 
  #json -q -I -f config.json -e "this.GameServer.CMD_NoGiveTes='true'"
 

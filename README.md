@@ -10,7 +10,7 @@ docker network create gc
 # Datebase (just once) (db:27017 change ip and delete this if you already have a database)
 docker run --rm -it --network gc --name db -d mongo &
 # Game server (just once download resources with -f 'yes' after that you can set -f 'no')
-docker run --rm -it --network gc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:debian-dev-4.2 -d 'mongodb://db:27017' -b 'localhost' -f 'yes'
+docker run --rm -it --network gc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:debian-dev-5.0 -d 'mongodb://db:27017' -b 'localhost' -f 'yes'
 ```
 or (if you have compose)
 ```sh
@@ -75,6 +75,7 @@ For server list please join:<br>
 | m | Chat Welcome message |
 | e | Email Welcome when registering for the first time |
 | f | re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
+| l | Server Language and includes commands [more info](https://github.com/Grasscutters/Grasscutter/tree/development/src/main/resources/languages) |
 | j | -Xms500M -Xmx8G [more info](https://www.baeldung.com/ops/docker-jvm-heap-size) |
 
 ## Port
