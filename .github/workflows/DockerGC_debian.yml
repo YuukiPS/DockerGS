@@ -3,7 +3,7 @@ on:
   push:
     paths:
     - 'gc/debian'
-    - 'gc/Grasscutter/VERSION'
+    - 'gc/VERSION'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
        java-version: '17'
     - name: Set variables
       run: |
-        VER=$(cat gc/Grasscutter/VERSION)
+        VER=$(cat gc/VERSION)
         echo "VERSION=$VER" >> $GITHUB_ENV
     - name: Docker Login
       env:

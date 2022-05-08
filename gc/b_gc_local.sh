@@ -24,7 +24,7 @@ if [ "$1" = "make" ];then
 
  # Copy jar (onlu need data and key)
  cp Grasscutter/grasscutter-*.jar work/grasscutter.jar && rm Grasscutter/grasscutter-*.jar
- cp -r -rf Grasscutter/VERSION Grasscutter/data Grasscutter/keys Grasscutter/keystore.p12 work/
+ cp -r -rf VERSION Grasscutter/data Grasscutter/keys Grasscutter/keystore.p12 work/
 
  # Clean modul
  cd Grasscutter
