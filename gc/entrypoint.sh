@@ -48,14 +48,19 @@ fi
 if [ -d "$folder_resources" ] 
 then
     echo "Resources folder already exists..."
-    if [ "$force" = "yes" ]; then
-     echo "But keep update it"
-     update=true
-    fi
-    # TODO: check vaild file and update maybe next time? 
 else
+    echo "Update?"
     update=true
 fi
+if [ "$force" = "yes" ]; then
+     echo "Update"
+     update=true
+fi
+if [ "$force" = "no" ]; then
+     echo "skip"
+     update=false
+fi
+
 if $update
 then 
    rm -R -f resources/*
