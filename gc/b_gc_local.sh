@@ -25,6 +25,9 @@ if [ "$1" = "make" ];then
  removeme="bin logs resources src/generated config.json plugins .gradle"
  rm -R -f $removeme
 
+ # Linux User
+ chmod +x gradlew
+
  # generated proto and lib
  ./gradlew
 
