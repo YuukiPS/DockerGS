@@ -2,7 +2,7 @@ name: DockerGC Alpine
 on:
   push:
     paths:
-    - 'gc/alpine'
+    - 'gc/os_alpine'
     - 'gc/VERSION'
 jobs:
   build:
@@ -25,4 +25,4 @@ jobs:
     - name: Build Docker image
       run: cd gc && chmod +x run.sh && sh run.sh alpine
     - name: Push Docker image
-      run: sh run.sh alpine push
+      run: cd gc && sh run.sh alpine push

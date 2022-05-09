@@ -2,7 +2,7 @@ name: DockerGC Ubuntu
 on:
   push:
     paths:
-    - 'gc/ubuntu'
+    - 'gc/os_ubuntu'
     - 'gc/VERSION'
 jobs:
   build:
@@ -25,4 +25,4 @@ jobs:
     - name: Build Docker image
       run: cd gc && chmod +x run.sh && sh run.sh ubuntu
     - name: Push Docker image
-      run: sh run.sh ubuntu push
+      run: cd gc && sh run.sh ubuntu push
