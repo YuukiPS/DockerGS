@@ -9,14 +9,17 @@ fi
 
 if [ "$1" = "clean_work" ];then
  rm -R -f work/*
+ rm -R -f .gradle/*
+ rm -R -f bin/*
 fi
 
 if [ "$1" = "make" ];then
  
  cd Grasscutter 
 
- # Clean modul
- ./gradlew clean
+ # Windows User:
+ # https://stackoverflow.com/a/49584404 & https://stackoverflow.com/a/64272135
+ #./gradlew clean
 
  # Remove bulid stuff
  removeme="bin logs resources src/generated config.json plugins .gradle"

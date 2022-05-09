@@ -1,6 +1,6 @@
-FROM openjdk:18-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 RUN  \
-     # Install json utilities for config.json (t6)
+     # Install json utilities for config.json (t1)
      apk add --no-cache npm git && npm install --unsafe-perm -g json
 
 # Sweet Home Alabama :)
