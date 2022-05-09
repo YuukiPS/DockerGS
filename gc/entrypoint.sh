@@ -66,6 +66,7 @@ then
    rm -R -f resources/*
    git clone https://github.com/Koko-boya/Grasscutter_Resources
    cp -rf Grasscutter_Resources/Resources/* resources
+   chmod -R 775 resources
    rm -R -f Grasscutter_Resources
 fi
 
