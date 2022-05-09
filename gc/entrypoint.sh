@@ -58,8 +58,7 @@ else
 fi
 if $update
 then 
-   rm -R -f resources
-   mkdir -p resources
+   rm -R -f resources/*
    git clone https://github.com/Koko-boya/Grasscutter_Resources
    cp -rf Grasscutter_Resources/Resources/* resources
    rm -R -f Grasscutter_Resources
