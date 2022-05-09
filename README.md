@@ -7,23 +7,23 @@ DockerGC is a container that runs [Grasscutter](https://github.com/Melledy/Grass
 ```sh
 # Network (just once)
 docker network create gc
-# Datebase (just once) (db:27017 change ip and delete this if you already have a database)
+# Datebase (just once) (db:27017 change ip and port and delete this if you already have a database)
 docker run --rm -it --network gc --name db -d mongo &
 # Game server (just once download resources with -f 'yes' after that you can set -f 'no')
-docker run --rm -it --network gc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:debian-dev-5.0 -d 'mongodb://db:27017' -b 'localhost' -f 'yes'
+docker run --rm -it --network gc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:ubuntu-dev-5.3 -d 'mongodb://db:27017' -b 'localhost' -f 'yes'
 ```
 or (if you have compose)
 ```sh
 "docker compose up" or "docker-compose up"
 ```
 - Then type "account create yourusername" if there is a new response open the game.
-- done 🙂
+- Yay
 
 ## How to connect: (PC)
 - Before starting, open game first and then logout if you have logged in before and then exit again.
 - Install Fiddler then Open Fiddler then click Tools -> Options -> HTTPS -> Check "Capture Https" and "Decrypt Https" then click "Actions" then click "Trues Root" then click yes if a popup appears.
 - In Fiddler in "FiddlerScript" tab, copy script from [directed.cs](directed.cs) then click save.
-- Login with your username then password with random then login. 🙂
+- Login with your username then password with random then login.
 
  ## How to connect: (Android Root) + (Fiddler PC for proxy)
 - Open Fiddler then click Tools -> Options -> HTTPS -> Check "Capture Https" and "Decrypt Https".
@@ -31,7 +31,7 @@ or (if you have compose)
 - In Fiddler in "FiddlerScript" tab, copy script from [directed.cs](directed.cs) then click save.
 - On Phone (Android 7+), Install Magisk+MagiskTrustUserCerts - [more info](https://platinmods.com/threads/intercepting-https-traffic-from-apps-on-android-7-and-above-root.131373/)
 - Change proxy on wifi settings with your server ip
-- Login with your username then password with random then login. 🙂
+- Login with your username then password with random then login.
 
 ## How to connect: (Android No-Root) (Termux)
 - do backup first (apk & data game) because patching apk cannot be updated with game that is installed now.
@@ -78,10 +78,13 @@ Clone this with
 git clone --recurse-submodules https://github.com/akbaryahya/DockerGC
 cd DockerGC
 cd gc
-sh b_gc_local.sh make # local for jar only
-sh b_gc_local.sh start # run localhost server for testing without docker
-sh b_gc_a.sh # Docker with alpine
-sh b_gc_d.sh # Docker with debian/ubuntu
+sh run.sh # local for jar only
+sh run.sh local start # run localhost server for testing without docker
+sh run.sh alpine start # run localhost server for testing with docker alpine
+sh run.sh ubuntu start # run localhost server for testing with docker ubuntu
+sh run.sh local clean_work # clean folder work directory
+sh run.sh build alpine # Docker with alpine
+sh run.sh build ubuntu # Docker with ubuntu
 ```
 ## HELP
 | Func | Info |

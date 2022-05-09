@@ -14,8 +14,10 @@ SUB="Alpine"
 version=$(cat VERSION)
 
 # Time Server
-mv /etc/localtime /etc/localtime-old
-ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
+if [[ "$OSVS" == *"Ubuntu"* ]]; then
+  mv /etc/localtime /etc/localtime-old
+  ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+fi
 
 echo "$(date) - Start Server: version $version - $OSVS" #TODO: check if empty string
 
@@ -45,7 +47,7 @@ if [ -z "$lang" ]; then
 fi
 
 # Building Data Source and Generated Resources
-if [ -d "$folder_resources" ] 
+if [ -d "$folder_resources/BinOutput" ] 
 then
     echo "Resources folder already exists..."
 else

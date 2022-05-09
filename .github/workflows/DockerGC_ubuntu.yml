@@ -1,8 +1,8 @@
-name: DockerGC Debian
+name: DockerGC Ubuntu
 on:
   push:
     paths:
-    - 'gc/debian'
+    - 'gc/ubuntu'
     - 'gc/VERSION'
 jobs:
   build:
@@ -12,11 +12,6 @@ jobs:
       uses: actions/checkout@v2
       with:
        submodules: true
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-       distribution: temurin
-       java-version: '17'
     - name: Set variables
       run: |
         VER=$(cat gc/VERSION)
@@ -27,5 +22,7 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Build Docker image & Push
-      run: cd gc && chmod +x b_gc_d.sh && sh b_gc_d.sh push
+    - name: Build Docker image
+      run: cd gc && chmod +x run.sh && sh run.sh ubuntu
+    - name: Push Docker image
+      run: sh run.sh ubuntu push
