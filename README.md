@@ -80,11 +80,11 @@ cd DockerGC
 cd gc
 sh run.sh # local for jar only
 sh run.sh local start # run localhost server for testing without docker
+sh run.sh local clean_work # clean folder work directory
 sh run.sh alpine start # run localhost server for testing with docker alpine
 sh run.sh ubuntu start # run localhost server for testing with docker ubuntu
-sh run.sh local clean_work # clean folder work directory
-sh run.sh build alpine # Docker with alpine
-sh run.sh build ubuntu # Docker with ubuntu
+sh run.sh alpine build # Docker with alpine
+sh run.sh ubuntu build # Docker with ubuntu
 ```
 ## HELP
 | Func | Info |

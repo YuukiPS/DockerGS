@@ -15,6 +15,8 @@ if [ -z "$metode" ]; then
  metode="build"
 fi
 
+echo OS: $os - Metode: $metode
+
 if [ "$metode" = "start" ];then
 
  if [ "$os" = "local" ];then
@@ -22,9 +24,13 @@ if [ "$metode" = "start" ];then
   java -jar grasscutter.jar
  else
   ip=$3
-  res=$4
+  ipdb=$4
+  res=$5
   if [ -z "$ip" ]; then
    ip="127.0.0.1"
+  fi
+  if [ -z "$ipdb" ]; then
+   ipdb="127.0.0.1:27017"
   fi
   if [ -z "$res" ]; then
    res="resources_gc_tes"
@@ -34,7 +40,7 @@ if [ "$metode" = "start" ];then
   -p 22102:22102/udp \
   -p 443:443/tcp \
   siakbary/dockergc:$os-$version \
-  -d "mongodb://$ip:27017" \
+  -d "mongodb://$ipdb" \
   -b "$ip"
  fi
 
@@ -61,41 +67,56 @@ if [ "$metode" = "build" ];then
  # if localhost
  if [ "$os" = "local" ];then
 
+  echo "Start bulid..."
+
+  # Remove bulid stuff
+  we_clean_it=$3
+  removeme="bin logs resources src/generated config.json plugins .gradle"
+
   cd Grasscutter 
 
   # Windows User:
   # https://stackoverflow.com/a/49584404 & https://stackoverflow.com/a/64272135
-  #./gradlew clean
 
-  # Remove bulid stuff
-  removeme="bin logs resources src/generated config.json plugins .gradle"
-  rm -R -f $removeme
+  if [ "$we_clean_it" = "clean" ];then 
+   echo "Remove file build (nofinal)"
+   #./gradlew clean
+   rm -R -f $removeme
+  fi
 
   # Linux User
   # chmod +x gradlew
 
-  # generated proto and lib
+  echo "Update lib stuff"
   ./gradlew
 
   # Make jar
+  echo "Make file jar..."
   ./gradlew jar
 
-  # try remove bulid
-  rm -R -f $removeme
+  if [ "$we_clean_it" = "clean" ];then
+   echo "Remove file bulid (final)"
+   rm -R -f $removeme
+  fi
 
   # Back to home directory
   cd ..
 
-  # Make work file
+  echo "Make folder work.."
   mkdir -p work
 
-  # Copy jar (only need data and key)
+  echo "Copy jar file..."
   cp Grasscutter/grasscutter-*.jar work/grasscutter.jar && rm Grasscutter/grasscutter-*.jar
+  echo "Copy file data & key"
   cp -r -rf VERSION Grasscutter/data Grasscutter/keys Grasscutter/keystore.p12 work/
 
-  # Clean modul
   cd Grasscutter
-  ./gradlew clean
+
+  if [ "$we_clean_it" = "clean" ];then
+   echo "Clean build (final)"
+   ./gradlew clean
+  fi
+
   cd ..
 
  else
