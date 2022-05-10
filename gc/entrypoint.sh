@@ -133,7 +133,7 @@ if [ ! -f "config.json" ]; then
  # Config Email
  json -q -I -f config.json -e "this.GameServer.WelcomeMotd='$msgserver'"
  json -q -I -f config.json -e "this.GameServer.WelcomeMailContent='$msgemail'"
- json -q -I -f config.json -e 'this.GameServer.WelcomeMailItems=[{"itemId": 223,"itemCount": 1000,"itemLevel": 1},{"itemId": 224,"itemCount": 1000,"itemLevel": 1},{"itemId": 202,"itemCount": 1000000,"itemLevel": 1},{"itemId": 201,"itemCount": 10000,"itemLevel": 1},{"itemId": 203,"itemCount": 3000,"itemLevel": 1},{"itemId": 204,"itemCount": 500,"itemLevel": 1},{"itemId": 204,"itemCount": 303,"itemLevel": 1}]'
+ json -q -I -f config.json -e 'this.GameServer.WelcomeMailItems=[{"itemId": 223,"itemCount": 1000,"itemLevel": 1},{"itemId": 224,"itemCount": 1000,"itemLevel": 1},{"itemId": 202,"itemCount": 1000000,"itemLevel": 1},{"itemId": 201,"itemCount": 10000,"itemLevel": 1},{"itemId": 203,"itemCount": 3000,"itemLevel": 1},{"itemId": 204,"itemCount": 500,"itemLevel": 1},{"itemId": 303,"itemCount": 100,"itemLevel": 1}]'
 
 else
  # If found config file
