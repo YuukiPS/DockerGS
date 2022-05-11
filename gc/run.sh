@@ -30,7 +30,7 @@ if [ "$metode" = "start" ];then
    ip="127.0.0.1"
   fi
   if [ -z "$ipdb" ]; then
-   ipdb="127.0.0.1:27017"
+   ipdb="$ip:27017"
   fi
   if [ -z "$res" ]; then
    res="resources_gc_tes"
@@ -106,7 +106,7 @@ if [ "$metode" = "build" ];then
   mkdir -p work
 
   echo "Copy jar file..."
-  cp Grasscutter/grasscutter-*.jar work/grasscutter.jar && rm Grasscutter/grasscutter-*.jar
+  cp Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
   echo "Copy file data & key"
   cp -r -rf VERSION Grasscutter/data Grasscutter/keys Grasscutter/keystore.p12 work/
 
