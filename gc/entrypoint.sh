@@ -99,7 +99,7 @@ if [ ! -f "config.json" ]; then
  fi
 
  # get config.json
- java -jar grasscutter.jar -boot 
+ java -jar grasscutter.jar -gachamap 
  
  # Ip private node to node
  if [ -z "$IPSERVER" ]; then
@@ -133,8 +133,8 @@ if [ ! -f "config.json" ]; then
   exit 1
  else      
   echo "Server IP SERVER MongoDB: $DBIP"
-  json -q -I -f config.json -e "this.databaseInfo.connectionUri='$DBIP'"
-  json -q -I -f config.json -e "this.server.game.gameOptions.databaseInfo.connectionUri='$DBIP'"
+  json -q -I -f config.json -e "this.databaseInfo.server.connectionUri='$DBIP'"
+  json -q -I -f config.json -e "this.databaseInfo.game.connectionUri='$DBIP'"
  fi
 
  # Config ip

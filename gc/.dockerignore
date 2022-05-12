@@ -1,4 +1,19 @@
 # Grasscutter
-work/logs
-work/resources
-work/config.json
+Grasscutter/build
+Grasscutter/.gradle
+Grasscutter/.git
+Grasscutter/.gitignore
+Grasscutter/bin
+Grasscutter/logs
+Grasscutter/resources
+Grasscutter/config.json
+Grasscutter/GM Handbook.txt
+Grasscutter/*.jar
+!Grasscutter/lib/*.jar
+Grasscutter/src/generated/
+Grasscutter/*.sh
+Grasscutter/data/gacha_mappings.js
+Grasscutter/BuildConfig.java
+Grasscutter/LICENSE
+Grasscutter/README.md
+Grasscutter/*.py

@@ -9,7 +9,7 @@ COPY ./VERSION .
 COPY ./run.sh .
 
 # Building Grasscutter Source
-RUN chmod +x run.sh && sh run.sh
+RUN ls Grasscutter -a && chmod +x run.sh && sh run.sh
 
 FROM eclipse-temurin:17-jdk-focal
 RUN  \
@@ -24,6 +24,7 @@ EXPOSE 443 22102
 
 # Copy files Grasscutter
 COPY --from=build /work/work ./Grasscutter
+RUN ls Grasscutter -a
 
 # Rock
 COPY entrypoint.sh .

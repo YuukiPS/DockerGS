@@ -56,8 +56,11 @@ fi
 # if sync
 if [ "$metode" = "sync" ];then
  cd Grasscutter
- git pull https://github.com/Grasscutters/Grasscutter.git development
- #git pull https://github.com/Akka0/Grasscutter.git tower
+ getme=$3
+ if [ -z "$getme" ]; then
+  getme="development"
+ fi
+ git pull https://github.com/Grasscutters/Grasscutter.git $getme
  cd ..
 fi
 
@@ -108,7 +111,7 @@ if [ "$metode" = "build" ];then
   echo "Copy jar file..."
   cp Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
   echo "Copy file data & key"
-  cp -r -rf VERSION Grasscutter/data Grasscutter/keys Grasscutter/keystore.p12 work/
+  cp -rf VERSION Grasscutter/data Grasscutter/keys Grasscutter/keystore.p12 work/
 
   cd Grasscutter
 
