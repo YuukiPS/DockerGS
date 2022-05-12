@@ -140,13 +140,16 @@ if [ "$metode" = "build" ];then
 
   cd ..
 
-  cd work
-  # Generated stuff
-  echo "Testing Generated..."
-  java -jar grasscutter.jar -gachamap
-  java -jar grasscutter.jar -handbook
-  java -jar grasscutter.jar -version
-  cd ..  
+  we_tes=$4
+  if [ "$we_tes" = "test" ];then
+   cd work
+   # Generated stuff
+   echo "Testing Generated..."
+   java -jar grasscutter.jar -gachamap
+   java -jar grasscutter.jar -handbook
+   java -jar grasscutter.jar -version
+   cd ..
+  fi  
 
  else
   # make jar local
