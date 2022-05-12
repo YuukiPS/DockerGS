@@ -13,7 +13,7 @@ RUN ls Grasscutter -a && chmod +x run.sh && sh run.sh
 
 FROM eclipse-temurin:17-jdk-focal
 RUN  \
-     # Install json utilities for config.json, net-tools for check ip config, git for resources (t1)
+     # Install json utilities for config.json, net-tools for check ip config, git for resources (t2)
      apt-get update && apt-get --no-install-recommends install -y git npm net-tools && npm install -g json && apt-get autoremove && apt-get clean
 
 # Sweet Home Alabama :)
