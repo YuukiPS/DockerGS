@@ -159,8 +159,8 @@ else
  echo "Found config files, ignore from command"
 fi
 
-#ls
-#cat config.json
+ls
+cat config.json
 
 # Game Server
 java -jar grasscutter.jar $JAVA_OPTS
