@@ -99,7 +99,7 @@ if [ ! -f "config.json" ]; then
  fi
 
  # get config.json
- java -jar grasscutter.jar -gachamap 
+ java -jar grasscutter.jar -boot 
  
  # Ip private node to node
  if [ -z "$IPSERVER" ]; then

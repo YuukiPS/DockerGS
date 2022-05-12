@@ -1,19 +1,6 @@
-FROM eclipse-temurin:17-jdk-focal as build
-
-# work work work
-WORKDIR /work
-
-# Copy stuff
-COPY ./Grasscutter Grasscutter
-COPY ./VERSION .
-COPY ./run.sh .
-
-# Building Grasscutter Source
-RUN ls Grasscutter -a && chmod +x run.sh && sh run.sh
-
 FROM eclipse-temurin:17-jdk-alpine
 RUN  \
-     # Install json utilities for config.json (t4)
+     # Install json utilities for config.json (t5)
      apk add --no-cache npm git && npm install --unsafe-perm -g json
 
 # Sweet Home Alabama :)
@@ -23,7 +10,7 @@ WORKDIR /home
 EXPOSE 443 22102
 
 # Copy files Grasscutter
-COPY --from=build /work/work ./Grasscutter
+COPY work ./Grasscutter
 
 # Rock
 COPY entrypoint.sh .

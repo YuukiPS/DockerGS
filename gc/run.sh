@@ -95,7 +95,7 @@ if [ "$metode" = "build" ];then
 
   # Make jar
   echo "Make file jar..."
-  ./gradlew jar
+  ./gradlew jar  
 
   if [ "$we_clean_it" = "clean" ];then
    echo "Remove file bulid (final)"
@@ -107,6 +107,24 @@ if [ "$metode" = "build" ];then
 
   echo "Make folder work.."
   mkdir -p work
+
+  echo "Make folder todo.."
+  mkdir -p todo
+
+  if [ "$we_clean_it" = "clean" ];then   
+   filejson="work/config.json"
+   filejson_res="todo/config.backup"
+   if test -f "$filejson"; then
+    echo "Found file config.json"
+    cp -rf $filejson $filejson_res
+   fi
+   echo "Remove file work folder"
+   rm -R -f $removeme work/*
+   if test -f "$filejson_res"; then
+    echo "Found file config.backup"
+    cp -rf $filejson_res $filejson
+   fi
+  fi
 
   echo "Copy jar file..."
   cp Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
@@ -122,7 +140,18 @@ if [ "$metode" = "build" ];then
 
   cd ..
 
+  cd work
+  # Generated stuff
+  echo "Testing Generated..."
+  java -jar grasscutter.jar -gachamap
+  java -jar grasscutter.jar -handbook
+  java -jar grasscutter.jar -version
+  cd ..  
+
  else
+  # make jar local
+  sh run.sh local build clean
+  # bulid
   docker build -t "siakbary/dockergc:$os-$version" -f os_$os .;
  fi
  
