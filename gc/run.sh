@@ -56,11 +56,15 @@ fi
 # if sync
 if [ "$metode" = "sync" ];then
  cd Grasscutter
- getme=$3
+ whosm=$3
+ getme=$4
+ if [ -z "$whosm" ]; then
+  whosm="Grasscutters"
+ fi
  if [ -z "$getme" ]; then
   getme="development"
  fi
- git pull https://github.com/Grasscutters/Grasscutter.git $getme
+ git pull https://github.com/$whosm/Grasscutter.git $getme
  cd ..
 fi
 
