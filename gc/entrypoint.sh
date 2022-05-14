@@ -17,7 +17,7 @@ if [ "$OSVS" = "Ubuntu" ]; then
   ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 fi
 
-echo "$(date) - Start Server: version $version - $OSVS" #TODO: check if empty string
+echo "This system run with OS $OSVS"
 
 while getopts d:b:v:m:e:f:j:l:s:o:r: flag
 do
@@ -98,8 +98,8 @@ if [ ! -f "config.json" ]; then
   name_region="Yuuki"
  fi
 
- # get config.json
- java -jar grasscutter.jar -boot 
+ # if no config just boot
+ java -jar grasscutter.jar -boot
  
  # Ip private node to node
  if [ -z "$IPSERVER" ]; then
@@ -155,8 +155,9 @@ if [ ! -f "config.json" ]; then
  json -q -I -f config.json -e "this.server.game.joinOptions.welcomeMail.content='$msgemail'"
 
 else
- # If found config file
+ # If found config file (maybe restart?)
  echo "Found config files, ignore from command"
+ rm -R -f logs/*
 fi
 
 #ls
