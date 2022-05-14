@@ -11,6 +11,7 @@ EXPOSE 443 22102
 
 # Copy files Grasscutter
 COPY work ./Grasscutter
+#RUN ls -a && ls work -a
 
 # Rock
 COPY entrypoint.sh .
