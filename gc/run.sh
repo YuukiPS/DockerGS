@@ -19,10 +19,14 @@ fi
 
 echo OS: $os - Metode: $metode
 
-echo "Check folder work.."
-mkdir -p work
-echo "Check folder todo.."
+if test -f "work"; then
+ echo "Make folder work.."
+ mkdir -p work
+fi
+if test -f "todo"; then
+echo "Make folder todo.."
 mkdir -p todo
+fi
 
 if [ "$metode" = "start" ];then
 
