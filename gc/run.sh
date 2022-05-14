@@ -1,9 +1,11 @@
 #!/bin/bash
-
 runit="local"
 version=$(cat VERSION)
 os=$1
 metode=$2
+filejson="work/config.json" 
+filejson_res="todo/config.backup"
+removeme="Grasscutter/bin Grasscutter/logs Grasscutter/resources Grasscutter/src/generated Grasscutter/config.json Grasscutter/plugins Grasscutter/.gradle"
 
 # select os
 if [ -z "$os" ]; then
@@ -17,9 +19,20 @@ fi
 
 echo OS: $os - Metode: $metode
 
+echo "Check folder work.."
+mkdir -p work
+echo "Check folder todo.."
+mkdir -p todo
+
 if [ "$metode" = "start" ];then
 
  if [ "$os" = "local" ];then
+
+  if test -f "$filejson_res"; then
+    echo "Found file config.backup"
+    cp -rf $filejson_res $filejson
+  fi
+  
   cd work
   java -jar grasscutter.jar
  else
@@ -72,24 +85,26 @@ fi
 if [ "$metode" = "build" ];then
  
  # if localhost
- if [ "$os" = "local" ];then
-
-  echo "Start bulid..."
-
-  # Remove bulid stuff
-  we_clean_it=$3
-  removeme="bin logs resources src/generated config.json plugins .gradle"
-
-  cd Grasscutter 
+ if [ "$os" = "local" ];then    
 
   # Windows User:
   # https://stackoverflow.com/a/49584404 & https://stackoverflow.com/a/64272135
 
-  if [ "$we_clean_it" = "clean" ];then 
-   echo "Remove file build (nofinal)"
-   #./gradlew clean
+  # Remove file
+  we_clean_it=$3
+  if [ "$we_clean_it" = "clean" ];then   
+   if test -f "$filejson"; then
+    echo "Found file config.json"
+    cp -rf $filejson $filejson_res
+   fi
+   echo "Remove file build (beginning)"
    rm -R -f $removeme
+   echo "Remove file work (ending)"   
+   rm -R -f work/*
   fi
+
+  echo "Start bulid..."
+  cd Grasscutter
 
   # Linux User
   # chmod +x gradlew
@@ -99,50 +114,15 @@ if [ "$metode" = "build" ];then
 
   # Make jar
   echo "Make file jar..."
-  ./gradlew jar  
-
-  if [ "$we_clean_it" = "clean" ];then
-   echo "Remove file bulid (final)"
-   rm -R -f $removeme
-  fi
+  ./gradlew jar
 
   # Back to home directory
-  cd ..
-
-  echo "Make folder work.."
-  mkdir -p work
-
-  echo "Make folder todo.."
-  mkdir -p todo
-
-  if [ "$we_clean_it" = "clean" ];then   
-   filejson="work/config.json"
-   filejson_res="todo/config.backup"
-   if test -f "$filejson"; then
-    echo "Found file config.json"
-    cp -rf $filejson $filejson_res
-   fi
-   echo "Remove file work folder"
-   rm -R -f $removeme work/*
-   if test -f "$filejson_res"; then
-    echo "Found file config.backup"
-    cp -rf $filejson_res $filejson
-   fi
-  fi
+  cd ..    
 
   echo "Copy jar file..."
   cp Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
   echo "Copy file data & key"
   cp -rf VERSION Grasscutter/data Grasscutter/keys Grasscutter/keystore.p12 work/
-
-  cd Grasscutter
-
-  if [ "$we_clean_it" = "clean" ];then
-   echo "Clean build (final)"
-   ./gradlew clean
-  fi
-
-  cd ..
 
   we_tes=$4
   if [ "$we_tes" = "test" ];then
@@ -153,13 +133,13 @@ if [ "$metode" = "build" ];then
    java -jar grasscutter.jar -handbook
    java -jar grasscutter.jar -version
    cd ..
-  fi  
+  fi
 
  else
   # make jar local
   sh run.sh local build clean
   # bulid
-  docker build -t "siakbary/dockergc:$os-$version" -f os_$os .;
+  docker build -t "siakbary/dockergc:$os-$version" -f os_$os .;  
  fi
  
 fi
