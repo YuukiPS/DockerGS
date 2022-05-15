@@ -1,6 +1,6 @@
 FROM eclipse-temurin:17-jdk-focal
 RUN  \
-     # Install json utilities for config.json, net-tools for check ip config, git for resources (t5)
+     # Install json utilities for config.json, net-tools for check ip config, git for resources (t6)
      apt-get update && apt-get --no-install-recommends install -y git npm net-tools && npm install -g json && apt-get autoremove && apt-get clean
 
 # Sweet Home Alabama :)
