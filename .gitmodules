@@ -8,3 +8,6 @@
 [submodule "gc/Grasscutter_Resources"]
 	path = gc/Grasscutter_Resources
 	url = https://gitlab.com/yukiz/GrasscutterResources
+[submodule "gc/Grasscutter_Proxy"]
+	path = gc/Grasscutter_Proxy
+	url = https://gitlab.com/yukiz/grasscutter-proxy
