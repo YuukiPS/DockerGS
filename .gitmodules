@@ -2,3 +2,9 @@
 	path = gc/Grasscutter
 	url = https://github.com/akbaryahya/Grasscutter.git
 	branch = development
+[submodule "gc/Grasscutter_Data"]
+	path = gc/Grasscutter_Data
+	url = https://gitlab.com/yukiz/grasscutter-data
+[submodule "gc/Grasscutter_Resources"]
+	path = gc/Grasscutter_Resources
+	url = https://gitlab.com/yukiz/GrasscutterResources
