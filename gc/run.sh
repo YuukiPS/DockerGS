@@ -19,6 +19,19 @@ fi
 
 echo OS: $os - Metode: $metode
 
+getres () {
+ echo "Get Resources"
+ git clone https://github.com/Koko-boya/Grasscutter_Resources
+ #cp -rf Grasscutter_Resources/Resources/* Grasscutter_Resources
+}
+
+cekres () {
+ echo "Check folder..."
+ if [ ! -d "resources/BinOutput" ]; then  
+  getres
+ fi
+}
+
 if [ ! -d "work" ]; then
  echo "Make folder work.."
  mkdir -p work
@@ -125,17 +138,32 @@ if [ "$metode" = "build" ];then
 
   echo "Copy jar file..."
   cp Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
-  echo "Copy file data & key"
-  cp -rf VERSION Grasscutter/data Grasscutter/keys Grasscutter/keystore.p12 work/
+  echo "Copy file version & key"
+  cp -rf VERSION Grasscutter/keys Grasscutter/keystore.p12 work/
+  echo "Copy file data"
+  cp -rf Grasscutter_Data/data work/data
+
+  # Back to work directory to check file
+  cd work
+  ls -a
+  cd ..
 
   we_tes=$4
   if [ "$we_tes" = "test" ];then
+
+   # TODO: check if config file
+   echo "Doing Testing, so need copy resources"
+   cekres
+   cp -rf Grasscutter_Resources/Resources work/resources
+
    cd work
+
    # Generated stuff
    echo "Testing Generated..."
-   java -jar grasscutter.jar -gachamap
-   java -jar grasscutter.jar -handbook
-   java -jar grasscutter.jar -version
+   java -jar grasscutter.jar -boot
+
+   # rm -R -f resources
+
    cd ..
   fi
 
