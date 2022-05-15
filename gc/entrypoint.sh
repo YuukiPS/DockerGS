@@ -64,14 +64,21 @@ if [ "$force" = "no" ]; then
      echo "skip"
      update=false
 fi
-
 if $update
 then 
    rm -R -f resources/*
    git clone https://github.com/Koko-boya/Grasscutter_Resources
    cp -rf Grasscutter_Resources/Resources/* resources
-   chmod -R 775 resources
+   #chmod -R 775 resources
    rm -R -f Grasscutter_Resources
+fi
+
+# Check Folder Data
+if [ ! -f "data/Drop.json" ]; then
+ echo "No found folder Data (You can costume this later by mount folder)"
+ git clone https://gitlab.com/yukiz/grasscutter-data
+ cp -rf grasscutter-data/data/* data
+ rm -R -f grasscutter-data
 fi
 
 if [ ! -f "config.json" ]; then
