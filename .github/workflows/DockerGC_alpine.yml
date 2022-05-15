@@ -8,8 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout submodules
+    - name: Checkout repository
       uses: actions/checkout@v2
+    - name: Checkout submodules
       run: git submodule deinit Grasscutter_Resources && git rm Grasscutter_Resources && git submodule update --init --recursive
     - name: Setup Java
       uses: actions/setup-java@v3
