@@ -11,7 +11,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Checkout submodules
-      run: git rm -f --ignore-unmatch gc/Grasscutter_Resources && git submodule update --recursive
+      run: git rm -f --ignore-unmatch gc/Grasscutter_Resources && git submodule update --init --recursive
     - name: Setup Java
       uses: actions/setup-java@v3
       with:
