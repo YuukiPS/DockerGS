@@ -141,6 +141,8 @@ if [ ! -f "config.json" ]; then
  json -q -I -f config.json -e "this.server.game.accessAddress='$IPSERVERPB'"
  json -q -I -f config.json -e "this.server.dispatch.bindAddress='$IPSERVER'"
  json -q -I -f config.json -e "this.server.dispatch.accessAddress='$IPSERVERPB'"
+ json -q -I -f config.json -e "this.server.http.bindAddress='$IPSERVER'"
+ json -q -I -f config.json -e "this.server.http.accessAddress='$IPSERVERPB'"
 
  # Config Game
  json -q -I -f config.json -e "this.language.language='$lang'"
