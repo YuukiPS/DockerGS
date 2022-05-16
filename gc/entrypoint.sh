@@ -73,14 +73,6 @@ then
    rm -R -f Grasscutter_Resources
 fi
 
-# Check Folder Data
-if [ ! -f "data/Drop.json" ]; then
- echo "No found folder Data (You can costume this later by mount folder)"
- git clone https://gitlab.com/yukiz/grasscutter-data
- cp -rf grasscutter-data/data/* data
- rm -R -f grasscutter-data
-fi
-
 if [ ! -f "config.json" ]; then
  # If there is no config file
  echo "No config file was found, try to use from command file"

@@ -22,7 +22,7 @@ echo OS: $os - Metode: $metode
 getres () {
  echo "Get Resources"
  git clone https://github.com/Koko-boya/Grasscutter_Resources
- #cp -rf Grasscutter_Resources/Resources/* Grasscutter_Resources
+ #cp -rTf Grasscutter_Resources/Resources/* Grasscutter_Resources
 }
 
 cekres () {
@@ -37,8 +37,8 @@ if [ ! -d "work" ]; then
  mkdir -p work
 fi
 if [ ! -d "todo" ]; then
-echo "Make folder todo.."
-mkdir -p todo
+ echo "Make folder todo.."
+ mkdir -p todo
 fi
 
 if [ "$metode" = "start" ];then
@@ -47,7 +47,7 @@ if [ "$metode" = "start" ];then
 
   if test -f "$filejson_res"; then
     echo "Found file config.backup"
-    cp -rf $filejson_res $filejson
+    cp -rTf $filejson_res $filejson
   fi
   
   cd work
@@ -112,7 +112,7 @@ if [ "$metode" = "build" ];then
   if [ "$we_clean_it" = "clean" ];then   
    if test -f "$filejson"; then
     echo "Found file config.json"
-    cp -rf $filejson $filejson_res
+    cp -rTf $filejson $filejson_res
    fi
    echo "Remove file build (beginning)"
    rm -R -f $removeme
@@ -134,15 +134,17 @@ if [ "$metode" = "build" ];then
   ./gradlew jar
 
   # Back to home directory
-  cd ..    
+  cd .. 
+
+  ls   
 
   echo "Copy jar file..."
-  cp Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
+  cp -rTf Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
   echo "Copy file version & key"
   cp -rf VERSION Grasscutter/keys Grasscutter/keystore.p12 work/
   echo "Copy file data"
-  cp -rf Grasscutter_Data/data work/data
-
+  cp -rTf Grasscutter_Data/data work/data
+  
   # Back to work directory to check file
   cd work
   ls -a
@@ -154,7 +156,7 @@ if [ "$metode" = "build" ];then
    # TODO: check if config file
    echo "Doing Testing, so need copy resources"
    cekres
-   cp -rf Grasscutter_Resources/Resources work/resources
+   cp -rTf Grasscutter_Resources/Resources work/resources
 
    cd work
 
