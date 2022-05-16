@@ -1,6 +1,6 @@
 FROM eclipse-temurin:17-jdk-focal
 RUN  \
-     # Install json utilities for config.json, net-tools for check ip config, git for resources (t3)
+     # Install json utilities for config.json, net-tools for check ip config, git for resources
      apt-get update && apt-get --no-install-recommends install -y git npm net-tools && npm install -g json && apt-get autoremove && apt-get clean
 
 # Sweet Home Alabama :)
@@ -9,7 +9,7 @@ WORKDIR /home
 # EXPOSE Web (https) and Game Server
 EXPOSE 443 22102
 
-# Copy files Grasscutter
+# Copy files Grasscutter (v1)
 COPY work ./Grasscutter
 #RUN ls -a && ls Grasscutter -a
 

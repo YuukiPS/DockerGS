@@ -1,6 +1,6 @@
 FROM eclipse-temurin:17-jdk-alpine
 RUN  \
-     # Install json utilities for config.json (t3)
+     # Install json utilities for config.json
      apk add --no-cache npm git && npm install --unsafe-perm -g json
 
 # Sweet Home Alabama :)
@@ -9,7 +9,7 @@ WORKDIR /home
 # EXPOSE Web (https) and Game Server
 EXPOSE 443 22102
 
-# Copy files Grasscutter
+# Copy files Grasscutter (v1)
 COPY work ./Grasscutter
 #RUN ls -a && ls work -a
 
