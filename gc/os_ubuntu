@@ -9,7 +9,7 @@ WORKDIR /home
 # EXPOSE Web (https) and Game Server
 EXPOSE 443 22102
 
-# Copy files Grasscutter (v)
+# Copy files Grasscutter (v3)
 COPY work ./Grasscutter
 #RUN ls -a && ls Grasscutter -a
 
