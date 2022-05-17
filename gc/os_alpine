@@ -1,7 +1,7 @@
 FROM eclipse-temurin:17-jdk-alpine
 RUN  \
      # Install json utilities for config.json
-     apk add --no-cache npm git && npm install --unsafe-perm -g json
+     apk add --no-cache npm git && npm install --unsafe-perm -g json curl
 
 # Sweet Home Alabama :)
 WORKDIR /home
@@ -15,4 +15,6 @@ COPY work ./Grasscutter
 
 # Rock
 COPY entrypoint.sh .
+HEALTHCHECK --interval=30s --timeout=10s \
+  CMD curl --fail --insecure https://localhost || exit 1  
 ENTRYPOINT ["sh", "entrypoint.sh"]
