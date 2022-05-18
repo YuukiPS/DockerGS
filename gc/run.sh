@@ -140,8 +140,8 @@ if [ "$metode" = "build" ];then
 
   echo "Copy jar file..."
   cp -rTf Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
-  echo "Copy file version & key"
-  cp -rf VERSION Grasscutter/keys Grasscutter/keystore.p12 work/
+  echo "Copy file version & SSL Key"
+  cp -rf VERSION Grasscutter/keystore.p12 work/
   echo "Copy file data"
   cp -rTf Grasscutter_Data/data work/data
   
