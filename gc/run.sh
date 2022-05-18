@@ -171,7 +171,7 @@ if [ "$metode" = "build" ];then
 
  else
   # make jar local
-  sh run.sh local build
+  sh run.sh local build clean
   # bulid
   docker build -t "siakbary/dockergc:$os-$version" -f os_$os .;  
  fi
