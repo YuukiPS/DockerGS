@@ -1,7 +1,8 @@
 FROM eclipse-temurin:17-jdk-alpine
 RUN  \
      # Install json utilities for config.json
-     apk add --no-cache npm git curl && npm install --unsafe-perm -g json
+     apk add --no-cache npm git curl &&\
+     npm install --unsafe-perm -g json
 
 # Sweet Home Alabama :)
 WORKDIR /home
@@ -9,12 +10,12 @@ WORKDIR /home
 # EXPOSE Web (https) and Game Server
 EXPOSE 443 22102
 
-# Copy files Grasscutter (v4)
+# Copy files Grasscutter (v1)
 COPY work ./Grasscutter
 #RUN ls -a && ls work -a
 
 # Rock
 COPY entrypoint.sh .
-HEALTHCHECK --interval=30s --timeout=10s \
+HEALTHCHECK --interval=10s --timeout=10s \
   CMD curl --fail --insecure https://localhost || exit 1  
 ENTRYPOINT ["sh", "entrypoint.sh"]
