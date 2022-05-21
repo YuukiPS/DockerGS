@@ -71,6 +71,7 @@ if [ "$metode" = "start" ];then
   -p 443:443/tcp \
   siakbary/dockergc:$os-$version \
   -d "mongodb://$ipdb" \
+  -v "0.0.0.0" \
   -b "$ip"
  fi
 
