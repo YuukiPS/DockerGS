@@ -36,6 +36,10 @@ echo OS: $os - Metode: $metode - Branch:$switchbc
 cd Grasscutter
 # Switch GC
 branch_now=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+if [ -z "$branch_now" ]; then
+ echo "Error get name branch"
+ exit 1
+fi
 if [ "$switchbc" != "$branch_now" ]; then
  echo "Switch $branch_now to $switchbc"
  git switch $switchbc
@@ -44,6 +48,10 @@ else
 fi
 # Get Hash GC
 version_gchash=$(git rev-parse --short head)
+if [ -z "$version_gchash" ]; then
+ echo "Error get hash"
+ exit 1
+fi
 # Back to home
 cd ..
 
