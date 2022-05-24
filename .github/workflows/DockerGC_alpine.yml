@@ -1,9 +1,9 @@
-name: DockerGC Alpine
+name: DockerGC Alpine (Development)
 on:
   push:
     paths:
     - 'gc/os_alpine'
-    - 'gc/VERSION'
+    - 'gc/VERSION_Patch-DEV'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,10 +17,6 @@ jobs:
       with:
        distribution: temurin
        java-version: '17'
-    - name: Set variables
-      run: |
-        VER=$(cat gc/VERSION)
-        echo "VERSION=$VER" >> $GITHUB_ENV
     - name: Docker Login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -28,6 +24,6 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image
-      run: cd gc && chmod +x run.sh && sh run.sh alpine
+      run: cd gc && chmod +x run.sh && sh run.sh alpine build 0
     - name: Push Docker image
-      run: cd gc && sh run.sh alpine push
+      run: cd gc && sh run.sh alpine push 0

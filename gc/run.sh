@@ -1,23 +1,59 @@
 #!/bin/bash
 runit="local"
-version=$(cat VERSION)
+
 os=$1
 metode=$2
+usebranch=$3
+
 filejson="work/config.json" 
 filejson_res="todo/config.backup"
 removeme="Grasscutter/bin Grasscutter/logs Grasscutter/resources Grasscutter/src/generated Grasscutter/config.json Grasscutter/plugins Grasscutter/.gradle"
+switchbc="Patch-DEV"
 
-# select os
+version_gchash="unknown";
+
+# OS
 if [ -z "$os" ]; then
  os="local"
 fi
 
-# select metode
+# Metode
 if [ -z "$metode" ]; then
  metode="build"
 fi
 
-echo OS: $os - Metode: $metode
+# Branch
+if [ "$usebranch" = "0" ];then
+ switchbc="Patch-DEV"
+fi
+if [ "$usebranch" = "1" ];then
+ switchbc="Patch-Early"
+fi
+
+echo OS: $os - Metode: $metode - Branch:$switchbc
+
+# Check GC
+cd Grasscutter
+# Switch GC
+branch_now=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+if [ "$switchbc" != "$branch_now" ]; then
+ echo "Switch $branch_now to $switchbc"
+ git switch $switchbc
+else
+ echo "You're already there $branch_now"
+fi
+# Get Hash GC
+version_gchash=$(git rev-parse --short head)
+# Back to home
+cd ..
+
+# Copy Hash GC
+echo $version_gchash > VERSION_$switchbc
+
+# Copy TMP version
+allto=$os-$switchbc-$version_gchash
+echo $allto
+echo $allto > VERSION_TMP
 
 getres () {
  echo "Get Resources"
@@ -53,9 +89,9 @@ if [ "$metode" = "start" ];then
   cd work
   java -jar grasscutter.jar
  else
-  ip=$3
-  ipdb=$4
-  res=$5
+  ip=$4
+  ipdb=$5
+  res=$6
   if [ -z "$ip" ]; then
    ip="127.0.0.1"
   fi
@@ -69,7 +105,7 @@ if [ "$metode" = "start" ];then
   -v $res:/home/Grasscutter/resources \
   -p 22102:22102/udp \
   -p 443:443/tcp \
-  siakbary/dockergc:$os-$version \
+  siakbary/dockergc:$allto \
   -d "mongodb://$ipdb" \
   -v "0.0.0.0" \
   -b "$ip"
@@ -87,8 +123,8 @@ fi
 # if sync
 if [ "$metode" = "sync" ];then
  cd Grasscutter
- whosm=$3
- getme=$4
+ whosm=$4
+ getme=$5
  if [ -z "$whosm" ]; then
   whosm="Grasscutters"
  fi
@@ -106,10 +142,10 @@ if [ "$metode" = "build" ];then
  if [ "$os" = "local" ];then    
 
   # Windows User:
-  # https://stackoverflow.com/a/49584404 & https://stackoverflow.com/a/64272135
+  # https://stackoverflow.com/a/49584404 & https://stackoverflow.com/a/64272135  
 
   # Remove file
-  we_clean_it=$3
+  we_clean_it=$4
   if [ "$we_clean_it" = "clean" ];then   
    if test -f "$filejson"; then
     echo "Found file config.json"
@@ -122,7 +158,7 @@ if [ "$metode" = "build" ];then
   fi
 
   echo "Start bulid..."
-  cd Grasscutter
+  cd Grasscutter   
 
   # Linux User
   # chmod +x gradlew
@@ -141,7 +177,9 @@ if [ "$metode" = "build" ];then
 
   echo "Copy jar file..."
   cp -rTf Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
-  echo "Copy file version & SSL Key"
+  echo "Copy file version local"
+  cp -rTf VERSION_TMP work/VERSION
+  echo "Copy file SSL Key"
   cp -rf VERSION Grasscutter/keystore.p12 work/
   echo "Copy file data"
   cp -rTf Grasscutter_Data/data work/data
@@ -151,7 +189,7 @@ if [ "$metode" = "build" ];then
   ls -a
   cd ..
 
-  we_tes=$4
+  we_tes=$5
   if [ "$we_tes" = "test" ];then
 
    # TODO: check if config file
@@ -172,14 +210,20 @@ if [ "$metode" = "build" ];then
 
  else
   # make jar local
-  sh run.sh local build clean
+  sh run.sh local build $usebranch
+
+  # Version Docker
+  echo "Copy file version docker"  
+  echo $allto > VERSION_TMP
+  cp -rTf VERSION_TMP work/VERSION
+
   # bulid
-  docker build -t "siakbary/dockergc:$os-$version" -f os_$os .;  
+  docker build -t "siakbary/dockergc:$allto" -f os_$os .;
  fi
  
 fi
 
 # if push
 if [ "$metode" = "push" ];then
- docker push siakbary/dockergc:$os-$version
+ docker push siakbary/dockergc:$allto
 fi

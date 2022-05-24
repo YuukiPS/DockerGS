@@ -10,7 +10,7 @@ docker network create gc
 # Datebase (just once) (db:27017 change ip and port and delete this if you already have a database)
 docker run --rm -it --network gc --name db -d mongo &
 # Game server (just once download resources with -f 'yes' after that you can set -f 'no')
-docker run --rm -it --network gc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:ubuntu-dev-6.3 -d 'mongodb://db:27017' -b 'localhost' -f 'yes'
+docker run --rm -it --network gc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:ubuntu-Patch-DEV-c116a58 -d 'mongodb://db:27017' -b 'localhost' -f 'yes'
 ```
 or (if you have compose)
 ```sh
@@ -37,13 +37,14 @@ Clone this with
 git clone --recurse-submodules https://github.com/akbaryahya/DockerGC
 cd DockerGC
 cd gc
-sh run.sh # local for jar only
-sh run.sh local start # run localhost server for testing without docker
-sh run.sh local clean_work # clean folder work directory
-sh run.sh alpine start # run localhost server for testing with docker alpine
-sh run.sh ubuntu start # run localhost server for testing with docker ubuntu
-sh run.sh alpine build # Docker with alpine
-sh run.sh ubuntu build # Docker with ubuntu
+# (0 is Patch-DEV and 2 is Patch-Early) (2.0.0.100 is your ip computer, make sure you have mongodb installed)
+sh run.sh # default build localhost
+sh run.sh local  start 0 # run localhost server for without docker
+sh run.sh alpine start 0 2.0.0.100 # run localhost server for with docker alpine 
+sh run.sh ubuntu start 0 2.0.0.100 # run localhost server for with docker ubuntu
+sh run.sh local  build 0 # Build local aja jar only
+sh run.sh alpine build 0 # Build Docker Image Alpine
+sh run.sh ubuntu build 0 # Build Docker Image Ubuntu
 ```
 ## HELP
 | Func | Info |

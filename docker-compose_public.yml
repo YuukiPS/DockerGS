@@ -25,7 +25,7 @@ services:
   grasscutter:
     restart: unless-stopped
     container_name: dockergc
-    image: siakbary/dockergc:ubuntu-dev-6.3
+    image: siakbary/dockergc:ubuntu-Patch-DEV-c116a58
     command: -d 'mongodb://nani:moemoekyu@mongodb:27017' -b 'yourdomain.com' -f 'yes'
     volumes:
       - ./resources:/home/Grasscutter/resources
