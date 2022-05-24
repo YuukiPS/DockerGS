@@ -35,7 +35,7 @@ echo OS: $os - Metode: $metode - Branch:$switchbc
 # Check GC
 cd Grasscutter
 # Switch GC
-ls -a
+#ls -a
 branch_now=$(git rev-parse --abbrev-ref HEAD)
 if [ -z "$branch_now" ]; then
  echo "Error get name branch"
@@ -43,7 +43,7 @@ if [ -z "$branch_now" ]; then
 fi
 # if HEAD
 if [ "$branch_now" = "HEAD" ];then
- echo "tes";
+ echo "This seems to work on GitHub Action, or first time? so let's switch to original to check version";
 fi
 if [ "$switchbc" != "$branch_now" ]; then
  echo "Switch $branch_now to $switchbc"
