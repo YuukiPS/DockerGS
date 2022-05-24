@@ -35,7 +35,11 @@ echo OS: $os - Metode: $metode - Branch:$switchbc
 # Check GC
 cd Grasscutter
 # Switch GC
-branch_now=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+branch_now=$(\
+  git for-each-ref \
+  --format='%(objectname) %(refname:short)' refs/heads \
+  | awk "/^$(git rev-parse HEAD)/ {print \$2}"\
+)
 if [ -z "$branch_now" ]; then
  echo "Error get name branch"
  exit 1
