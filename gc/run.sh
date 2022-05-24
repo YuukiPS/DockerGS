@@ -35,7 +35,7 @@ echo OS: $os - Metode: $metode - Branch:$switchbc
 # Check GC
 cd Grasscutter
 # Switch GC
-branch_now=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+branch_now=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 if [ "$switchbc" != "$branch_now" ]; then
  echo "Switch $branch_now to $switchbc"
  git switch $switchbc
@@ -180,7 +180,7 @@ if [ "$metode" = "build" ];then
   echo "Copy file version local"
   cp -rTf VERSION_TMP work/VERSION
   echo "Copy file SSL Key"
-  cp -rf VERSION Grasscutter/keystore.p12 work/
+  cp -rf Grasscutter/keystore.p12 work/
   echo "Copy file data"
   cp -rTf Grasscutter_Data/data work/data
   
