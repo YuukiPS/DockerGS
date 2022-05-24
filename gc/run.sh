@@ -35,7 +35,8 @@ echo OS: $os - Metode: $metode - Branch:$switchbc
 # Check GC
 cd Grasscutter
 # Switch GC
-branch_now=$(git branch --show-current)
+ls -a
+branch_now=$(git rev-parse --abbrev-ref HEAD)
 if [ -z "$branch_now" ]; then
  echo "Error get name branch"
  exit 1
@@ -181,7 +182,7 @@ if [ "$metode" = "build" ];then
   # Back to home directory
   cd .. 
 
-  ls   
+  #ls   
 
   echo "Copy jar file..."
   cp -rTf Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
@@ -193,9 +194,9 @@ if [ "$metode" = "build" ];then
   cp -rTf Grasscutter_Data/data work/data
   
   # Back to work directory to check file
-  cd work
-  ls -a
-  cd ..
+  #cd work
+  #ls -a
+  #cd ..
 
   we_tes=$5
   if [ "$we_tes" = "test" ];then
