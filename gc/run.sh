@@ -41,6 +41,10 @@ if [ -z "$branch_now" ]; then
  echo "Error get name branch"
  exit 1
 fi
+# if HEAD
+if [ "$branch_now" = "HEAD" ];then
+ echo "tes";
+fi
 if [ "$switchbc" != "$branch_now" ]; then
  echo "Switch $branch_now to $switchbc"
  git switch $switchbc
@@ -48,7 +52,7 @@ else
  echo "You're already there $branch_now"
 fi
 # Get Hash GC
-version_gchash=$(git rev-parse --short head)
+version_gchash=$(git rev-parse --short HEAD)
 if [ -z "$version_gchash" ]; then
  echo "Error get hash"
  exit 1
