@@ -44,7 +44,7 @@ done
 
 #  JVM sets its heap size to approximately 25% of the available RAM. In this example, it allocated 4GB on a system with 16GB.
 if [ -z "$JAVA_OPTS" ]; then
- JAVA_OPTS="-Xms100M -Xmx10G"
+ JAVA_OPTS="-Xms4G -Xmx8G"
  java -XX:+PrintFlagsFinal -version | grep -iE 'HeapSize|PermSize|ThreadStackSize'
 fi
 

@@ -2,27 +2,10 @@
 DockerGC is a container that runs [Grasscutter](https://github.com/Melledy/Grasscutter) (*some anime game* server reimplementation) with just a single command.<br>
 [![dockeri.co](https://dockeri.co/image/siakbary/dockergc)](https://hub.docker.com/r/siakbary/dockergc)
 ## How to create a server:
-- Install [Docker](https://docs.docker.com/engine/install/) + [MongoDB](https://www.mongodb.com/try/download/community)
-- Open Terminal and Enter:
-```sh
-# Network (just once)
-docker network create gc
-# Datebase (just once) (db:27017 change ip and port and delete this if you already have a database)
-docker run --rm -it --network gc --name db -d mongo &
-# Game server (just once download resources with -f 'yes' after that you can set -f 'no')
-docker run --rm -it --network gc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:ubuntu-Patch-DEV-c116a58 -d 'mongodb://db:27017' -b 'localhost' -f 'yes'
-```
-or (if you have compose)
-```sh
-"docker compose up" or "docker-compose up"
-```
-- Then type "account create yourusername" if there is a new response open the game.
-- Yay
+[Since I don't want to write the same post, please visit this](https://game.yuuki.me/posts/how-to-make-server)
 
-## Bro, I don't want to make a server, so can I just join to your server?
-Yes, Simple way is to just change localhost in file in [Grasscutter Proxy](https://gitlab.com/yukiz/grasscutter-proxy) to address server you want to connect to.<br>
-For server list please join:<br>
-[![DockerGC](https://discordapp.com/api/guilds/964119462188040202/widget.png?style=banner2)](https://discord.gg/tRYMG7Nm2D)
+## How to connect to server
+[Since I don't want to write the same post, please visit this](https://game.yuuki.me/posts/how-connect)
 
 ## How to build this?
 ### Required
@@ -37,7 +20,7 @@ Clone this with
 git clone --recurse-submodules https://github.com/akbaryahya/DockerGC
 cd DockerGC
 cd gc
-# (0 is Patch-DEV and 2 is Patch-Early) (2.0.0.100 is your ip computer, make sure you have mongodb installed)
+# (0 is Patch-DEV and 1 is Patch-Early) (2.0.0.100 is your ip computer, make sure you have mongodb installed)
 sh run.sh # default build localhost
 sh run.sh local  start 0 # run localhost server for without docker
 sh run.sh alpine start 0 2.0.0.100 # run localhost server for with docker alpine 
@@ -45,6 +28,7 @@ sh run.sh ubuntu start 0 2.0.0.100 # run localhost server for with docker ubuntu
 sh run.sh local  build 0 # Build local aja jar only
 sh run.sh alpine build 0 # Build Docker Image Alpine
 sh run.sh ubuntu build 0 # Build Docker Image Ubuntu
+sh run.sh local sync 1 Grasscutters dev-world-scripts # Sync Grasscutters Branch dev-world-scripts to Patch-Early
 ```
 ## HELP
 | Func | Info |

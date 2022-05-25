@@ -223,7 +223,7 @@ if [ "$metode" = "build" ];then
 
  else
   # make jar local
-  sh run.sh local build $usebranch
+  sh run.sh local build $usebranch clean
 
   # Version Docker
   echo "Copy file version docker"  
