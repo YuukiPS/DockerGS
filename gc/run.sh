@@ -61,12 +61,12 @@ fi
 cd ..
 
 # Copy Hash GC
-echo $version_gchash > VERSION_$switchbc
+echo -n "$version_gchash" > VERSION_$switchbc
 
 # Copy TMP version
 allto=$os-$switchbc-$version_gchash
 echo $allto
-echo $allto > VERSION_TMP
+echo -n "$allto" > VERSION_TMP
 
 getres () {
  echo "Get Resources"
@@ -227,7 +227,7 @@ if [ "$metode" = "build" ];then
 
   # Version Docker
   echo "Copy file version docker"  
-  echo $allto > VERSION_TMP
+  echo -n "$allto" > VERSION_TMP
   cp -rTf VERSION_TMP work/VERSION
 
   # bulid

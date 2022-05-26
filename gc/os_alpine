@@ -16,6 +16,6 @@ COPY work ./Grasscutter
 
 # Rock
 COPY entrypoint.sh .
-HEALTHCHECK --interval=10s --timeout=10s \
-  CMD curl --fail --insecure https://localhost || exit 1  
+HEALTHCHECK --interval=30s --timeout=15s \
+  CMD curl --fail --insecure https://localhost/api/ping || exit 1
 ENTRYPOINT ["sh", "entrypoint.sh"]
