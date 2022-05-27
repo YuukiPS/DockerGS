@@ -29,6 +29,9 @@ fi
 if [ "$usebranch" = "1" ];then
  switchbc="Patch-Early"
 fi
+if [ "$usebranch" = "2" ];then
+ switchbc="Patch-2.7'"
+fi
 
 echo OS: $os - Metode: $metode - Branch:$switchbc
 
