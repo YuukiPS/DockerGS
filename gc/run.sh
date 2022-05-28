@@ -30,7 +30,7 @@ if [ "$usebranch" = "1" ];then
  switchbc="Patch-Early"
 fi
 if [ "$usebranch" = "2" ];then
- switchbc="Patch-2.7'"
+ switchbc="Patch-2.7"
 fi
 
 echo OS: $os - Metode: $metode - Branch:$switchbc
@@ -115,7 +115,7 @@ if [ "$metode" = "start" ];then
    ipdb="$ip:27017"
   fi
   if [ -z "$res" ]; then
-   res="resources_gc_tes"
+   res="resources_gc_$switchbc"
   fi
   docker run --env tes2=aaaa --rm -it \
   -v $res:/home/Grasscutter/resources \
@@ -226,7 +226,7 @@ if [ "$metode" = "build" ];then
 
  else
   # make jar local
-  sh run.sh local build $usebranch clean
+  sh run.sh local build $usebranch $4
 
   # Version Docker
   echo "Copy file version docker"  

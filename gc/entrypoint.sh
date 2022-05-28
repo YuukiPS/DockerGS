@@ -10,6 +10,12 @@ cd $folder_gc
 OSVS=$(. /etc/os-release && printf '%s\n' "$NAME")
 SUB="Alpine"
 version=$(cat VERSION)
+version_res="main"
+
+if echo "$version" | grep -q "2.7"; then
+ echo "Use res 2.7"
+ version_res="2.7"
+fi
 
 # Time Server
 if [ "$OSVS" = "Ubuntu" ]; then
@@ -67,10 +73,10 @@ fi
 if $update
 then 
    rm -R -f resources/*
-   git clone https://github.com/Koko-boya/Grasscutter_Resources
-   cp -rf Grasscutter_Resources/Resources/* resources
+   git clone -b $version_res https://gitlab.com/yukiz/GrasscutterResources.git
+   cp -rf GrasscutterResources/Resources/* resources
    #chmod -R 775 resources
-   rm -R -f Grasscutter_Resources
+   rm -R -f GrasscutterResources
 fi
 
 if [ ! -f "config.json" ]; then

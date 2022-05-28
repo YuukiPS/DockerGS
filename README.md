@@ -29,6 +29,7 @@ sh run.sh local  build 0 # Build local aja jar only
 sh run.sh alpine build 0 # Build Docker Image Alpine
 sh run.sh ubuntu build 0 # Build Docker Image Ubuntu
 sh run.sh local sync 1 Grasscutters dev-world-scripts # Sync Grasscutters Branch dev-world-scripts to Patch-Early
+sh run.sh local sync 2 Grasscutters 2.7 # Sync Grasscutters Branch 2.7 to Patch-2.7
 ```
 ## HELP
 | Func | Info |
