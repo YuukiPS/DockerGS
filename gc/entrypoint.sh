@@ -71,8 +71,18 @@ if [ "$force" = "no" ]; then
      update=false
 fi
 if $update
-then 
-   rm -R -f resources/*
+then
+
+   # Manual check
+   if [ -d "$folder_resources" ]
+   then
+    echo "remove file resources"
+    rm -R -f resources/*
+   else
+    echo "Make folder resources"
+    mkdir -p resources
+   fi
+
    git clone -b $version_res https://gitlab.com/yukiz/GrasscutterResources.git
    cp -rf GrasscutterResources/Resources/* resources
    #chmod -R 775 resources
