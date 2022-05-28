@@ -191,8 +191,12 @@ if [ "$metode" = "build" ];then
 
   #ls   
 
+  echo "Remove work file..."
+  rm -R -f work/*
   echo "Copy jar file..."
-  cp -rTf Grasscutter/grasscutter*.jar work/grasscutter.jar && rm Grasscutter/grasscutter*.jar
+  cp -rTf Grasscutter/grasscutter*.jar work/grasscutter.jar
+  echo "Remove jar Grasscutter"
+  rm Grasscutter/grasscutter*.jar
   echo "Copy file version local"
   cp -rTf VERSION_TMP work/VERSION
   echo "Copy file SSL Key"

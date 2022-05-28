@@ -7,6 +7,8 @@ timems=date
 
 cd $folder_gc
 
+ls
+
 OSVS=$(. /etc/os-release && printf '%s\n' "$NAME")
 SUB="Alpine"
 version=$(cat VERSION)
@@ -57,6 +59,7 @@ fi
 # Building Data Source and Generated Resources
 if [ -d "$folder_resources/BinOutput" ] 
 then
+    ls $folder_resources
     echo "Resources folder already exists..."
 else
     echo "Update?"
@@ -77,14 +80,14 @@ then
    if [ -d "$folder_resources" ]
    then
     echo "remove file resources"
-    rm -R -f resources/*
+    rm -R -f $folder_resources/*
    else
     echo "Make folder resources"
-    mkdir -p resources
+    mkdir -p $folder_resources
    fi
 
    git clone -b $version_res https://gitlab.com/yukiz/GrasscutterResources.git
-   cp -rf GrasscutterResources/Resources/* resources
+   cp -rf GrasscutterResources/Resources/* $folder_resources
    #chmod -R 775 resources
    rm -R -f GrasscutterResources
 fi
