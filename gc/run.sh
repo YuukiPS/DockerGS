@@ -145,7 +145,11 @@ if [ "$metode" = "sync" ];then
   whosm="Grasscutters"
  fi
  if [ -z "$getme" ]; then
-  getme="development"
+  if [ "$switchbc" = "Patch-2.7" ];then
+   getme="2.7"
+  else   
+   getme="development"
+  fi
  fi
  git pull https://github.com/$whosm/Grasscutter.git $getme
  cd ..
