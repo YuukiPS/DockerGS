@@ -146,9 +146,9 @@ if [ "$metode" = "sync" ];then
  fi
  if [ -z "$getme" ]; then
   if [ "$switchbc" = "Patch-2.7" ];then
-   getme="2.7"
-  else   
    getme="development"
+  else   
+   getme="2.6"
   fi
  fi
  git pull https://github.com/$whosm/Grasscutter.git $getme
