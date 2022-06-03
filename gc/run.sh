@@ -74,36 +74,40 @@ fi
 # Back to home
 cd ..
 
-# Check GC Resources
-cd Grasscutter_Resources
-branch_res_now=$(git rev-parse --abbrev-ref HEAD)
-if [ -z "$branch_res_now" ]; then
- echo "Error get name branch resources"
- exit 1
+# Check GC Resources (Only if need with metode res)
+if [ "$metode" = "res" ];then
+ cd Grasscutter_Resources
+ branch_res_now=$(git rev-parse --abbrev-ref HEAD)
+ if [ -z "$branch_res_now" ]; then
+  echo "Error get name branch resources"
+  exit 1
+ fi
+ # if HEAD
+ if [ "$branch_now" = "HEAD" ];then
+  echo "This seems to work on GitHub Action, or first time? so let's switch to original to check version";
+  branch_res_now = switcres
+ fi
+ if [ "$switcres" != "$branch_res_now" ]; then
+  echo "Switch Resources $branch_res_now to $switcres"
+  git switch $switcres
+ else
+  echo "You're already there resources $branch_res_now"
+ fi
+ # Get Hash GC
+ version_rshash=$(git rev-parse --short HEAD)
+ if [ -z "$version_rshash" ]; then
+  echo "Error Get Hash Resources"
+  exit 1
+ fi
+ # Back to home
+ cd ..
 fi
-# if HEAD
-if [ "$branch_now" = "HEAD" ];then
- echo "This seems to work on GitHub Action, or first time? so let's switch to original to check version";
- branch_res_now = switcres
-fi
-if [ "$switcres" != "$branch_res_now" ]; then
- echo "Switch Resources $branch_res_now to $switcres"
- git switch $switcres
-else
- echo "You're already there resources $branch_res_now"
-fi
-# Get Hash GC
-version_rshash=$(git rev-parse --short HEAD)
-if [ -z "$version_rshash" ]; then
- echo "Error Get Hash Resources"
- exit 1
-fi
-# Back to home
-cd ..
 
 # Copy Hash
 echo -n "$version_gchash" > VERSION_GC_$switchbc
-echo -n "$version_rshash" > VERSION_RS_$switcres
+if [ "$metode" = "res" ];then
+ echo -n "$version_rshash" > VERSION_RS_$switcres
+fi
 
 # Copy TMP version
 allto=$os-$switchbc-$version_gchash
