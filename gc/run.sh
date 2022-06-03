@@ -8,9 +8,12 @@ usebranch=$3
 filejson="work/config.json" 
 filejson_res="todo/config.backup"
 removeme="Grasscutter/bin Grasscutter/logs Grasscutter/resources Grasscutter/src/generated Grasscutter/config.json Grasscutter/plugins Grasscutter/.gradle"
-switchbc="Patch-DEV"
+
+switchbc="Patch-2.7"
+switcres="2.7"
 
 version_gchash="unknown";
+version_rshash="unknown";
 
 # OS
 if [ -z "$os" ]; then
@@ -22,18 +25,22 @@ if [ -z "$metode" ]; then
  metode="build"
 fi
 
-# Branch
+# Branch Switch Version
 if [ "$usebranch" = "0" ];then
- switchbc="Patch-DEV"
+ switchbc="Patch-2.6"
+ switcres="2.6"
 fi
 if [ "$usebranch" = "1" ];then
- switchbc="Patch-Early"
+ switchbc="Patch-2.6-Early"
+ switcres="2.6"
 fi
 if [ "$usebranch" = "2" ];then
  switchbc="Patch-2.7"
+ switcres="2.7"
 fi
 if [ "$usebranch" = "3" ];then
  switchbc="Patch-2.8"
+ switcres="2.8"
 fi
 
 echo OS: $os - Metode: $metode - Branch:$switchbc
@@ -44,18 +51,19 @@ cd Grasscutter
 #ls -a
 branch_now=$(git rev-parse --abbrev-ref HEAD)
 if [ -z "$branch_now" ]; then
- echo "Error get name branch"
+ echo "Error get name branch GC"
  exit 1
 fi
 # if HEAD
 if [ "$branch_now" = "HEAD" ];then
  echo "This seems to work on GitHub Action, or first time? so let's switch to original to check version";
+ branch_now = switchbc
 fi
 if [ "$switchbc" != "$branch_now" ]; then
  echo "Switch $branch_now to $switchbc"
  git switch $switchbc
 else
- echo "You're already there $branch_now"
+ echo "You're already there GC $branch_now"
 fi
 # Get Hash GC
 version_gchash=$(git rev-parse --short HEAD)
@@ -66,8 +74,36 @@ fi
 # Back to home
 cd ..
 
-# Copy Hash GC
-echo -n "$version_gchash" > VERSION_$switchbc
+# Check GC Resources
+cd Grasscutter_Resources
+branch_res_now=$(git rev-parse --abbrev-ref HEAD)
+if [ -z "$branch_res_now" ]; then
+ echo "Error get name branch resources"
+ exit 1
+fi
+# if HEAD
+if [ "$branch_now" = "HEAD" ];then
+ echo "This seems to work on GitHub Action, or first time? so let's switch to original to check version";
+ branch_res_now = switcres
+fi
+if [ "$switcres" != "$branch_res_now" ]; then
+ echo "Switch Resources $branch_res_now to $switcres"
+ git switch $switcres
+else
+ echo "You're already there resources $branch_res_now"
+fi
+# Get Hash GC
+version_rshash=$(git rev-parse --short HEAD)
+if [ -z "$version_rshash" ]; then
+ echo "Error Get Hash Resources"
+ exit 1
+fi
+# Back to home
+cd ..
+
+# Copy Hash
+echo -n "$version_gchash" > VERSION_GC_$switchbc
+echo -n "$version_rshash" > VERSION_RS_$switcres
 
 # Copy TMP version
 allto=$os-$switchbc-$version_gchash
@@ -155,6 +191,14 @@ if [ "$metode" = "sync" ];then
   fi
  fi
  git pull https://github.com/$whosm/Grasscutter.git $getme
+ cd ..
+fi
+
+if [ "$metode" = "sync_raw" ];then
+ cd Grasscutter
+ whosm=$4
+ getme=$5
+ git pull $whosm $getme
  cd ..
 fi
 

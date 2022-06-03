@@ -1,9 +1,9 @@
-name: DockerGC Ubuntu (Early)
+name: DockerGC Alpine (2.6 Early)
 on:
   push:
     paths:
-    - 'gc/os_ubuntu'
-    - 'gc/VERSION_Patch-Early'
+    - 'gc/os_alpine'
+    - 'gc/VERSION_GC_Patch-2.6-Early'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,6 +24,6 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image
-      run: cd gc && chmod +x run.sh && sh run.sh ubuntu build 1
+      run: cd gc && chmod +x run.sh && sh run.sh ubuntu build 0
     - name: Push Docker image
-      run: cd gc && sh run.sh ubuntu push 1
+      run: cd gc && sh run.sh ubuntu push 0

@@ -10,7 +10,7 @@ services:
     volumes:
       - data:/data/db
   grasscutter:
-    image: siakbary/dockergc:ubuntu-Patch-DEV-c116a58
+    image: siakbary/dockergc:ubuntu-Patch-2.7-c3c9740
     command: -d 'mongodb://mongodb:27017' -b 'localhost' -f 'yes'
     restart: unless-stopped
     volumes:

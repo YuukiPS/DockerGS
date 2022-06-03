@@ -1,9 +1,9 @@
-name: DockerGC Alpine (Development)
+name: DockerGC Alpine (2.7)
 on:
   push:
     paths:
     - 'gc/os_alpine'
-    - 'gc/VERSION_Patch-DEV'
+    - 'gc/VERSION_GC_Patch-2.7'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,6 +24,6 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image
-      run: cd gc && chmod +x run.sh && sh run.sh alpine build 0
+      run: cd gc && chmod +x run.sh && sh run.sh ubuntu build 2
     - name: Push Docker image
-      run: cd gc && sh run.sh alpine push 0
+      run: cd gc && sh run.sh ubuntu push 2

@@ -2,10 +2,10 @@
 DockerGC is a container that runs [Grasscutter](https://github.com/Melledy/Grasscutter) (*some anime game* server reimplementation) with just a single command.<br>
 [![dockeri.co](https://dockeri.co/image/siakbary/dockergc)](https://hub.docker.com/r/siakbary/dockergc)
 ## How to create a server:
-[Since I don't want to write the same post, please visit this](https://game.yuuki.me/posts/how-to-make-server)
+[Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-to-make-server)
 
 ## How to connect to server
-[Since I don't want to write the same post, please visit this](https://game.yuuki.me/posts/how-connect)
+[Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-connect)
 
 ## How to build this?
 ### Required
@@ -20,7 +20,7 @@ Clone this with
 git clone --recurse-submodules https://github.com/akbaryahya/DockerGC
 cd DockerGC
 cd gc
-# (0 is Patch-DEV and 1 is Patch-Early) (2.0.0.100 is your ip computer, make sure you have mongodb installed)
+# (0=Patch-2.6,1=Patch-2.6-Early,2=Patch-2.7) (2.0.0.100 is your ip computer, make sure you have mongodb installed)
 sh run.sh # default build localhost
 sh run.sh local  start 0 # run localhost server for without docker
 sh run.sh alpine start 0 2.0.0.100 # run localhost server for with docker alpine 
@@ -28,7 +28,7 @@ sh run.sh ubuntu start 0 2.0.0.100 # run localhost server for with docker ubuntu
 sh run.sh local  build 0 # Build local aja jar only
 sh run.sh alpine build 0 # Build Docker Image Alpine
 sh run.sh ubuntu build 0 # Build Docker Image Ubuntu
-sh run.sh local sync 1 Grasscutters dev-world-scripts # Sync Grasscutters Branch dev-world-scripts to Patch-Early
+sh run.sh local sync 1 Grasscutters dev-world-scripts # Sync Grasscutters Branch dev-world-scripts to Patch-2.6-Early
 sh run.sh local sync 2 Grasscutters 2.7 # Sync Grasscutters Branch 2.7 to Patch-2.7
 ```
 ## HELP
