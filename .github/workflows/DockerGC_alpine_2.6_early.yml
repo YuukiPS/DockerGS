@@ -4,6 +4,7 @@ on:
     paths:
     - 'gc/os_alpine'
     - 'gc/VERSION_GC_Patch-2.6-Early'
+    - '.github/workflows/DockerGC_alpine_2.6_early.yml'
 jobs:
   build:
     runs-on: ubuntu-latest

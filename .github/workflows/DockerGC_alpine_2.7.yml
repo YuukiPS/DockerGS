@@ -4,6 +4,7 @@ on:
     paths:
     - 'gc/os_alpine'
     - 'gc/VERSION_GC_Patch-2.7'
+    - '.github/workflows/DockerGC_alpine_2.7.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
