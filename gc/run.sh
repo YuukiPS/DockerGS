@@ -57,7 +57,7 @@ fi
 # if HEAD
 if [ "$branch_now" = "HEAD" ];then
  echo "This seems to work on GitHub Action, or first time? so let's switch to original to check version";
- branch_now = $switchbc
+ $branch_now = $switchbc
 fi
 if [ "$switchbc" != "$branch_now" ]; then
  echo "Switch $branch_now to $switchbc"
@@ -85,7 +85,7 @@ if [ "$metode" = "res" ];then
  # if HEAD
  if [ "$branch_res_now" = "HEAD" ];then
   echo "This seems to work on GitHub Action, or first time? so let's switch to original to check version";
-  branch_res_now = $switcres
+  $branch_res_now = $switcres
  fi
  if [ "$switcres" != "$branch_res_now" ]; then
   echo "Switch Resources $branch_res_now to $switcres"
