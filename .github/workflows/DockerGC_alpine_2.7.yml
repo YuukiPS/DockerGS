@@ -39,7 +39,7 @@ jobs:
     - name: Push Docker image
       run: cd gc && sh run.sh alpine push 2
     - name: Tar Folder Work
-      run: cd gc && tar -cvf dockergc.tar /work
+      run: cd gc && tar -cvf dockergc.tar work
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
