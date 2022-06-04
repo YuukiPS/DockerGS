@@ -19,15 +19,15 @@ jobs:
        distribution: temurin
        java-version: '17'
     - name: Cache gradle files
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            ./.gradle/loom-cache
-          key: ${{ runner.os }}-gradle-${{ hashFiles('*.gradle', 'gradle.properties', '**/*.accesswidener') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+      uses: actions/cache@v2
+      with:
+       path: |
+        ~/.gradle/caches
+        ~/.gradle/wrapper
+        ./.gradle/loom-cache
+       key: ${{ runner.os }}-gradle-${{ hashFiles('*.gradle', 'gradle.properties', '**/*.accesswidener') }}
+       restore-keys: |
+        ${{ runner.os }}-gradle-
     - name: Docker Login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
