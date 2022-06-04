@@ -28,3 +28,10 @@ jobs:
       run: cd gc && chmod +x run.sh && sh run.sh alpine build 2
     - name: Push Docker image
       run: cd gc && sh run.sh alpine push 2
+    - name: Tar Folder Work
+      run: tar -cvf dockergc.tar /work
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+       name: DockerGC
+       path: dockergc.tar
