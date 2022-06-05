@@ -154,7 +154,7 @@ if [ "$metode" = "start" ];then
  else
   ip=$4
   ipdb=$5
-  res=$6
+  res=$6  
   if [ -z "$ip" ]; then
    ip="127.0.0.1"
   fi
@@ -164,14 +164,15 @@ if [ "$metode" = "start" ];then
   if [ -z "$res" ]; then
    res="resources_gc_$switchbc"
   fi
+  echo "Start Docker with IP $ip"
   docker run --env tes2=aaaa --rm -it \
   -v $res:/home/Grasscutter/resources \
   -p 22102:22102/udp \
   -p 443:443/tcp \
   siakbary/dockergc:$allto \
   -d "mongodb://$ipdb" \
-  -v "0.0.0.0" \
-  -b "$ip"
+  -b "$ip" \
+  -g "$ip"
  fi
 
 fi
