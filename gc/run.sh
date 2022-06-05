@@ -15,6 +15,31 @@ switcres="2.7"
 version_gchash="unknown";
 version_rshash="unknown";
 
+# Clone Data
+if [ "$os" = "data" ];then
+
+ echo "Start clone data..."
+
+ if [ "$metode" = "core" ];then
+  echo "~ Get Core"
+  git clone https://gitlab.com/yukiz/Grasscutter.git Grasscutter
+ fi
+ if [ "$metode" = "res" ];then
+  echo "~ Get Resources"
+  git clone https://gitlab.com/yukiz/GrasscutterResources Grasscutter_Resources
+ fi
+ if [ "$metode" = "data" ];then
+  echo "~ Get Data Resources"
+  git clone https://gitlab.com/yukiz/grasscutter-data Grasscutter_Data
+ fi
+ if [ "$metode" = "proxy" ];then
+  echo "~ Get Data Proxy"
+  git clone https://gitlab.com/yukiz/grasscutter-proxy Grasscutter_Proxy
+ fi
+ echo "EXIT NOW"
+ exit 1
+fi
+
 # OS
 if [ -z "$os" ]; then
  os="local"
@@ -117,12 +142,6 @@ fi
 allto=$os-$switchbc-$version_gchash
 echo $allto
 echo -n "$allto" > VERSION_TMP
-
-getres () {
- echo "Get Resources"
- git clone https://github.com/Koko-boya/Grasscutter_Resources
- #cp -rTf Grasscutter_Resources/Resources/* Grasscutter_Resources
-}
 
 cekres () {
  echo "Check folder..."
@@ -277,8 +296,7 @@ if [ "$metode" = "build" ];then
 
    # TODO: check if config file
    echo "Doing Testing, so need copy resources"
-   cekres
-   cp -rTf Grasscutter_Resources/Resources work/resources
+   #cp -rTf Grasscutter_Resources/Resources work/resources
 
    cd work
 

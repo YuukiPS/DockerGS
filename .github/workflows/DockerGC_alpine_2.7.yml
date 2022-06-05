@@ -10,10 +10,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Checkout submodules
-      run: git rm -f --ignore-unmatch gc/Grasscutter_Resources && git submodule update --init --depth=1 --recursive
+    - name: Sync Grasscutter
+      uses: actions/checkout@v3
+      with:
+       repository: https://gitlab.com/yukiz/Grasscutter
+       token: ${{ secrets.GITLAB_TOKEN }}
+       path: gc/Grasscutter
+    - name: Sync Data Grasscutter
+      uses: actions/checkout@v3
+      with:
+       repository: https://gitlab.com/yukiz/grasscutter-data
+       path: gc/Grasscutter_Data
     - name: Setup Java
       uses: actions/setup-java@v3
       with:
