@@ -13,14 +13,9 @@ jobs:
     - name: Sync Grasscutter
       uses: actions/checkout@v3
       with:
-       repository: https://gitlab.com/yukiz/Grasscutter
-       token: ${{ secrets.GITLAB_TOKEN }}
+       repository: akbaryahya/GCPrivate
+       token: ${{ secrets.HUB_TOKEN }}
        path: gc/Grasscutter
-    - name: Sync Data Grasscutter
-      uses: actions/checkout@v3
-      with:
-       repository: https://gitlab.com/yukiz/grasscutter-data
-       path: gc/Grasscutter_Data
     - name: Setup Java
       uses: actions/setup-java@v3
       with:

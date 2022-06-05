@@ -1,8 +1,5 @@
-Grasscutter
-Grasscutter_Data
-Grasscutter_Proxy
-Grasscutter_Resources
-.vscode
 work
 todo
+.vscode
+.gitmodules
 VERSION_TMP

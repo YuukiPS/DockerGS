@@ -22,7 +22,7 @@ if [ "$os" = "data" ];then
 
  if [ "$metode" = "core" ];then
   echo "~ Get Core"
-  git clone https://gitlab.com/yukiz/Grasscutter.git Grasscutter
+  git clone https://github.com/akbaryahya/GCPrivate.git Grasscutter
  fi
  if [ "$metode" = "res" ];then
   echo "~ Get Resources"
@@ -38,6 +38,12 @@ if [ "$os" = "data" ];then
  fi
  echo "EXIT NOW"
  exit 1
+fi
+
+# Get Data if not found
+if [ ! -d "Grasscutter_Data" ]; then  
+  echo "No Found Data, let's clone first"
+  sh run.sh data data
 fi
 
 # OS
