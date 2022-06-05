@@ -10,6 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Sync DockerGC
+      uses: actions/checkout@v3
     - name: Sync Core
       uses: actions/checkout@v3
       with:
@@ -42,10 +44,3 @@ jobs:
       run: cd gc && chmod +x run.sh && sh run.sh alpine build 2
     - name: Push Docker image
       run: cd gc && sh run.sh alpine push 2
-    - name: Tar Folder Work
-      run: cd gc && tar -cvf dockergc.tar work
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-       name: DockerGC
-       path: gc/dockergc.tar
