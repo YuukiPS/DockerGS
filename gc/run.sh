@@ -39,6 +39,10 @@ if [ "$usebranch" = "2" ];then
  switcres="2.7"
 fi
 if [ "$usebranch" = "3" ];then
+ switchbc="Patch-2.7-Early"
+ switcres="2.7"
+fi
+if [ "$usebranch" = "4" ];then
  switchbc="Patch-2.8"
  switcres="2.8"
 fi
@@ -190,7 +194,10 @@ if [ "$metode" = "sync" ];then
  if [ -z "$getme" ]; then
   if [ "$switchbc" = "Patch-2.7" ];then
    getme="development"
-  else   
+  elif [ "$switchbc" = "Patch-2.7-Early" ];then
+   getme="2.7-world-script"
+   whosm="Akka0"
+  else
    getme="2.6"
   fi
  fi
