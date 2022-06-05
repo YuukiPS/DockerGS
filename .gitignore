@@ -3,7 +3,7 @@ todo
 .vscode
 .gitmodules
 VERSION_TMP
-Grasscutter
+gc/Grasscutter
 gc/Grasscutter_Data
 gc/Grasscutter_Proxy
 gc/Grasscutter_Resources

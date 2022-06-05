@@ -3,12 +3,13 @@ DockerGC is a container that runs [Grasscutter](https://github.com/Melledy/Grass
 [![dockeri.co](https://dockeri.co/image/siakbary/dockergc)](https://hub.docker.com/r/siakbary/dockergc)
 ## How to create a server:
 [Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-to-make-server)
-
 ## How to connect to server
 [Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-connect)
 
-## How to build this?
-### Required
+## How to build this? 
+### Source code (Patch version) is closed now because many are deleting "source link" from their server, so at this time you can only do push from docker image.
+### Remember [Grasscutter](https://github.com/Melledy/Grasscutter) source code is still open, you can do your own custom server with your own hard work.
+## Required
 - [Java 17 JDK](https://adoptium.net/temurin/releases) 
 - [Docker](https://docs.docker.com/engine/install/)
 - [Gradle](https://gradle.org/install/)
@@ -20,24 +21,32 @@ Clone this with
 git clone --recurse-submodules https://github.com/akbaryahya/DockerGC
 cd DockerGC
 cd gc
-# (0=Patch-2.6,1=Patch-2.6-Early,2=Patch-2.7) (2.0.0.100 is your ip computer, make sure you have mongodb installed)
+# 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8
+# 2.0.0.100 is your ip computer, make sure you have mongodb installed
 sh run.sh # default build localhost
-sh run.sh local  start 0 # run localhost server for without docker
-sh run.sh alpine start 0 2.0.0.100 # run localhost server for with docker alpine 
-sh run.sh ubuntu start 0 2.0.0.100 # run localhost server for with docker ubuntu
-sh run.sh local  build 0 # Build local aja jar only
-sh run.sh alpine build 0 # Build Docker Image Alpine
-sh run.sh ubuntu build 0 # Build Docker Image Ubuntu
-sh run.sh local sync 1 Grasscutters dev-world-scripts # Sync Grasscutters Branch dev-world-scripts to Patch-2.6-Early
-sh run.sh local sync 2 Grasscutters 2.7 # Sync Grasscutters Branch 2.7 to Patch-2.7
+sh run.sh local  start 2 # run localhost server for without docker
+sh run.sh alpine start 2 2.0.0.100 # run localhost server for with docker alpine
+sh run.sh ubuntu start 2 2.0.0.100 # run localhost server for with docker ubuntu
+sh run.sh local  build 2 # Build local aja jar only
+sh run.sh alpine build 2 # Build Docker Image Alpine
+sh run.sh ubuntu build 2 # Build Docker Image Ubuntu
+sh run.sh local sync 2 # Sync Grasscutters 2.7 to Patch-2.7
+sh run.sh local sync 3 Grasscutters dev-world-scripts # Sync dev-world-scripts to Patch-2.7-Early
 ```
+### Note:
+* If you have a problem with **not foundsh**: Change **CRLF** to **LF**
+
 ## HELP
 | Func | Info |
 | ------ | ------ |
-| d | is ip address for your database server , note: use computer ip if you want to run on your own pc, no "localhost" because it is ip in container |
-| b | ip public server |
-| v | ip private server |
+| d | is ip address for your database server, note: use computer ip if you want to run on your own pc, no "localhost" because it is ip in container |
+| b | ip/domain public web server |
+| g | ip public game server |
+| p | port public game server |
 | m | Chat Welcome message |
+| s | Name Server |
+| r | Server owner's name |
+| r | Server region name |
 | e | Email Welcome when registering for first time |
 | f | re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
 | l | Server Language and includes commands [more info](https://github.com/Grasscutters/Grasscutter/tree/development/src/main/resources/languages) |
