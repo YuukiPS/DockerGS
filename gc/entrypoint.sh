@@ -7,8 +7,6 @@ timems=date
 
 cd $folder_gc
 
-ls
-
 OSVS=$(. /etc/os-release && printf '%s\n' "$NAME")
 SUB="Alpine"
 version=$(cat VERSION)
@@ -36,13 +34,14 @@ fi
 
 echo "This system run with OS $OSVS"
 
-while getopts d:b:v:m:e:f:j:l:s:o:r: flag
+while getopts d:b:g:p:m:e:f:j:l:s:o:r: flag
 do
     case "${flag}" in
         # server datebase and config ip
         d) DBIP=${OPTARG};;
         b) IPSERVERPB=${OPTARG};;
-        v) IPSERVER=${OPTARG};;
+        g) IPGAME=${OPTARG};;
+        p) IPPORTGAME=${OPTARG};;
         # msg server
         m) msgserver=${OPTARG};;
         e) msgemail=${OPTARG};;
@@ -57,7 +56,7 @@ do
         o) name_owner=${OPTARG};;
         r) name_region=${OPTARG};;
     esac
-done 
+done
 
 #  JVM sets its heap size to approximately 25% of the available RAM. In this example, it allocated 4GB on a system with 16GB.
 if [ -z "$JAVA_OPTS" ]; then
@@ -127,22 +126,26 @@ if [ ! -f "config.json" ]; then
 
  # if no config just boot
  java -jar grasscutter.jar -boot
- 
- # Ip private node to node
- if [ -z "$IPSERVER" ]; then
-  IPSERVER=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
-  echo "Server IP PRIVATE: $IPSERVER"
- else
-  echo "Server IP PRIVATE: $IPSERVER"
+
+ # ip/domain public for web (Outside docker)
+ if [ -z "$IPSERVERPB" ]; then
+  IPSERVERPB=localhost  
+ fi
+ echo "Server Web Public: $IPSERVERPB"
+
+ # ip public for game (Outside docker)
+ if [ -z "$IPGAME" ]; then
+  IPGAME=$IPSERVERPB
  fi
 
- # ip public for user (Outside docker)
- if [ -z "$IPSERVERPB" ]; then
-  IPSERVERPB=localhost
-  echo "Server IP PUBLIC: $IPSERVERPB"
- else
-  echo "Server IP PUBLIC: $IPSERVERPB"
+ echo "Server Ip Game: $IPGAME"
+
+ # Ip game port
+ if [ -z "$IPPORTGAME" ]; then
+  IPPORTGAME="22102"
  fi
+
+ echo "Server Game Port: $IPPORTGAME"
 
  # Welcome message
  if [ -z "$msgserver" ]; then
@@ -159,20 +162,19 @@ if [ ! -f "config.json" ]; then
   echo "No Datebase? exit!"
   exit 1
  else      
-  echo "Server IP SERVER MongoDB: $DBIP"
+  echo "Server MongoDB: $DBIP"
   json -q -I -f config.json -e "this.databaseInfo.server.connectionUri='$DBIP'"
   json -q -I -f config.json -e "this.databaseInfo.game.connectionUri='$DBIP'"
  fi
 
- # Config ip
- json -q -I -f config.json -e "this.server.game.bindAddress='$IPSERVER'"
- json -q -I -f config.json -e "this.server.game.accessAddress='$IPSERVERPB'"
- json -q -I -f config.json -e "this.server.dispatch.bindAddress='$IPSERVER'"
- json -q -I -f config.json -e "this.server.dispatch.accessAddress='$IPSERVERPB'"
- json -q -I -f config.json -e "this.server.http.bindAddress='$IPSERVER'"
+ # Config IP Game
+ json -q -I -f config.json -e "this.server.game.accessAddress='$IPGAME'"
+ json -q -I -f config.json -e "this.server.game.bindPort='$IPPORTGAME'" 
+
+ # Config Game Web
  json -q -I -f config.json -e "this.server.http.accessAddress='$IPSERVERPB'"
 
- # Config Game
+ # Config Language Server
  json -q -I -f config.json -e "this.language.language='$lang'"
 
  # Config Welcome Message
