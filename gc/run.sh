@@ -214,6 +214,10 @@ if [ "$metode" = "sync" ];then
  cd Grasscutter
  whosm=$4
  getme=$5
+ dlrepo=$6
+ if [ -z "$dlrepo" ]; then
+  dlrepo="Grasscutter"
+ fi
  if [ -z "$whosm" ]; then
   whosm="Grasscutters"
  fi
@@ -227,7 +231,7 @@ if [ "$metode" = "sync" ];then
    getme="2.6"
   fi
  fi
- git pull https://github.com/$whosm/Grasscutter.git $getme
+ git pull https://github.com/$whosm/$dlrepo.git $getme
  cd ..
 fi
 

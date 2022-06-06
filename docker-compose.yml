@@ -10,8 +10,8 @@ services:
     volumes:
       - data:/data/db
   grasscutter:
-    image: siakbary/dockergc:ubuntu-Patch-2.7-c3c9740
-    command: -d 'mongodb://mongodb:27017' -b 'localhost' -f 'yes'
+    image: siakbary/dockergc:ubuntu-Patch-2.7-811d5e0f
+    command: -d 'mongodb://mongodb:27017' -b 'yourdomain.com' -g 'youripgame' -f 'yes'
     restart: unless-stopped
     volumes:
       - resources:/home/Grasscutter/resources

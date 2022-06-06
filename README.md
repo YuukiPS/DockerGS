@@ -1,5 +1,5 @@
 # DockerGC
-DockerGC is a container that runs [Grasscutter](https://github.com/Melledy/Grasscutter) (*some anime game* server reimplementation) with just a single command.<br>
+DockerGC is a container that run [Grasscutter](https://github.com/Melledy/Grasscutter) (**some anime game** server reimplementation) with just a single command.<br>
 [![dockeri.co](https://dockeri.co/image/siakbary/dockergc)](https://hub.docker.com/r/siakbary/dockergc)
 ## How to create a server:
 [Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-to-make-server)
@@ -7,7 +7,7 @@ DockerGC is a container that runs [Grasscutter](https://github.com/Melledy/Grass
 [Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-connect)
 
 ## How to build this? 
-### Source code (Patch version) is closed now because many are deleting "source link" from their server, so at this time you can only do push from docker image.
+### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do push from docker image or download jar file.
 ### Remember [Grasscutter](https://github.com/Melledy/Grasscutter) source code is still open, you can do your own custom server with your own hard work.
 ## Required
 - [Java 17 JDK](https://adoptium.net/temurin/releases) 
@@ -18,7 +18,7 @@ DockerGC is a container that runs [Grasscutter](https://github.com/Melledy/Grass
 
 Clone this with
 ```sh
-git clone --recurse-submodules https://github.com/akbaryahya/DockerGC
+git clone https://github.com/akbaryahya/DockerGC
 cd DockerGC
 cd gc
 # 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8
@@ -30,8 +30,12 @@ sh run.sh ubuntu start 2 2.0.0.100 # run localhost server for with docker ubuntu
 sh run.sh local  build 2 # Build local aja jar only
 sh run.sh alpine build 2 # Build Docker Image Alpine
 sh run.sh ubuntu build 2 # Build Docker Image Ubuntu
+sh run.sh local res 2 # Sync Resources File Based Version Server
 sh run.sh local sync 2 # Sync Grasscutters 2.7 to Patch-2.7
 sh run.sh local sync 3 Grasscutters dev-world-scripts # Sync dev-world-scripts to Patch-2.7-Early
+# (private, please ask for access if you really want to do something)
+sh run.sh local sync 3 akbaryahya Patch-2.7 GCPrivate # Sync Patch-2.7 to Patch-2.7-Early
+sh run.sh data core # Clone Patch Version
 ```
 ### Note:
 * If you have a problem with **not foundsh**: Change **CRLF** to **LF**
@@ -39,16 +43,16 @@ sh run.sh local sync 3 Grasscutters dev-world-scripts # Sync dev-world-scripts t
 ## HELP
 | Func | Info |
 | ------ | ------ |
-| d | is ip address for your database server, note: use computer ip if you want to run on your own pc, no "localhost" because it is ip in container |
-| b | ip/domain public web server |
-| g | ip public game server |
-| p | port public game server |
-| m | Chat Welcome message |
+| d | IP Address for your database server, note: use computer ip if you want to run on your own pc/server, no "localhost" because it is IP in Container |
+| b | IP/Domain Public Web Server |
+| g | IP Public Game Server |
+| p | Port Public Game Server |
+| m | Chat Welcome Message |
 | s | Name Server |
-| r | Server owner's name |
-| r | Server region name |
-| e | Email Welcome when registering for first time |
-| f | re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
+| r | Server Owner Name |
+| r | Server Region Name |
+| e | Email welcome when registering for first time |
+| f | Re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
 | l | Server Language and includes commands [more info](https://github.com/Grasscutters/Grasscutter/tree/development/src/main/resources/languages) |
 | j | -Xms500M -Xmx8G [more info](https://www.baeldung.com/ops/docker-jvm-heap-size) |
 

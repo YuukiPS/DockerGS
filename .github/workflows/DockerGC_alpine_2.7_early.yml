@@ -1,0 +1,46 @@
+name: DockerGC Alpine (2.7 Early)
+on:
+  push:
+    paths:
+    - 'gc/os_alpine'
+    - 'gc/VERSION_GC_Patch-2.7-Early'
+    - 'gc/entrypoint.sh'
+    - '.github/workflows/DockerGC_alpine_2.7_early.yml'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Sync DockerGC
+      uses: actions/checkout@v3
+    - name: Sync Core
+      uses: actions/checkout@v3
+      with:
+       repository: akbaryahya/GCPrivate
+       ref: Patch-2.7-Early
+       token: ${{ secrets.HUB_TOKEN }}
+       path: gc/Grasscutter
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+       distribution: temurin
+       java-version: '17'
+    - name: Cache gradle files
+      uses: actions/cache@v2
+      with:
+       path: |
+        ~/.gradle/caches
+        ~/.gradle/wrapper
+        ./.gradle/loom-cache
+       key: ${{ runner.os }}-gradle-${{ hashFiles('*.gradle', 'gradle.properties', '**/*.accesswidener') }}
+       restore-keys: |
+        ${{ runner.os }}-gradle-
+    - name: Docker Login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run:
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build Docker image
+      run: cd gc && chmod +x run.sh && sh run.sh alpine build 3
+    - name: Push Docker image
+      run: cd gc && sh run.sh alpine push 3
