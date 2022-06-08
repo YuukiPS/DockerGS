@@ -111,17 +111,17 @@ if [ ! -f "config.json" ]; then
 
  # Nama Server
  if [ -z "$name_server" ]; then
-  name_server="Yuuki"
+  name_server="YuukiPS"
  fi
 
  # Nama Owner
  if [ -z "$name_owner" ]; then
-  name_owner="Yuuki"
+  name_owner="Ayaka"
  fi
 
  # Region
  if [ -z "$name_region" ]; then
-  name_region="Yuuki"
+  name_region="localhost"
  fi
 
  # if no config just boot
@@ -149,12 +149,12 @@ if [ ! -f "config.json" ]; then
 
  # Welcome message
  if [ -z "$msgserver" ]; then
-  msgserver="Welcome to Server $name_server\n\nUse !help for help\n\n~Yuuki"
+  msgserver="Welcome to $name_server\n\nUse !help for help\n\nRegion: $name_region\nCommunity: discord.gg/yuukips"
  fi
 
  # Send Email When Registration
  if [ -z "$msgemail" ]; then
-  msgemail="Hi, Thank you for registering on Yuuki Server, as a sign of gratitude for you we give gifts, you can also get more gifts with !giveall on console, please visit us for help and type !help for more info.<type=\"browser\" text=\"Discord\" href=\"https://discord.gg/tRYMG7Nm2D\"/>"
+  msgemail="Hi, Thank you for registering on Yuuki Server, as a sign of gratitude for you we give gifts, you can also get more gifts with !giveall on console, please visit us for help and type !help for more info.<type=\"browser\" text=\"Discord\" href=\"https://discord.gg/yuukips\"/>"
  fi
 
  # Need database (Outside docker)
@@ -181,9 +181,13 @@ if [ ! -f "config.json" ]; then
  json -q -I -f config.json -e "this.server.game.joinOptions.welcomeMessage='$msgserver'"
 
  # Config Welcome Email
- json -q -I -f config.json -e "this.server.game.joinOptions.welcomeMail.title='Welcome to Server $name_server'"
+ json -q -I -f config.json -e "this.server.game.joinOptions.welcomeMail.title='Welcome to $name_server'"
  json -q -I -f config.json -e "this.server.game.joinOptions.welcomeMail.sender='$name_owner'"
  json -q -I -f config.json -e "this.server.game.joinOptions.welcomeMail.content='$msgemail'"
+
+ # Config Console
+ json -q -I -f config.json -e "this.server.game.serverAccount.signature='Im currently in $name_server ($name_region)'"
+ json -q -I -f config.json -e "this.server.game.serverAccount.nickName='$name_owner'"
 
 else
  # If found config file (maybe restart?)
