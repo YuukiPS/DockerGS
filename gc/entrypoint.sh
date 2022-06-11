@@ -34,7 +34,7 @@ fi
 
 echo "This system run with OS $OSVS"
 
-while getopts d:b:g:p:m:e:f:j:l:s:o:r: flag
+while getopts d:b:g:p:m:e:f:j:l:s:o:r:u: flag
 do
     case "${flag}" in
         # server datebase and config ip
@@ -55,6 +55,7 @@ do
         s) name_server=${OPTARG};;
         o) name_owner=${OPTARG};;
         r) name_region=${OPTARG};;
+        u) useronline=${OPTARG};;
     esac
 done
 
@@ -101,12 +102,18 @@ then
 fi
 
 if [ ! -f "config.json" ]; then
+
  # If there is no config file
  echo "No config file was found, try to use from command file"
 
  # languages
  if [ -z "$lang" ]; then
   lang="en_US"
+ fi
+
+ # online
+ if [ -z "$useronline" ]; then
+  useronline="-1"
  fi
 
  # Nama Server
@@ -176,6 +183,9 @@ if [ ! -f "config.json" ]; then
 
  # Config Language Server
  json -q -I -f config.json -e "this.language.language='$lang'"
+
+ # Config max number of player online
+ json -q -I -f config.json -e "this.account.maxPlayer='$useronline'"
 
  # Config Welcome Message
  json -q -I -f config.json -e "this.server.game.joinOptions.welcomeMessage='$msgserver'"

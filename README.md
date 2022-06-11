@@ -52,6 +52,7 @@ sh run.sh data core # Clone Patch Version
 | r | Server Owner Name |
 | r | Server Region Name |
 | e | Email welcome when registering for first time |
+| u | Player limit online (-1 for unlimited) |
 | f | Re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
 | l | Server Language and includes commands [more info](https://github.com/Grasscutters/Grasscutter/tree/development/src/main/resources/languages) |
 | j | -Xms500M -Xmx8G [more info](https://www.baeldung.com/ops/docker-jvm-heap-size) |
