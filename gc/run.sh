@@ -101,7 +101,7 @@ else
  echo "You're already there GC $branch_now"
 fi
 # Get Hash GC
-version_gchash=$(git rev-parse --short HEAD)
+version_gchash=$(git rev-parse --short=7 HEAD)
 if [ -z "$version_gchash" ]; then
  echo "Error get hash"
  exit 1
@@ -129,7 +129,7 @@ if [ "$metode" = "res" ];then
   echo "You're already there resources $branch_res_now"
  fi
  # Get Hash GC
- version_rshash=$(git rev-parse --short HEAD)
+ version_rshash=$(git rev-parse --short=7 HEAD)
  if [ -z "$version_rshash" ]; then
   echo "Error Get Hash Resources"
   exit 1
