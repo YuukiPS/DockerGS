@@ -24,16 +24,16 @@ cd gc
 # 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8
 # 2.0.0.100 is your ip computer, make sure you have mongodb installed
 sh run.sh # default build localhost
-sh run.sh local  start 2 # run localhost server for without docker
+sh run.sh local res 2 # Get Resources File Based Version Server
+sh run.sh local start 2 # run localhost server for without docker
 sh run.sh alpine start 2 2.0.0.100 # run localhost server for with docker alpine
 sh run.sh ubuntu start 2 2.0.0.100 # run localhost server for with docker ubuntu
-sh run.sh local  build 2 # Build local aja jar only
+sh run.sh local build 2 # Build local aja jar only
 sh run.sh alpine build 2 # Build Docker Image Alpine
 sh run.sh ubuntu build 2 # Build Docker Image Ubuntu
-sh run.sh local res 2 # Sync Resources File Based Version Server
+# (private, please ask for access if you really want to do something)
 sh run.sh local sync 2 # Sync Grasscutters 2.7 to Patch-2.7
 sh run.sh local sync 3 Grasscutters dev-world-scripts # Sync dev-world-scripts to Patch-2.7-Early
-# (private, please ask for access if you really want to do something)
 sh run.sh local sync 3 akbaryahya Patch-2.7 GCPrivate # Sync Patch-2.7 to Patch-2.7-Early
 sh run.sh data core # Clone Patch Version
 ```
