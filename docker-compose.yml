@@ -10,7 +10,7 @@ services:
     volumes:
       - data:/data/db
   grasscutter:
-    image: siakbary/dockergc:alpine-Patch-2.7-7f6d040
+    image: siakbary/dockergc:alpine-Patch-2.7-cbcaa54
     command: -d 'mongodb://mongodb:27017' -b 'yourdomain.com' -g 'youripgame' -f 'yes'
     restart: unless-stopped
     volumes:

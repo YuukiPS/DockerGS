@@ -25,7 +25,7 @@ services:
   grasscutter:
     restart: unless-stopped
     container_name: dockergc
-    image: siakbary/dockergc:alpine-Patch-2.7-7f6d040
+    image: siakbary/dockergc:alpine-Patch-2.7-cbcaa54
     command: -d 'mongodb://nani:moemoekyu@mongodb:27017' -b 'yourdomain.com' -g 'youripgame' -f 'yes'
     volumes:
       - ./resources:/home/Grasscutter/resources
