@@ -10,8 +10,8 @@ services:
     volumes:
       - data:/data/db
   grasscutter:
-    image: siakbary/dockergc:alpine-Patch-2.7-cbcaa54
-    command: -d 'mongodb://mongodb:27017' -b 'yourdomain.com' -g 'youripgame' -f 'yes'
+    image: siakbary/dockergc:alpine-Patch-2.7
+    command: -d 'mongodb://mongodb:27017' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
     restart: unless-stopped
     volumes:
       - resources:/home/Grasscutter/resources

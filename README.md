@@ -1,10 +1,35 @@
 # DockerGC
 DockerGC is a container that run [Grasscutter](https://github.com/Melledy/Grasscutter) (**some anime game** server reimplementation) with just a single command.<br>
 [![dockeri.co](https://dockeri.co/image/siakbary/dockergc)](https://hub.docker.com/r/siakbary/dockergc)
-## How to create a server:
-[Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-to-make-server)
 ## How to connect to server
 [Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-connect)
+## How to create a server:
+### Docker Version
+- Install [Docker](https://docs.docker.com/engine/install/) + ([MongoDB](https://www.mongodb.com/try/download/community) If you want to run outside container)
+- Open Terminal and Enter:
+```sh
+# Datebase (just once) (db_gc:27017 is ip:port) (use this if you don't have a database outside container or want to use between containers)
+docker run --rm -it --name db_gc -d mongo &
+# Game server (just once download resources with -f 'yes' after that you can set -f 'no') (remember replace 2.0.0.100 with your pc's ip and don't use "localhost" this is important)
+docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:alpine-Patch-2.7 -d 'mongodb://db_gc:27017' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
+```
+or (if you have compose)
+```sh
+git clone https://github.com/akbaryahya/DockerGC
+cd DockerGC
+# docker compose up  # windows
+docker-compose up -d # linux
+```
+- Then type "account create yourusername" if there is a new response open the game.
+- Yay
+
+### Windows Java Version
+
+TODO
+
+### Ubuntu Java Version
+
+TODO
 
 ## How to build this? 
 ### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do push from docker image or download jar file.
@@ -37,7 +62,7 @@ sh run.sh local sync 3 Grasscutters dev-world-scripts # Sync dev-world-scripts t
 sh run.sh local sync 3 akbaryahya Patch-2.7 GCPrivate # Sync Patch-2.7 to Patch-2.7-Early
 sh run.sh data core # Clone Patch Version
 ```
-### Note:
+## Note:
 * If you have a problem with **not foundsh**: Change **CRLF** to **LF**
 
 ## HELP

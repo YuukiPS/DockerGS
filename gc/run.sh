@@ -145,9 +145,10 @@ if [ "$metode" = "res" ];then
 fi
 
 # Copy TMP version
-allto=$os-$switchbc-$version_gchash
-echo $allto
-echo -n "$allto" > VERSION_TMP
+version_last_commit=$os-$switchbc-$version_gchash
+version_last_sw=$os-$switchbc
+echo $version_last_commit
+echo -n "$version_last_commit" > VERSION_TMP
 
 cekres () {
  echo "Check folder..."
@@ -194,7 +195,7 @@ if [ "$metode" = "start" ];then
   -v $res:/home/Grasscutter/resources \
   -p 22102:22102/udp \
   -p 443:443/tcp \
-  siakbary/dockergc:$allto \
+  siakbary/dockergc:$version_last_commit \
   -d "mongodb://$ipdb" \
   -b "$ip" \
   -g "$ip"
@@ -325,16 +326,17 @@ if [ "$metode" = "build" ];then
 
   # Version Docker
   echo "Copy file version docker"  
-  echo -n "$allto" > VERSION_TMP
-  cp -rTf VERSION_TMP work/VERSION
+  echo -n "$version_last_commit" > work/VERSION
 
   # bulid
-  docker build -t "siakbary/dockergc:$allto" -f os_$os .;
+  docker build -t "siakbary/dockergc:$version_last_commit" -f os_$os .;
+  docker build -t "siakbary/dockergc:$version_last_sw" -f os_$os .;
  fi
  
 fi
 
 # if push
 if [ "$metode" = "push" ];then
- docker push siakbary/dockergc:$allto
+ docker push siakbary/dockergc:$version_last_commit
+ docker push siakbary/dockergc:$version_last_sw
 fi
