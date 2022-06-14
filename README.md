@@ -31,7 +31,7 @@ TODO
 TODO
 
 ## How to build this? 
-### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do push from [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags) or [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7/main/DockerGC.zip).
+### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do pull from [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags) or [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7/main/DockerGC.zip).
 ### Remember [Grasscutter](https://github.com/Melledy/Grasscutter) source code is still open, you can do your own custom server with your own hard work.
 ## Required
 - [Java 17 JDK](https://adoptium.net/temurin/releases) 
