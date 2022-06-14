@@ -1,6 +1,5 @@
 # DockerGC
 DockerGC is a container that run [Grasscutter](https://github.com/Melledy/Grasscutter) (**some anime game** server reimplementation) with just a single command.<br>
-[![dockeri.co](https://dockeri.co/image/siakbary/dockergc)](https://hub.docker.com/r/siakbary/dockergc)
 ## How to connect to server
 [Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-connect)
 ## How to create a server:
@@ -8,12 +7,12 @@ DockerGC is a container that run [Grasscutter](https://github.com/Melledy/Grassc
 - Install [Docker](https://docs.docker.com/engine/install/) + ([MongoDB](https://www.mongodb.com/try/download/community) If you want to run outside container)
 - Open Terminal and Enter:
 ```sh
-# Datebase (just once) (db_gc:27017 is ip:port) (use this if you don't have a database outside container or want to use between containers)
-docker run --rm -it --name db_gc -d mongo &
+# Datebase (just once) (use this if you don't have a database outside container or want to use between containers)
+docker run --rm -it --name db_gc -p 2777:27017/tcp -d mongo &
 # Game server (just once download resources with -f 'yes' after that you can set -f 'no') (remember replace 2.0.0.100 with your pc's ip and don't use "localhost" this is important)
-docker run --rm -it -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:alpine-Patch-2.7 -d 'mongodb://db_gc:27017' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
+docker run --rm -it --name dockergc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:alpine-Patch-2.7 -d 'mongodb://2.0.0.100:2777' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
 ```
-or (if you have compose)
+or if you have [Docker Compose](https://docs.docker.com/compose/install/)
 ```sh
 git clone https://github.com/akbaryahya/DockerGC
 cd DockerGC
@@ -32,7 +31,7 @@ TODO
 TODO
 
 ## How to build this? 
-### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do push from docker image or download jar file.
+### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do push from [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags) or [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7/main/DockerGC.zip).
 ### Remember [Grasscutter](https://github.com/Melledy/Grasscutter) source code is still open, you can do your own custom server with your own hard work.
 ## Required
 - [Java 17 JDK](https://adoptium.net/temurin/releases) 
