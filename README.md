@@ -30,8 +30,20 @@ TODO
 
 TODO
 
+## Available
+| Versions | OS | Download |
+| ------ | ------ | ------ |
+| Patch-2.6 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.6) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.6/main/DockerGC.zip) | 
+| Patch-2.6-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.6-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.6_early/main/DockerGC.zip) |
+| Patch-2.7 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.7) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7/main/DockerGC.zip) |
+| Patch-2.7-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.7-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7_early/main/DockerGC.zip) |
+| Patch-2.8 | Alpine | Come Soon |
+| Patch-2.8-Early | Alpine | Come Soon |
+### What is "**Early**"?
+I made Early to do some testing of a new feature that needs a big change so this makes it unstable so it's better to split it apart to keep it stable.
+
 ## How to build this? 
-### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do pull from [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags) or [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7/main/DockerGC.zip).
+### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do pull from Docker Image  or Jar File.
 ### Remember [Grasscutter](https://github.com/Melledy/Grasscutter) source code is still open, you can do your own custom server with your own hard work.
 ## Required
 - [Java 17 JDK](https://adoptium.net/temurin/releases) 
@@ -59,6 +71,7 @@ sh run.sh ubuntu build 2 # Build Docker Image Ubuntu
 sh run.sh local sync 2 # Sync Grasscutters 2.7 to Patch-2.7
 sh run.sh local sync 3 Grasscutters dev-world-scripts # Sync dev-world-scripts to Patch-2.7-Early
 sh run.sh local sync 3 akbaryahya Patch-2.7 GCPrivate # Sync Patch-2.7 to Patch-2.7-Early
+sh run.sh local sync 5 akbaryahya Patch-2.7-Early GCPrivate # Sync Patch-2.7-Early to Patch-2.8-Early
 sh run.sh data core # Clone Patch Version
 ```
 ## Note:

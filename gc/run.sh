@@ -77,6 +77,10 @@ if [ "$usebranch" = "4" ];then
  switchbc="Patch-2.8"
  switcres="2.8"
 fi
+if [ "$usebranch" = "5" ];then
+ switchbc="Patch-2.8-Early"
+ switcres="2.8"
+fi
 
 echo OS: $os - Metode: $metode - Branch:$switchbc
 
