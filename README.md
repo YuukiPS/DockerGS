@@ -10,7 +10,7 @@ DockerGC is a container that run [Grasscutter](https://github.com/Melledy/Grassc
 # Datebase (just once) (use this if you don't have a database outside container or want to use between containers)
 docker run --rm -it --name db_gc -p 2777:27017/tcp -d mongo &
 # Game server (just once download resources with -f 'yes' after that you can set -f 'no') (remember replace 2.0.0.100 with your pc's ip and don't use "localhost" this is important)
-docker run --rm -it --name dockergc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:alpine-Patch-2.7 -d 'mongodb://2.0.0.100:2777' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
+docker run --rm -it --name dockergc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:alpine-Patch-2.7-Early -d 'mongodb://2.0.0.100:2777' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
 ```
 or if you have [Docker Compose](https://docs.docker.com/compose/install/)
 ```sh

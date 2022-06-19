@@ -156,12 +156,12 @@ if [ ! -f "config.json" ]; then
 
  # Welcome message
  if [ -z "$msgserver" ]; then
-  msgserver="Welcome to $name_server\n\nUse !help for help\n\nRegion: $name_region\nCommunity: discord.gg/yuukips"
+  msgserver="Welcome to $name_server\n\nUse !help for help\n\nRegion: $name_region\nCommunity: discord.yuuki.me"
  fi
 
  # Send Email When Registration
  if [ -z "$msgemail" ]; then
-  msgemail="Hi, Thank you for registering on Yuuki Server, as a sign of gratitude for you we give gifts, you can also get more gifts with !giveall on console, please visit us for help and type !help for more info.<type=\"browser\" text=\"Discord\" href=\"https://discord.gg/yuukips\"/>"
+  msgemail="Hi, Thank you for registering on Yuuki Server, as a sign of gratitude for you we give gifts, you can also get more gifts with !giveall on console, please visit us for help and type !help for more info.<type=\"browser\" text=\"Discord\" href=\"https://discord.yuuki.me\"/>"
  fi
 
  # Need database (Outside docker)
@@ -196,7 +196,7 @@ if [ ! -f "config.json" ]; then
  json -q -I -f config.json -e "this.server.game.joinOptions.welcomeMail.content='$msgemail'"
 
  # Config Console
- json -q -I -f config.json -e "this.server.game.serverAccount.signature='Im currently in $name_server ($name_region)'"
+ json -q -I -f config.json -e "this.server.game.serverAccount.signature='Console $name_server ($name_region)'"
  json -q -I -f config.json -e "this.server.game.serverAccount.nickName='$name_owner'"
 
 else
