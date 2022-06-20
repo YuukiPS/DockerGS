@@ -2,6 +2,7 @@ work
 todo
 .vscode
 .gitmodules
+.idea
 VERSION_TMP
 gc/Grasscutter
 gc/Grasscutter_Data

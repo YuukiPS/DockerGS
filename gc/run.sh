@@ -230,8 +230,7 @@ if [ "$metode" = "sync" ];then
   if [ "$switchbc" = "Patch-2.7" ];then
    getme="development"
   elif [ "$switchbc" = "Patch-2.7-Early" ];then
-   getme="2.7-world-script"
-   whosm="Akka0"
+   getme="development"
   else
    getme="2.6"
   fi
