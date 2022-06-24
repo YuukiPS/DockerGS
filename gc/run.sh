@@ -231,6 +231,7 @@ if [ "$metode" = "sync" ];then
    getme="development"
   elif [ "$switchbc" = "Patch-2.7-Early" ];then
    getme="development"
+   # git rebase --ignore-whitespace
   else
    getme="2.6"
   fi
