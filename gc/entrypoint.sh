@@ -12,16 +12,16 @@ SUB="Alpine"
 version=$(cat VERSION)
 version_res="main"
 
+echo $version
+
 # Switch RS
 if echo "$version" | grep -q "2.6"; then
  echo "Use res 2.6"
  version_res="2.6"
-fi
-if echo "$version" | grep -q "2.7"; then
+elif echo "$version" | grep -q "2.7"; then
  echo "Use res 2.7"
  version_res="2.7"
-fi
-if echo "$version" | grep -q "2.8"; then
+elif echo "$version" | grep -q "2.8"; then
  echo "Use res 2.8"
  version_res="2.8"
 fi
