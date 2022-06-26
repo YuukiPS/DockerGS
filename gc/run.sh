@@ -180,6 +180,7 @@ if [ "$metode" = "start" ];then
   fi
   
   cd work
+  # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp bin 
   java -jar grasscutter.jar
  else
   ip=$4
