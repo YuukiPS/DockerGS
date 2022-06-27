@@ -61,8 +61,7 @@ done
 
 #  JVM sets its heap size to approximately 25% of the available RAM. In this example, it allocated 4GB on a system with 16GB.
 if [ -z "$JAVA_OPTS" ]; then
- JAVA_OPTS="-Xms4G -Xmx8G"
- java -XX:+PrintFlagsFinal -version | grep -iE 'HeapSize|PermSize|ThreadStackSize'
+ JAVA_OPTS="-Xms50M -Xmx1G"
 fi
 
 # Building Data Source and Generated Resources
@@ -209,4 +208,4 @@ fi
 #cat config.json
 
 # Game Server
-java -jar grasscutter.jar $JAVA_OPTS
+java $JAVA_OPTS -jar grasscutter.jar
