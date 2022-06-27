@@ -60,24 +60,19 @@ fi
 if [ "$usebranch" = "0" ];then
  switchbc="Patch-2.6"
  switcres="2.6"
-fi
-if [ "$usebranch" = "1" ];then
+elif [ "$usebranch" = "1" ];then
  switchbc="Patch-2.6-Early"
  switcres="2.6"
-fi
-if [ "$usebranch" = "2" ];then
+elif [ "$usebranch" = "2" ];then
  switchbc="Patch-2.7"
  switcres="2.7"
-fi
-if [ "$usebranch" = "3" ];then
+elif [ "$usebranch" = "3" ];then
  switchbc="Patch-2.7-Early"
  switcres="2.7"
-fi
-if [ "$usebranch" = "4" ];then
+elif [ "$usebranch" = "4" ];then
  switchbc="Patch-2.8"
  switcres="2.8"
-fi
-if [ "$usebranch" = "5" ];then
+elif [ "$usebranch" = "5" ];then
  switchbc="Patch-2.8-Early"
  switcres="2.8"
 fi
@@ -180,8 +175,13 @@ if [ "$metode" = "start" ];then
   fi
   
   cd work
-  # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp bin 
-  java -jar grasscutter.jar
+  
+  if [ "$4" = "debug" ];then 
+   java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp bin -jar grasscutter.jar -debug
+  else
+   java -jar grasscutter.jar
+  fi
+
  else
   ip=$4
   ipdb=$5
