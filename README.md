@@ -39,6 +39,8 @@ TODO
 | Patch-2.7-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.7-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7_early/main/DockerGC.zip) |
 | Patch-2.8 | Alpine | Come Soon |
 | Patch-2.8-Early | Alpine | Come Soon |
+
+Info: Currently best version is **[7d9126e](https://github.com/akbaryahya/DockerGC/actions/runs/2524995507)** (tested for days without problems) in latest version almost every few hours my server is always down, cause is still unknown so if you have a big server don't update to latest version until I find best solution.
 ### What is "**Early**"?
 I made Early to do some testing of a new feature that needs a big change so this makes it unstable so it's better to split it apart to keep it stable.
 
