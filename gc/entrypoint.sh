@@ -59,9 +59,9 @@ do
     esac
 done
 
-#  JVM sets its heap size to approximately 25% of the available RAM. In this example, it allocated 4GB on a system with 16GB.
+# JVM sets its heap size to approximately 25% of the available RAM. In this example, it allocated 4GB on a system with 16GB. (-Xms50M -Xmx1G)
 if [ -z "$JAVA_OPTS" ]; then
- JAVA_OPTS="-Xms50M -Xmx1G"
+ JAVA_OPTS=""
 fi
 
 # Building Data Source and Generated Resources
@@ -203,9 +203,6 @@ else
  echo "Found config files, ignore from command"
  rm -R -f logs/*
 fi
-
-#ls
-#cat config.json
 
 # Game Server
 java $JAVA_OPTS -jar grasscutter.jar

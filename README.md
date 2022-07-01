@@ -40,7 +40,11 @@ TODO
 | Patch-2.8 | Alpine | Come Soon |
 | Patch-2.8-Early | Alpine | Come Soon |
 
-Info: Currently best version is **[7d9126e](https://github.com/akbaryahya/DockerGC/actions/runs/2524995507)** (tested for days without problems) in latest version almost every few hours my server is always down, cause is still unknown so if you have a big server don't update to latest version until I find best solution.
+### Some Tips:
+* best version is **[7d9126e](https://github.com/akbaryahya/DockerGC/actions/runs/2524995507)** (tested for days without problems) in latest version almost every few hours my server is always down, cause is still unknown so if you have a big server don't update to latest version until I find best solution.
+* [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
+* [10 best practices to build a Java container with Docker](https://snyk.io/blog/best-practices-to-build-java-containers-with-docker/)
+
 ### What is "**Early**"?
 I made Early to do some testing of a new feature that needs a big change so this makes it unstable so it's better to split it apart to keep it stable.
 
