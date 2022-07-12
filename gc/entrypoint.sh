@@ -73,6 +73,8 @@ else
     echo "Update?"
     update=true
 fi
+
+# Foce Mode
 if [ "$force" = "yes" ]; then
      echo "Update"
      update=true
@@ -81,22 +83,15 @@ if [ "$force" = "no" ]; then
      echo "skip"
      update=false
 fi
+
 if $update
 then
 
-   # Manual check
-   if [ -d "$folder_resources" ]
-   then
-    echo "remove file resources"
-    rm -R -f $folder_resources/*
-   else
-    echo "Make folder resources"
-    mkdir -p $folder_resources
-   fi
+   id
+   ls -l $folder_gc
 
    git clone -b $version_res https://gitlab.com/yukiz/GrasscutterResources.git
    cp -rf GrasscutterResources/Resources/* $folder_resources
-   #chmod -R 775 resources
    rm -R -f GrasscutterResources
 fi
 
