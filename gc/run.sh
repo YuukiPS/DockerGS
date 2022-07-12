@@ -9,8 +9,8 @@ filejson="work/config.json"
 filejson_res="todo/config.backup"
 removeme="Grasscutter/bin Grasscutter/logs Grasscutter/resources Grasscutter/src/generated Grasscutter/config.json Grasscutter/plugins Grasscutter/.gradle"
 
-switchbc="Patch-2.7-Early"
-switcres="2.7"
+switchbc="Patch-2.8-Early"
+switcres="2.8"
 
 version_gchash="unknown";
 version_rshash="unknown";

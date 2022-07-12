@@ -10,7 +10,7 @@ DockerGC is a container that run [Grasscutter](https://github.com/Melledy/Grassc
 # Datebase (just once) (use this if you don't have a database outside container or want to use between containers)
 docker run --rm -it --name db_gc -p 2777:27017/tcp -d mongo &
 # Game server (just once download resources with -f 'yes' after that you can set -f 'no') (remember replace 2.0.0.100 with your pc's ip and don't use "localhost" this is important)
-docker run --rm -it --name dockergc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:alpine-Patch-2.7-Early -d 'mongodb://2.0.0.100:2777' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
+docker run --rm -it --name dockergc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:alpine-Patch-2.8-Early -d 'mongodb://2.0.0.100:2777' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
 ```
 or if you have [Docker Compose](https://docs.docker.com/compose/install/)
 ```sh
@@ -33,15 +33,14 @@ TODO
 ## Available
 | Versions | OS | Download |
 | ------ | ------ | ------ |
-| Patch-2.6 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.6) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.6/main/DockerGC.zip) | 
+| Patch-2.6 | Alpine | Holiday | 
 | Patch-2.6-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.6-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.6_early/main/DockerGC.zip) |
-| Patch-2.7 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.7) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7/main/DockerGC.zip) |
+| Patch-2.7 | Alpine | Holiday |
 | Patch-2.7-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.7-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7_early/main/DockerGC.zip) |
-| Patch-2.8 | Alpine | Come Soon |
-| Patch-2.8-Early | Alpine | Come Soon |
+| Patch-2.8 | Alpine | Holiday |
+| Patch-2.8-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.8_early/main/DockerGC.zip) |
 
 ### Some Tips:
-* best version is **[7d9126e](https://github.com/akbaryahya/DockerGC/actions/runs/2524995507)** (tested for days without problems) in latest version almost every few hours my server is always down, cause is still unknown so if you have a big server don't update to latest version until I find best solution.
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
 * [10 best practices to build a Java container with Docker](https://snyk.io/blog/best-practices-to-build-java-containers-with-docker/)
 
