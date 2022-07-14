@@ -75,6 +75,9 @@ elif [ "$usebranch" = "4" ];then
 elif [ "$usebranch" = "5" ];then
  switchbc="Patch-2.8-Early"
  switcres="2.8"
+elif [ "$usebranch" = "6" ];then
+ switchbc="Patch-3.0-Early"
+ switcres="3.0"
 fi
 
 echo OS: $os - Metode: $metode - Branch:$switchbc

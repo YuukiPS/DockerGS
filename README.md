@@ -39,6 +39,7 @@ TODO
 | Patch-2.7-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.7-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7_early/main/DockerGC.zip) |
 | Patch-2.8 | Alpine | Holiday |
 | Patch-2.8-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.8_early/main/DockerGC.zip) |
+| Patch-3.0-Early | Alpine | come soon |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
@@ -67,16 +68,17 @@ cd gc
 sh run.sh # default build localhost
 sh run.sh local res 2 # Get Resources File Based Version Server
 sh run.sh local start 2 # run localhost server for without docker
-sh run.sh alpine start 2 2.0.0.100 # run localhost server for with docker alpine
-sh run.sh ubuntu start 2 2.0.0.100 # run localhost server for with docker ubuntu
-sh run.sh local build 2 # Build local aja jar only
-sh run.sh alpine build 2 # Build Docker Image Alpine
-sh run.sh ubuntu build 2 # Build Docker Image Ubuntu
+sh run.sh alpine start 5 2.0.0.100 # run localhost server for with docker alpine
+sh run.sh ubuntu start 5 2.0.0.100 # run localhost server for with docker ubuntu
+sh run.sh local build 5 # Build local aja jar only
+sh run.sh alpine build 5 # Build Docker Image Alpine
+sh run.sh ubuntu build 5 # Build Docker Image Ubuntu
 # (private, please ask for access if you really want to do something)
 sh run.sh local sync 2 # Sync Grasscutters 2.7 to Patch-2.7
 sh run.sh local sync 3 Grasscutters dev-world-scripts # Sync dev-world-scripts to Patch-2.7-Early
 sh run.sh local sync 3 akbaryahya Patch-2.7 GCPrivate # Sync Patch-2.7 to Patch-2.7-Early
 sh run.sh local sync 5 akbaryahya Patch-2.7-Early GCPrivate # Sync Patch-2.7-Early to Patch-2.8-Early
+sh run.sh local sync 6 akbaryahya Patch-2.8-Early GCPrivate # Sync Patch-2.7-Early to Patch-2.8-Early
 sh run.sh data core # Clone Patch Version
 ```
 ## Note:
