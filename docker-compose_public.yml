@@ -1,10 +1,12 @@
-# Use this if you would like to put in public ip vps and change yourdomain.com with your domain name.
-# After that, please add DNS Subdomain with type A and IP that leads to your VPS. then open yourip:81 for config nginx (this should be very easy to do).
 version: '3'
 services:
   web:
     image: jc21/nginx-proxy-manager
-    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 150M
+    restart: always
     ports:
       - '80:80'
       - '81:81'
@@ -13,25 +15,34 @@ services:
       - ./data_web:/data
       - ./letsencrypt:/etc/letsencrypt
   mongodb:
-    restart: unless-stopped
+    restart: always
     image: mongo
+    deploy:
+      resources:
+        limits:
+          memory: 2G
     ports:
-      - "6969:27017"
+      - "5712:27017"
     volumes:
       - ./data_db:/data/db
     environment:
-     MONGO_INITDB_ROOT_USERNAME: nani
-     MONGO_INITDB_ROOT_PASSWORD: moemoekyu
+     MONGO_INITDB_ROOT_USERNAME: yourusername
+     MONGO_INITDB_ROOT_PASSWORD: moepasswordroot
   grasscutter:
-    restart: unless-stopped
+    restart: always
     container_name: dockergc
     image: siakbary/dockergc:alpine-Patch-2.8-Early
-    command: -d 'mongodb://nani:moemoekyu@mongodb:27017' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+    command: --datebase 'mongodb://yourusername:moepasswordroot@mongodb:27017' --web_ip '2.0.0.100' --game_ip '2.0.0.100' --download_resource 'yes' --java '-Xmx5G'
     volumes:
-      - ./resources:/home/Grasscutter/resources
+      - ./res/28:/home/Grasscutter/resources
     ports:
       - "22102:22102/udp"
     depends_on:
       - mongodb
     stdin_open: true
     tty: true
+    init: true

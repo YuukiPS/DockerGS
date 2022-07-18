@@ -11,7 +11,7 @@ services:
       - data:/data/db
   grasscutter:
     image: siakbary/dockergc:alpine-Patch-2.8-Early
-    command: -d 'mongodb://mongodb:27017' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
+    command: --datebase 'mongodb:27017' --web_ip '2.0.0.100' --game_ip '2.0.0.100' --download_resource 'yes' --java '-Xmx5G'
     restart: unless-stopped
     volumes:
       - resources:/home/Grasscutter/resources

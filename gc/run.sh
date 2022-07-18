@@ -200,14 +200,15 @@ if [ "$metode" = "start" ];then
    res="resources_gc_$switchbc"
   fi
   echo "Start Docker with IP $ip"
-  docker run --env tes2=aaaa --rm -it \
+  docker run \
+  --rm -it \
   -v $res:/home/Grasscutter/resources \
   -p 22102:22102/udp \
   -p 443:443/tcp \
   siakbary/dockergc:$version_last_commit \
-  -d "mongodb://$ipdb" \
-  -b "$ip" \
-  -g "$ip"
+  --datebase "mongodb://$ipdb" \
+  --web_ip "$ip" \
+  --game_ip "$ip"
  fi
 
 fi
@@ -232,9 +233,9 @@ if [ "$metode" = "sync" ];then
   whosm="Grasscutters"
  fi
  if [ -z "$getme" ]; then
-  if [ "$switchbc" = "Patch-2.7" ];then
+  if [ "$switchbc" = "Patch-2.8" ];then
    getme="development"
-  elif [ "$switchbc" = "Patch-2.7-Early" ];then
+  elif [ "$switchbc" = "Patch-2.8-Early" ];then
    getme="development"
    # git rebase --ignore-whitespace
   else

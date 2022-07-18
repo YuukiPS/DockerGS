@@ -10,7 +10,16 @@ DockerGC is a container that run [Grasscutter](https://github.com/Melledy/Grassc
 # Datebase (just once) (use this if you don't have a database outside container or want to use between containers)
 docker run --rm -it --name db_gc -p 2777:27017/tcp -d mongo &
 # Game server (just once download resources with -f 'yes' after that you can set -f 'no') (remember replace 2.0.0.100 with your pc's ip and don't use "localhost" this is important)
-docker run --rm -it --name dockergc -v resources:/home/Grasscutter/resources -p 22102:22102/udp -p 443:443/tcp siakbary/dockergc:alpine-Patch-2.8-Early -d 'mongodb://2.0.0.100:2777' -b '2.0.0.100' -g '2.0.0.100' -f 'yes'
+docker run --rm -it \
+--name dockergc \
+-v resources:/home/Grasscutter/resources \
+-p 22102:22102/udp \
+-p 443:443/tcp \
+siakbary/dockergc:alpine-Patch-2.8-Early \
+--datebase 'mongodb://2.0.0.100:2777' \
+--web_ip '2.0.0.100' \
+--game_ip '2.0.0.100' \
+--download_resource 'yes'
 ```
 or if you have [Docker Compose](https://docs.docker.com/compose/install/)
 ```sh
@@ -39,7 +48,7 @@ TODO
 | Patch-2.7-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.7-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7_early/main/DockerGC.zip) |
 | Patch-2.8 | Alpine | Holiday |
 | Patch-2.8-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.8_early/main/DockerGC.zip) |
-| Patch-3.0-Early | Alpine | come Soon, when perload is publicly |
+| Patch-3.0-Early | Alpine | Come soon, when perload is publicly |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
@@ -84,23 +93,24 @@ sh run.sh data core # Clone Patch Version
 ## Note:
 * If you have a problem with **not foundsh**: Change **CRLF** to **LF**
 
-## HELP
-| Func | Info |
+## Command
+| Variable | Info |
 | ------ | ------ |
-| d | IP Address for your database server, note: use computer ip if you want to run on your own pc/server, no "localhost" because it is IP in Container |
-| b | IP/Domain Public Web Server |
-| g | IP Public Game Server |
-| p | Port Public Game Server |
-| m | Chat Welcome Message |
-| s | Name Server |
-| r | Server Owner Name |
-| r | Server Region Name |
-| e | Email welcome when registering for first time |
-| u | Player limit online (-1 for unlimited) |
-| f | Re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
-| l | Server Language and includes commands [more info](https://github.com/Grasscutters/Grasscutter/tree/development/src/main/resources/languages) |
-| j | -Xms500M -Xmx8G [more info](https://www.baeldung.com/ops/docker-jvm-heap-size) |
-
+| -db --datebase | IP Address for your database server, note: use computer ip if you want to run on your own pc/server, no "localhost" because it is IP in Container |
+| -webip --web_ip | IP/Domain Public Web Server |
+| -gameip --game_ip | IP Public Game Server |
+| -gameport --game_port | Port Public Game Server |
+| -msgwc --message_welcome | Chat Welcome Message |
+| -nmsv --name_server | Name Server |
+| -nmow --name_owner | Server Owner Name |
+| -nmrg -- name_region | Server Region Name |
+| -mailmsg --mail_message | Email welcome when registering for first time |
+| -po --player_online | Player limit online (-1 for unlimited) |
+| -loginpass --login_password | If you want to be more secure by using password feature at login |
+| -dlres --download_resource | Re-download resources if you type "yes" this is useful if you already have a resources folder but there is latest update |
+| -lang --language | Server Language and includes commands [more info](https://github.com/Grasscutters/Grasscutter/tree/development/src/main/resources/languages) |
+| -j --java | -Xms500M -Xmx8G [more info](https://www.baeldung.com/ops/docker-jvm-heap-size) |
+| -h --help | todo |
 ## Port
 | Port | Info |
 | ------ | ------ |
