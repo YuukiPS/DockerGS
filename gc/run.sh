@@ -205,10 +205,13 @@ if [ "$metode" = "start" ];then
   -v $res:/home/Grasscutter/resources \
   -p 22102:22102/udp \
   -p 443:443/tcp \
+  -p 80:80/tcp \
   siakbary/dockergc:$version_last_commit \
   --datebase "mongodb://$ipdb" \
   --web_ip "$ip" \
-  --game_ip "$ip"
+  --game_ip "$ip" \
+  --ssl "false" \
+  --web_url_ssl "false"
  fi
 
 fi

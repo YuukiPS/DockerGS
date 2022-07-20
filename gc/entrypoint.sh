@@ -6,8 +6,8 @@ help()
     exit 2
 }
 
-SHORT=db:,webip:,gameip:,gameport:,msgwc,mailmsg:,dlres:,j:,lang:,loginpass:,po:,nmsv:,nmow:,nmrg:,h
-LONG=datebase:,web_ip:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,help
+SHORT=db:,webip:,webport:,weburlssl:,gameip:,gameport:,msgwc,mailmsg:,dlres:,j:,lang:,loginpass:,po:,nmsv:,nmow:,nmrg:,ssl:,h
+LONG=datebase:,web_ip:,web_port:,web_url_ssl:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,ssl:,help
 OPTS=$(getopt -a -n dockergc --options $SHORT --longoptions $LONG -- "$@")
 
 VALID_ARGUMENTS=$# # Returns the count of arguments that are in short or long options
@@ -28,6 +28,18 @@ do
       ;;
     -webip | --web_ip )
       set_web_ip="$2"
+      shift 2
+      ;;
+    -webport | --web_port )
+      set_web_port="$2"
+      shift 2
+      ;;
+    -weburlssl | --web_url_ssl )
+      set_web_url_ssl="$2"
+      shift 2
+      ;;
+    -ssl | --ssl )
+      set_ssl="$2"
       shift 2
       ;;
     -gameip | --game_ip )
@@ -197,6 +209,16 @@ if [ ! -f "config.json" ]; then
   set_name_region="localhost"
  fi
 
+ # SSL
+ if [ -z "$set_ssl" ]; then
+  set_ssl="false"
+ fi
+
+ # URL SSL
+ if [ -z "$web_url_ssl" ]; then
+  web_url_ssl="false"
+ fi
+
  # if no config just boot
  java -jar grasscutter.jar -boot
 
@@ -204,21 +226,26 @@ if [ ! -f "config.json" ]; then
  if [ -z "$set_web_ip" ]; then
   set_web_ip=localhost  
  fi
- echo "Server Web Public: $set_web_ip"
+
+ # Ip web port
+ if [ -z "$set_web_port" ]; then
+  set_web_port="80"
+ fi
+
+ echo "Server Web Public: $set_web_ip:$set_web_port"
+ echo "URL SSL Web Public: $web_url_ssl"
 
  # ip public for game (Outside docker)
  if [ -z "$set_game_ip" ]; then
   set_game_ip=$set_web_ip
- fi
-
- echo "Server Ip Game: $set_game_ip"
+ fi 
 
  # Ip game port
  if [ -z "$set_game_port" ]; then
   set_game_port="22102"
  fi
 
- echo "Server Game Port: $set_game_port"
+ echo "Server Ip Game: $set_game_ip:$set_game_port"
 
  # Welcome message
  if [ -z "$set_message_welcome" ]; then
@@ -246,6 +273,11 @@ if [ ! -f "config.json" ]; then
 
  # Config Game Web
  json -q -I -f config.json -e "this.server.http.accessAddress='$set_web_ip'"
+ json -q -I -f config.json -e "this.server.http.bindPort='$set_web_port'"
+
+ # SSL
+ json -q -I -f config.json -e "this.server.http.encryption.useEncryption='$set_ssl'"
+ json -q -I -f config.json -e "this.server.http.encryption.useInRouting='$set_web_url_ssl'"
 
  # Config Language Server
  json -q -I -f config.json -e "this.language.language='$set_language'"

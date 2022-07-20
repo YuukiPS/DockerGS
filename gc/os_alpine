@@ -8,7 +8,7 @@ RUN  \
 WORKDIR /home
 
 # EXPOSE Web (https) and Game Server
-EXPOSE 443 22102
+EXPOSE 443 22102 80
 
 # Add User
 RUN addgroup --system dockergc && adduser -S -s /bin/false -G dockergc dockergc
