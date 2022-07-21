@@ -182,7 +182,7 @@ if [ "$metode" = "start" ];then
   if [ "$4" = "debug" ];then 
    java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp bin -jar grasscutter.jar -debug
   else
-   # TODO: add -handbook
+   java -jar grasscutter.jar -handbook
    java -jar grasscutter.jar
   fi
 
