@@ -94,7 +94,7 @@ sh run.sh local sync 2 # Sync Grasscutters 2.7 to Patch-2.7
 
 sh run.sh local sync 3 akbaryahya Patch-2.7 GCPrivate # Sync Patch-2.7 to Patch-2.7-Early
 
-sh run.sh local sync 5 Grasscutters dev-world-scripts # Sync Grasscutters to Patch-2.8-Early
+sh run.sh local sync 5 # Sync Grasscutters to Patch-2.8-Early
 sh run.sh local sync 5 akbaryahya Patch-2.7-Early GCPrivate # Sync Patch-2.7-Early to Patch-2.8-Early
 
 sh run.sh local sync 6 akbaryahya Patch-2.8-Early GCPrivate # Sync Patch-2.8-Early to Patch-3.0-Early
