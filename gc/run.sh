@@ -180,7 +180,8 @@ if [ "$metode" = "start" ];then
   cd work
   
   if [ "$4" = "debug" ];then 
-   java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp bin -jar grasscutter.jar -debug
+   # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp bin 
+   java -jar grasscutter.jar -debug
   else
    java -jar grasscutter.jar -handbook
    java -jar grasscutter.jar
