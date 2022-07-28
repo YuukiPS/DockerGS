@@ -50,8 +50,8 @@ TODO
 | Patch-2.6-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.6-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.6_early/main/DockerGC.zip) |
 | Patch-2.7 | Alpine | Holiday |
 | Patch-2.7-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.7-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7_early/main/DockerGC.zip) |
-| Patch-2.8 | Alpine | Holiday |
-| Patch-2.8-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.8_early/main/DockerGC.zip) |
+| Patch-2.8 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.8) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.8/main/DockerGC.zip) |
+| Patch-2.8-Early | Alpine | ***bug*** [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.8_early/main/DockerGC.zip) |
 | Patch-3.0-Early | Alpine | Come soon, when perload is publicly |
 
 ### Some Tips:
@@ -59,7 +59,7 @@ TODO
 * [10 best practices to build a Java container with Docker](https://snyk.io/blog/best-practices-to-build-java-containers-with-docker/)
 
 ### What is "**Early**"?
-I made Early to do some testing of a new feature that needs a big change so this makes it unstable so it's better to split it apart to keep it stable.
+Always updated from developer version and some from Pull requests. Version Without "Early" is same except that we check very carefully if any feature doesn't work or function doesn't work we ignore commits.
 
 ## How to build this? 
 ### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do pull from Docker Image  or Jar File.
