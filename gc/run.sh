@@ -343,15 +343,27 @@ if [ "$metode" = "build" ];then
   echo "Copy file version docker"  
   echo -n "$version_last_commit" > work/VERSION
 
-  # bulid
-  docker build -t "siakbary/dockergc:$version_last_commit" -f os_$os .;
-  docker build -t "siakbary/dockergc:$version_last_sw" -f os_$os .;
+  # Bulid Local
+  docker build -t "dockergc:$version_last_commit" -f os_$os .;
+  # Tag to multi source
+  echo "Add image to repo public"  
+  docker tag "dockergc:$version_last_commit" "siakbary/dockergc:$version_last_commit"
+  docker tag "dockergc:$version_last_commit" "siakbary/dockergc:$version_last_sw"
+  # Private Repo
+  echo "Add image to private repo"  
+  docker tag "dockergc:$version_last_commit" "repo.yuuki.me/dockergc:$version_last_commit"
  fi
  
 fi
 
-# if push
+# Push Public
 if [ "$metode" = "push" ];then
  docker push siakbary/dockergc:$version_last_commit
  docker push siakbary/dockergc:$version_last_sw
+fi
+
+# Push Private
+if [ "$metode" = "private_push" ];then
+ echo "push private"  
+ docker push repo.yuuki.me/dockergc:$version_last_commit
 fi
