@@ -213,6 +213,7 @@ if [ "$metode" = "start" ];then
   --game_ip "$ip" \
   --ssl "false" \
   --web_url_ssl "false" \
+  --token "local" \
   --login_password "true"
  fi
 

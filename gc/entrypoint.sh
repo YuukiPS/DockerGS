@@ -6,8 +6,8 @@ help()
     exit 2
 }
 
-SHORT=db:,webip:,webport:,weburlssl:,gameip:,gameport:,msgwc,mailmsg:,dlres:,j:,lang:,loginpass:,po:,nmsv:,nmow:,nmrg:,ssl:,h
-LONG=datebase:,web_ip:,web_port:,web_url_ssl:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,ssl:,help
+SHORT=db:,webip:,webport:,weburlssl:,gameip:,gameport:,msgwc,mailmsg:,dlres:,j:,lang:,loginpass:,po:,nmsv:,nmow:,nmrg:,ssl:,tk:,h
+LONG=datebase:,web_ip:,web_port:,web_url_ssl:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,ssl:,token:,help
 OPTS=$(getopt -a -n dockergc --options $SHORT --longoptions $LONG -- "$@")
 
 VALID_ARGUMENTS=$# # Returns the count of arguments that are in short or long options
@@ -69,6 +69,10 @@ do
       ;;
     -po | --player_online )
       set_player_online="$2"
+      shift 2
+      ;;
+    -tk | --token )
+      set_token="$2"
       shift 2
       ;;
     # Owner Server
@@ -199,6 +203,11 @@ if [ ! -f "config.json" ]; then
   set_name_server="YuukiPS"
  fi
 
+ # Token Server aka Super Admin
+ if [ -z "$set_token" ]; then
+  set_token="melon"
+ fi
+
  # Nama Owner
  if [ -z "$set_name_owner" ]; then
   set_name_owner="Ayaka"
@@ -299,6 +308,7 @@ if [ ! -f "config.json" ]; then
  # Config Console
  json -q -I -f config.json -e "this.server.game.serverAccount.signature='Console $set_name_server ($set_name_region)'"
  json -q -I -f config.json -e "this.server.game.serverAccount.nickName='$set_name_owner'"
+ json -q -I -f config.json -e "this.server.game.serverAccount.token='$set_token'"
 
 else
  # If found config file (maybe restart?)
