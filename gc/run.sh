@@ -295,6 +295,8 @@ if [ "$metode" = "build" ];then
   echo "Make file jar..."
   ./gradlew jar
 
+  # rm -R -f build data
+
   # Back to home directory
   cd .. 
 
