@@ -6,8 +6,8 @@ help()
     exit 2
 }
 
-SHORT=db:,webip:,webport:,weburlssl:,gameip:,gameport:,msgwc,mailmsg:,dlres:,j:,lang:,loginpass:,po:,nmsv:,nmow:,nmrg:,ssl:,tk:,h
-LONG=datebase:,web_ip:,web_port:,web_url_ssl:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,ssl:,token:,help
+SHORT=db:,webip:,webport:,weburlssl:,gameip:,gameport:,msgwc,mailmsg:,dlres:,j:,ag:,lang:,loginpass:,po:,nmsv:,nmow:,nmrg:,ssl:,tk:,h
+LONG=datebase:,web_ip:,web_port:,web_url_ssl:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,args:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,ssl:,token:,help
 OPTS=$(getopt -a -n dockergc --options $SHORT --longoptions $LONG -- "$@")
 
 VALID_ARGUMENTS=$# # Returns the count of arguments that are in short or long options
@@ -57,6 +57,10 @@ do
       ;;
     -j | --java )
       set_java="$2"
+      shift 2
+      ;;
+    -ag | --args )
+      set_args="$2"
       shift 2
       ;;
     -lang | --language )
@@ -317,4 +321,4 @@ else
 fi
 
 # Game Server
-java $set_java -jar grasscutter.jar
+java $set_java -jar grasscutter.jar $set_args
