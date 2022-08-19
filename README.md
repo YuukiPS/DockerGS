@@ -7,7 +7,7 @@ DockerGC is a container that run [Grasscutter](https://github.com/Melledy/Grassc
 - Install [Docker](https://docs.docker.com/engine/install/) + ([MongoDB](https://www.mongodb.com/try/download/community) If you want to run outside container)
 - Open Terminal and Enter:
 ```sh
-# Datebase (just once) (use this if you don't have a database outside container or want to use between containers)
+# Database (just once) (use this if you don't have a database outside container or want to use between containers)
 docker run --rm -it --name db_gc -p 2777:27017/tcp -d mongo &
 # Game server (just once download resources with -download_resource 'yes' after that you can set -download_resource 'no') (remember replace 2.0.0.100 with your pc's ip and don't use "localhost" this is important)
 docker run --rm -it \
@@ -16,7 +16,7 @@ docker run --rm -it \
 -p 22102:22102/udp \
 -p 80:80/tcp \
 siakbary/dockergc:alpine-Patch-2.8-Early \
---datebase 'mongodb://2.0.0.100:2777' \
+--database 'mongodb://2.0.0.100:2777' \
 --web_ip '2.0.0.100' \
 --web_port '80' \
 --game_ip '2.0.0.100' \
@@ -107,7 +107,7 @@ sh run.sh data core # Clone Patch Version
 ## Command
 | Variable | Info |
 | ------ | ------ |
-| -db --datebase | IP Address for your database server, note: use computer ip if you want to run on your own pc/server, no "localhost" because it is IP in Container |
+| -db --database | IP Address for your database server, note: use computer ip if you want to run on your own pc/server, no "localhost" because it is IP in Container |
 | -webip --web_ip | IP/Domain Public Web Server |
 | -webport --web_port | Port Public Web Server, if you want http use port 80 and if you want https use 443 (default 80) |
 | -ssl --ssl | If this is set to "true" it will make https not working and if it is "false" it will make http not working. please select: (default false) |

@@ -7,7 +7,7 @@ help()
 }
 
 SHORT=db:,webip:,webport:,weburlssl:,gameip:,gameport:,msgwc,mailmsg:,dlres:,j:,ag:,lang:,loginpass:,po:,nmsv:,nmow:,nmrg:,ssl:,tk:,h
-LONG=datebase:,web_ip:,web_port:,web_url_ssl:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,args:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,ssl:,token:,help
+LONG=database:,web_ip:,web_port:,web_url_ssl:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,args:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,ssl:,token:,help
 OPTS=$(getopt -a -n dockergc --options $SHORT --longoptions $LONG -- "$@")
 
 VALID_ARGUMENTS=$# # Returns the count of arguments that are in short or long options
@@ -21,9 +21,9 @@ eval set -- "$OPTS"
 while :
 do
   case "$1" in
-    # Server Datebase & Ip Config
-    -db | --datebase )
-      set_datebase="$2"
+    # Server Database & Ip Config
+    -db | --database )
+      set_database="$2"
       shift 2
       ;;
     -webip | --web_ip )
@@ -271,13 +271,13 @@ if [ ! -f "config.json" ]; then
  fi
 
  # Need database (Outside docker)
- if [ -z "$set_datebase" ]; then
-  echo "No Datebase? exit!"
+ if [ -z "$set_database" ]; then
+  echo "No Database? exit!"
   exit 1
  else      
-  echo "Server MongoDB: $set_datebase"
-  json -q -I -f config.json -e "this.databaseInfo.server.connectionUri='$set_datebase'"
-  json -q -I -f config.json -e "this.databaseInfo.game.connectionUri='$set_datebase'"
+  echo "Server MongoDB: $set_database"
+  json -q -I -f config.json -e "this.databaseInfo.server.connectionUri='$set_database'"
+  json -q -I -f config.json -e "this.databaseInfo.game.connectionUri='$set_database'"
  fi
 
  # Config IP Game

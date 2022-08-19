@@ -208,7 +208,7 @@ if [ "$metode" = "start" ];then
   -p 443:443/tcp \
   -p 80:80/tcp \
   siakbary/dockergc:$version_last_commit \
-  --datebase "mongodb://$ipdb" \
+  --database "mongodb://$ipdb" \
   --args "-debug" \
   --web_ip "$ip" \
   --game_ip "$ip" \

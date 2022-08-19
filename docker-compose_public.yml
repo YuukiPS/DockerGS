@@ -36,7 +36,7 @@ services:
       resources:
         limits:
           memory: 5G
-    command: --datebase 'mongodb://yourusername:moepasswordroot@mongodb:27017' --web_ip '2.0.0.100' --web_port "80" --game_ip '2.0.0.100' --download_resource 'yes' --java '-Xmx5G' --ssl "false" --web_url_ssl "false"
+    command: --database 'mongodb://yourusername:moepasswordroot@mongodb:27017' --web_ip '2.0.0.100' --web_port "80" --game_ip '2.0.0.100' --download_resource 'yes' --java '-Xmx5G' --ssl "false" --web_url_ssl "false"
     volumes:
       - ./res/28:/home/Grasscutter/resources
     ports:
