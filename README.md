@@ -1,5 +1,5 @@
-# DockerGC
-DockerGC is a container that run [Grasscutter](https://github.com/Melledy/Grasscutter) (**some anime game** server reimplementation) with just a single command.<br>
+# DockerGS
+DockerGS is a container that run [Grasscutter](https://github.com/Melledy/Grasscutter) (**some anime game** server reimplementation) with just a single command.<br>
 ## How to connect to server
 [Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-connect)
 ## How to create a server:
@@ -11,11 +11,11 @@ DockerGC is a container that run [Grasscutter](https://github.com/Melledy/Grassc
 docker run --rm -it --name db_gc -p 2777:27017/tcp -d mongo &
 # Game server (just once download resources with -download_resource 'yes' after that you can set -download_resource 'no') (remember replace 2.0.0.100 with your pc's ip and don't use "localhost" this is important)
 docker run --rm -it \
---name dockergc \
+--name dockergs \
 -v resources:/home/Grasscutter/resources \
 -p 22102:22102/udp \
 -p 80:80/tcp \
-siakbary/dockergc:alpine-Patch-2.8-Early \
+siakbary/dockergs:alpine-gc-Patch-2.8-Early \
 --database 'mongodb://2.0.0.100:2777' \
 --web_ip '2.0.0.100' \
 --web_port '80' \
@@ -27,8 +27,8 @@ siakbary/dockergc:alpine-Patch-2.8-Early \
 ```
 or if you have [Docker Compose](https://docs.docker.com/compose/install/)
 ```sh
-git clone https://github.com/akbaryahya/DockerGC
-cd DockerGC
+git clone https://github.com/akbaryahya/DockerGS
+cd DockerGS
 # docker compose up  # windows
 docker-compose up -d # linux
 ```
@@ -47,11 +47,11 @@ TODO
 | Versions | OS | Download |
 | ------ | ------ | ------ |
 | Patch-2.6 | Alpine | Holiday | 
-| Patch-2.6-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.6-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.6_early/main/DockerGC.zip) |
+| Patch-2.6-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/DockerGS/tags?page=1&name=alpine-Patch-2.6-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_alpine_2.6_early/main/DockerGS.zip) |
 | Patch-2.7 | Alpine | Holiday |
-| Patch-2.7-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.7-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.7_early/main/DockerGC.zip) |
-| Patch-2.8 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.8) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.8/main/DockerGC.zip) |
-| Patch-2.8-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergc/tags?page=1&name=alpine-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGC/workflows/DockerGC_alpine_2.8_early/main/DockerGC.zip) |
+| Patch-2.7-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/DockerGS/tags?page=1&name=alpine-Patch-2.7-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_alpine_2.7_early/main/DockerGS.zip) |
+| Patch-2.8 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/DockerGS/tags?page=1&name=alpine-Patch-2.8) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_alpine_2.8/main/DockerGS.zip) |
+| Patch-2.8-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/DockerGS/tags?page=1&name=alpine-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_alpine_2.8_early/main/DockerGS.zip) |
 | Patch-3.0-Early | Alpine | Come soon, when perload is publicly |
 
 ### Some Tips:
@@ -73,9 +73,9 @@ Always updated from developer version and some from Pull requests. Version Witho
 
 Clone this with
 ```sh
-git clone https://github.com/akbaryahya/DockerGC
-cd DockerGC
-cd gc
+git clone https://github.com/akbaryahya/DockerGS
+cd DockerGS
+cd gs
 # 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8
 # 2.0.0.100 is your ip computer, make sure you have mongodb installed
 sh run.sh # default build localhost

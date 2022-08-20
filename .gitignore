@@ -1,10 +1,9 @@
-work
-todo
+work_gc
+todo_gc
 .vscode
 .gitmodules
 .idea
-VERSION_TMP
-gc/Grasscutter
-gc/Grasscutter_Data
-gc/Grasscutter_Proxy
-gc/Grasscutter_Resources
+ver_tmp
+gs/Grasscutter-Yuuki
+gs/Grasscutter-Data
+gs/Resources

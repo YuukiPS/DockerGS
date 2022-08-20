@@ -1,24 +1,24 @@
-name: DockerGC Alpine (2.7)
+name: DockerGS Grasscutter Alpine (2.8 Early)
 on:
   push:
     paths:
-    - 'gc/os_alpine'
-    - 'gc/VERSION_GC_Patch-2.7'
-    - 'gc/entrypoint.sh'
-    - '.github/workflows/DockerGC_alpine_2.7.yml'
+    - 'gs/os-alpine-gc'
+    - 'gs/ver_gc-Patch-2.8-Early'
+    - 'gs/entrypoint_gc.sh'
+    - '.github/workflows/DockerGS_GC_Alpine_2.8_Early.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Sync DockerGC
+    - name: Sync DockerGS
       uses: actions/checkout@v3
     - name: Sync Core
       uses: actions/checkout@v3
       with:
-       repository: akbaryahya/GCPrivate
-       ref: Patch-2.7
+       repository: akbaryahya/Grasscutter-Yuuki
+       ref: Patch-2.8-Early
        token: ${{ secrets.HUB_TOKEN }}
-       path: gc/Grasscutter
+       path: gs/Grasscutter-Yuuki
     - name: Setup Java
       uses: actions/setup-java@v3
       with:
@@ -41,13 +41,13 @@ jobs:
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image
-      run: cd gc && chmod +x run.sh && sh run.sh alpine build 2
+      run: cd gs && chmod +x run.sh && sh run.sh alpine build 5
     - name: Push Docker image
-      run: cd gc && sh run.sh alpine push 2
-    - name: Tar Folder Work
-      run: cd gc && tar -cvf dockergc.tar work
+      run: cd gs && sh run.sh alpine push 5
+    - name: Tar Folder Work Grasscutter
+      run: cd gs && tar -cvf DockerGS_Grasscutter.tar work_gc
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
-       name: DockerGC
-       path: gc/dockergc.tar
+       name: DockerGS-Grasscutter
+       path: gs/DockerGS_Grasscutter.tar

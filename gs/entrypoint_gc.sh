@@ -8,7 +8,7 @@ help()
 
 SHORT=db:,webip:,webport:,weburlssl:,gameip:,gameport:,msgwc,mailmsg:,dlres:,j:,ag:,lang:,loginpass:,po:,nmsv:,nmow:,nmrg:,ssl:,tk:,h
 LONG=database:,web_ip:,web_port:,web_url_ssl:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,args:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,ssl:,token:,help
-OPTS=$(getopt -a -n dockergc --options $SHORT --longoptions $LONG -- "$@")
+OPTS=$(getopt -a -n dockergs --options $SHORT --longoptions $LONG -- "$@")
 
 VALID_ARGUMENTS=$# # Returns the count of arguments that are in short or long options
 
@@ -117,7 +117,7 @@ do
   esac
 done
 
-folder_gc="/home/Grasscutter"
+folder_gc="/home/dockergs"
 folder_resources="$folder_gc/resources"
 update=false
 timems=date
@@ -126,7 +126,7 @@ cd $folder_gc
 
 OSVS=$(. /etc/os-release && printf '%s\n' "$NAME")
 SUB="Alpine"
-version=$(cat VERSION)
+version=$(cat ver)
 version_res="main"
 
 echo $version

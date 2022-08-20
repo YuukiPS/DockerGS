@@ -30,8 +30,8 @@ services:
      MONGO_INITDB_ROOT_PASSWORD: moepasswordroot
   grasscutter:
     restart: always
-    container_name: dockergc
-    image: siakbary/dockergc:alpine-Patch-2.8-Early
+    container_name: dockergs
+    image: siakbary/dockergs:alpine-gc-Patch-2.8-Early
     deploy:
       resources:
         limits:

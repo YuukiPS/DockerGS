@@ -1,0 +1,26 @@
+FROM eclipse-temurin:17-jdk-alpine
+RUN  \
+     # Install json utilities for config.json
+     apk add --no-cache npm git curl gcompat &&\
+     npm install --unsafe-perm -g json
+
+# Sweet Home Alabama :)
+WORKDIR /home
+
+# EXPOSE Web (https) and Game Server
+EXPOSE 443 22102 80
+
+# Add User
+RUN addgroup --system dockergs && adduser -S -s /bin/false -G dockergs dockergs
+
+# Copy files Grasscutter
+COPY --chown=dockergs:dockergs work_gc ./dockergs
+COPY --chown=dockergs:dockergs entrypoint_gc.sh ./dockergs
+RUN mkdir -p ./dockergs/resources && chown -R dockergs:dockergs ./dockergs/resources
+
+# User
+USER dockergs
+
+# RUN ls -a dockergs
+
+ENTRYPOINT ["sh", "./dockergs/entrypoint_gc.sh"]
