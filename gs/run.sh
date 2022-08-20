@@ -13,6 +13,7 @@ useStart="local"
 useMetode="build"
 useBranchesProject="Patch-2.8-Early"
 useBranchesRes="2.8"
+useResFolder="Resources-JAVA"
 
 # Version Control
 if [ "$versioncontrol" = "0" ];then
@@ -70,29 +71,23 @@ if [ "$os" = "repo" ];then
   git clone https://github.com/akbaryahya/Grasscutter-Yuuki Grasscutter-Yuuki
  fi
 
- if [ "$metode" = "js" ];then
-  echo "~ Get Grasscutter-Yuuki"
+ if [ "$metode" = "ts" ];then
+  echo "~ Get HuTaoGS-Yuuki"
   git clone https://github.com/akbaryahya/HuTaoGS-Yuuki HuTaoGS-Yuuki
  fi
 
- if [ "$metode" = "res" ];then
-  echo "~ Get Resources"
-  git clone https://gitlab.com/yukiz/GrasscutterResources Resources
+ if [ "$metode" = "res_ts" ];then
+  echo "~ Get Data Resources Java for HuTaoGS (TS)"
+  git clone https://github.com/NotArandomGUY/HuTao-GD Resources-TS
  fi
 
- if [ "$metode" = "data" ];then
-  echo "~ Get Data Resources"
-  git clone https://gitlab.com/yukiz/grasscutter-data Grasscutter-Data
+ if [ "$metode" = "res_java" ];then
+  echo "~ Get Data Resources Java for Grasscutter (Java)"
+  git clone https://gitlab.com/yukiz/GrasscutterResources Resources-JAVA
  fi
 
  echo "EXIT NOW"
  exit 1
-fi
-
-# Get Data if not found (TODO: add Resources too?)
-if [ ! -d "Grasscutter-Data" ]; then  
-  echo "No Found Data, let's clone first"
-  sh run.sh repo data
 fi
 
 echo "OS: $os - Metode: $metode - Branch: $useBranchesProject - Project: $useProject ($useShortProject)"
@@ -132,7 +127,7 @@ cd ..
 
 # Check Resources (Only if need with metode res)
 if [ "$metode" = "res" ];then
- cd Resources
+ cd $useResFolder
  branch_res_now=$(git rev-parse --abbrev-ref HEAD)
  if [ -z "$branch_res_now" ]; then
   echo "Error get name branch resources"
@@ -318,10 +313,8 @@ if [ "$metode" = "build" ];then
   echo "Make file jar..."
   ./gradlew jar
 
-  # rm -R -f build data
-
   # Back to home directory
-  cd .. 
+  cd ..
 
   #ls   
 
@@ -339,9 +332,6 @@ if [ "$metode" = "build" ];then
 
   echo "Copy file SSL Key"
   cp -rf $useProject/keystore.p12 $folderwork/
-
-  echo "Copy file data"
-  cp -rTf Grasscutter-Data/data $folderwork/data
 
  else
 

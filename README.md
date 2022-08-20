@@ -1,5 +1,5 @@
 # DockerGS
-DockerGS is a container that run [Grasscutter](https://github.com/Melledy/Grasscutter) (**some anime game** server reimplementation) with just a single command.<br>
+DockerGS is a container that run [Grasscutter](https://github.com/Melledy/Grasscutter) (**some anime game**) with just a single command.<br>
 ## How to connect to server
 [Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-connect)
 ## How to create a server:
@@ -46,12 +46,12 @@ TODO
 ## Available
 | Versions | OS | Download |
 | ------ | ------ | ------ |
-| Patch-2.6 | Alpine | Holiday | 
-| Patch-2.6-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/DockerGS/tags?page=1&name=alpine-Patch-2.6-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_alpine_2.6_early/main/DockerGS.zip) |
-| Patch-2.7 | Alpine | Holiday |
-| Patch-2.7-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/DockerGS/tags?page=1&name=alpine-Patch-2.7-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_alpine_2.7_early/main/DockerGS.zip) |
-| Patch-2.8 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/DockerGS/tags?page=1&name=alpine-Patch-2.8) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_alpine_2.8/main/DockerGS.zip) |
-| Patch-2.8-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/DockerGS/tags?page=1&name=alpine-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_alpine_2.8_early/main/DockerGS.zip) |
+| Patch-2.6 | Alpine | ? | 
+| Patch-2.6-Early | Alpine | ? |
+| Patch-2.7 | Alpine | ? |
+| Patch-2.7-Early | Alpine | ? |
+| Patch-2.8 | Alpine | ? |
+| Patch-2.8-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_2.8_Early/main/DockerGS-Grasscutter.zip) |
 | Patch-3.0-Early | Alpine | Come soon, when perload is publicly |
 
 ### Some Tips:

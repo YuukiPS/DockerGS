@@ -4,6 +4,8 @@ todo_gc
 .gitmodules
 .idea
 ver_tmp
+gs/HuTaoGS-Yuuki
 gs/Grasscutter-Yuuki
 gs/Grasscutter-Data
-gs/Resources
+gs/Resources-JAVA
+gs/Resources-TS
