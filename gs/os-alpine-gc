@@ -21,6 +21,4 @@ RUN mkdir -p ./dockergs/resources && chown -R dockergs:dockergs ./dockergs/resou
 # User
 USER dockergs
 
-# RUN ls -a dockergs
-
 ENTRYPOINT ["sh", "./dockergs/entrypoint_gc.sh"]
