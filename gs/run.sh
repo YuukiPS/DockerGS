@@ -261,6 +261,7 @@ if [ "$metode" = "sync" ];then
    getme="2.6"
   fi
  fi
+ # --allow-unrelated-histories only do it if it's really needed, because I hate conflicts so better use "git cherry-pick <first_commit>..<last_commit>"
  git pull https://github.com/$whosm/$dlrepo.git $getme
  cd ..
 fi
