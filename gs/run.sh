@@ -39,7 +39,7 @@ elif [ "$versioncontrol" = "6" ];then
  useBranchesRes="3.0"
 fi
 
-build_gc="$useProject/bin $useProject/logs $useProject/resources $useProject/src/generated $useProject/config.json $useProject/plugins $useProject/.gradle"
+build_gc="$useProject/bin $useProject/logs $useProject/resources $useProject/config.json $useProject/plugins $useProject/.gradle"
 
 # Version
 version_pjhash="unknown";
