@@ -37,6 +37,9 @@ elif [ "$versioncontrol" = "5" ];then
 elif [ "$versioncontrol" = "6" ];then
  useBranchesProject="Patch-3.0-Early"
  useBranchesRes="3.0"
+elif [ "$versioncontrol" = "7" ];then
+ useBranchesProject="3.0"
+ useBranchesRes="3.0"
 fi
 
 build_gc="$useProject/bin $useProject/logs $useProject/resources $useProject/config.json $useProject/plugins $useProject/.gradle"

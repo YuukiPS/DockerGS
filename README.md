@@ -52,7 +52,7 @@ TODO
 | Patch-2.7-Early | Alpine | ? |
 | Patch-2.8 | Alpine | ? |
 | Patch-2.8-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_2.8_Early/main/DockerGS-Grasscutter.zip) |
-| Patch-3.0-Early | Alpine | Come soon, when perload is publicly |
+| 3.0 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.0) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.0/main/DockerGS-GC.zip) |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
