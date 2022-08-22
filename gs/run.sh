@@ -214,6 +214,7 @@ if [ "$metode" = "start" ];then
    res="resources_$useShortProject-$useBranchesProject"
   fi
   echo "Start Docker with IP $ip"
+  # --args "-debug" \
   docker run \
   --rm -it \
   -v $res:/home/dockergs/resources \
@@ -221,8 +222,7 @@ if [ "$metode" = "start" ];then
   -p 443:443/tcp \
   -p 80:80/tcp \
   siakbary/$mainProject:$version_last_commit \
-  --database "mongodb://$ipdb" \
-  --args "-debug" \
+  --database "mongodb://$ipdb" \  
   --web_ip "$ip" \
   --game_ip "$ip" \
   --ssl "false" \

@@ -132,13 +132,13 @@ version_res="main"
 echo $version
 
 # Switch RS
-if echo "$version" | grep -q "2.6"; then
+if echo "$version" | grep -F -w "2.6"; then
  echo "Use res 2.6"
  version_res="2.6"
-elif echo "$version" | grep -q "2.7"; then
+elif echo "$version" | grep -F -w "2.7"; then
  echo "Use res 2.7"
  version_res="2.7"
-elif echo "$version" | grep -q "2.8"; then
+elif echo "$version" | grep -F -w "2.8"; then
  echo "Use res 2.8"
  version_res="2.8"
 fi
