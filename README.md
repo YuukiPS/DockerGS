@@ -12,10 +12,10 @@ docker run --rm -it --name db_gc -p 2777:27017/tcp -d mongo &
 # Game server (just once download resources with -download_resource 'yes' after that you can set -download_resource 'no') (remember replace 2.0.0.100 with your pc's ip and don't use "localhost" this is important)
 docker run --rm -it \
 --name dockergs \
--v resources:/home/Grasscutter/resources \
+-v resources:/home/dockergs/resources \
 -p 22102:22102/udp \
 -p 80:80/tcp \
-siakbary/dockergs:alpine-gc-Patch-2.8-Early \
+siakbary/dockergs:alpine-gc-Patch-3.0 \
 --database 'mongodb://2.0.0.100:2777' \
 --web_ip '2.0.0.100' \
 --web_port '80' \
@@ -77,26 +77,27 @@ git clone https://github.com/akbaryahya/DockerGS
 cd DockerGS
 cd gs
 # 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8
+
 # 2.0.0.100 is your ip computer, make sure you have mongodb installed
+
 sh run.sh # default build localhost
 
-sh run.sh local res 5 # Get Resources File Based Version Server
+sh run.sh local res 7 # Get Resources File Based Version Server
 
-sh run.sh local start 5 # run localhost server for without docker
-sh run.sh alpine start 5 2.0.0.100 # run localhost server for with docker alpine
-sh run.sh ubuntu start 5 2.0.0.100 # run localhost server for with docker ubuntu
+sh run.sh local start 7 # run localhost server for without docker
+sh run.sh alpine start 7 2.0.0.100 # run localhost server for with docker alpine
+sh run.sh ubuntu start 7 2.0.0.100 # run localhost server for with docker ubuntu
 
-sh run.sh local build 5 # Build local aja jar only
-sh run.sh alpine build 5 # Build Docker Image Alpine
-sh run.sh ubuntu build 5 # Build Docker Image Ubuntu
+sh run.sh local build 7 # Build local aja jar only
+sh run.sh alpine build 7 # Build Docker Image Alpine
+sh run.sh ubuntu build 7 # Build Docker Image Ubuntu
 
 sh run.sh local sync 2 # Sync Grasscutters 2.7 to Patch-2.7
-
 sh run.sh local sync 3 akbaryahya Patch-2.7 GCPrivate # Sync Patch-2.7 to Patch-2.7-Early
 
-sh run.sh local sync 5 # Sync Grasscutters to Patch-2.8-Early
-sh run.sh local sync 5 akbaryahya Patch-2.7-Early GCPrivate # Sync Patch-2.7-Early to Patch-2.8-Early
+sh run.sh local sync 7 # Sync Grasscutters to Patch-2.8-Early
 
+sh run.sh local sync 5 akbaryahya Patch-2.7-Early GCPrivate # Sync Patch-2.7-Early to Patch-2.8-Early
 sh run.sh local sync 6 akbaryahya Patch-2.8-Early GCPrivate # Sync Patch-2.8-Early to Patch-3.0-Early
 
 sh run.sh data core # Clone Patch Version
