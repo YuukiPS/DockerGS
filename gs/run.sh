@@ -255,9 +255,9 @@ if [ "$metode" = "sync" ];then
   whosm="Grasscutters"
  fi
  if [ -z "$getme" ]; then
-  if [ "$useBranchesProject" = "Patch-2.8" ];then
+  if [ "$useBranchesProject" = "3.0" ];then
    getme="development"
-  elif [ "$useBranchesProject" = "Patch-2.8-Early" ];then
+  elif [ "$useBranchesProject" = "3.0-Early" ];then
    getme="development"
    # git rebase --ignore-whitespace
   else
@@ -265,8 +265,20 @@ if [ "$metode" = "sync" ];then
   fi
  fi
  # --allow-unrelated-histories only do it if it's really needed, because I hate conflicts so better use "git cherry-pick <first_commit>..<last_commit>"
- git pull https://github.com/$whosm/$dlrepo.git $getme
+ git pull https://github.com/$whosm/$dlrepo.git $getme 
  cd ..
+fi
+
+# if put
+if [ "$metode" = "put" ];then
+ cd $useProject
+ git cherry-pick $4
+fi
+
+# if put
+if [ "$metode" = "--continue" ];then
+ cd $useProject
+ git cherry-pick --continue
 fi
 
 if [ "$metode" = "sync_raw" ];then
