@@ -11,8 +11,8 @@ useProject="Grasscutter-Yuuki"
 useShortProject="gc"
 useStart="local"
 useMetode="build"
-useBranchesProject="Patch-2.8-Early"
-useBranchesRes="2.8"
+useBranchesProject="3.0"
+useBranchesRes="3.0"
 useResFolder="Resources-JAVA"
 
 # Version Control

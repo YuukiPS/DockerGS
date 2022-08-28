@@ -46,13 +46,13 @@ TODO
 ## Available
 | Versions | OS | Download |
 | ------ | ------ | ------ |
-| Patch-2.6 | Alpine | ? | 
+| Patch-2.6 | Alpine | ? |
 | Patch-2.6-Early | Alpine | ? |
 | Patch-2.7 | Alpine | ? |
 | Patch-2.7-Early | Alpine | ? |
 | Patch-2.8 | Alpine | ? |
-| Patch-2.8-Early | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-Patch-2.8-Early) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_2.8_Early/main/DockerGS-Grasscutter.zip) |
-| 3.0 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.0) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.0/main/DockerGS-GC.zip) |
+| Patch-2.8-Early | Alpine | ? |
+| 2.8,3.x | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.0) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.0/main/DockerGS-GC.zip) |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
