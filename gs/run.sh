@@ -289,6 +289,18 @@ if [ "$metode" = "sync_raw" ];then
  cd ..
 fi
 
+if [ "$metode" = "check" ];then
+ cd $useProject
+ npx prettier --config .prettierrc.json --check .
+ cd ..
+fi
+
+if [ "$metode" = "fix" ];then
+ cd $useProject
+ npx prettier --config .prettierrc.json --write .
+ cd ..
+fi
+
 # if build
 if [ "$metode" = "build" ];then
  
