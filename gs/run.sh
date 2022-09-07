@@ -198,7 +198,6 @@ if [ "$metode" = "start" ];then
    # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp bin 
    java -jar grasscutter.jar -debug
   else
-   java -jar grasscutter.jar -handbook
    java -jar grasscutter.jar
   fi
 
