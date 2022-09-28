@@ -11,8 +11,8 @@ useProject="Grasscutter-Yuuki"
 useShortProject="gc"
 useStart="local"
 useMetode="build"
-useBranchesProject="3.0"
-useBranchesRes="3.0"
+useBranchesProject="3.1"
+useBranchesRes="3.1"
 useResFolder="Resources-JAVA"
 
 # Version Control
@@ -40,6 +40,9 @@ elif [ "$versioncontrol" = "6" ];then
 elif [ "$versioncontrol" = "7" ];then
  useBranchesProject="3.0"
  useBranchesRes="3.0"
+elif [ "$versioncontrol" = "8" ];then
+ useBranchesProject="3.1"
+ useBranchesRes="3.1"
 fi
 
 build_gc="$useProject/bin $useProject/logs $useProject/resources $useProject/config.json $useProject/plugins $useProject/.gradle"

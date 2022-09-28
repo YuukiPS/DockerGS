@@ -52,7 +52,8 @@ TODO
 | Patch-2.7-Early | Alpine | ? |
 | Patch-2.8 | Alpine | ? |
 | Patch-2.8-Early | Alpine | ? |
-| 2.8,3.x | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.0) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.0/main/DockerGS-GC.zip) |
+| 3.0 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.0) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.0/main/DockerGS-GC.zip) |
+| 3.1 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.1) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.1/main/DockerGS-GC.zip) |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
@@ -82,20 +83,20 @@ cd gs
 
 sh run.sh # default build localhost
 
-sh run.sh local res 7 # Get Resources File Based Version Server
+sh run.sh local res 8 # Get Resources File Based Version Server
 
-sh run.sh local start 7 # run localhost server for without docker
-sh run.sh alpine start 7 2.0.0.100 # run localhost server for with docker alpine
-sh run.sh ubuntu start 7 2.0.0.100 # run localhost server for with docker ubuntu
+sh run.sh local start 8 # run localhost server for without docker
+sh run.sh alpine start 8 2.0.0.100 # run localhost server for with docker alpine
+sh run.sh ubuntu start 8 2.0.0.100 # run localhost server for with docker ubuntu
 
-sh run.sh local build 7 # Build local aja jar only
-sh run.sh alpine build 7 # Build Docker Image Alpine
-sh run.sh ubuntu build 7 # Build Docker Image Ubuntu
+sh run.sh local build 8 # Build local aja jar only
+sh run.sh alpine build 8 # Build Docker Image Alpine
+sh run.sh ubuntu build 8 # Build Docker Image Ubuntu
 
 sh run.sh local sync 2 # Sync Grasscutters 2.7 to Patch-2.7
 sh run.sh local sync 3 akbaryahya Patch-2.7 GCPrivate # Sync Patch-2.7 to Patch-2.7-Early
 
-sh run.sh local sync 7 # Sync Grasscutters to Patch-2.8-Early
+sh run.sh local sync 8 # Sync Grasscutters to 3.1 Yuuki
 
 sh run.sh local sync 5 akbaryahya Patch-2.7-Early GCPrivate # Sync Patch-2.7-Early to Patch-2.8-Early
 sh run.sh local sync 6 akbaryahya Patch-2.8-Early GCPrivate # Sync Patch-2.8-Early to Patch-3.0-Early
