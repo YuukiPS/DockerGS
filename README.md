@@ -1,7 +1,7 @@
 # DockerGS
-DockerGS is a container that run [Grasscutter](https://github.com/Melledy/Grasscutter) (**some anime game**) with just a single command.<br>
+DockerGS is a container that run [Grasscutter](https://github.com/Grasscutters/Grasscutter) (**some anime game**) with just a single command.<br>
 ## How to connect to server
-[Since I don't want to write same post, please visit this](https://game.yuuki.me/posts/how-connect)
+[Since I don't want to write same post, please visit this](https://www.yuuki.me/2022/09/how-to-connect-genshin-impact-private.html)
 ## How to create a server:
 ### Docker Version
 - Install [Docker](https://docs.docker.com/engine/install/) + ([MongoDB](https://www.mongodb.com/try/download/community) If you want to run outside container)
@@ -15,7 +15,7 @@ docker run --rm -it \
 -v resources:/home/dockergs/resources \
 -p 22102:22102/udp \
 -p 80:80/tcp \
-siakbary/dockergs:alpine-gc-Patch-3.0 \
+siakbary/dockergs:alpine-gc-3.1 \
 --database 'mongodb://2.0.0.100:2777' \
 --web_ip '2.0.0.100' \
 --web_port '80' \
@@ -64,7 +64,7 @@ Always updated from developer version and some from Pull requests. Version Witho
 
 ## How to build this? 
 ### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do pull from Docker Image  or Jar File.
-### Remember [Grasscutter](https://github.com/Melledy/Grasscutter) source code is still open, you can do your own custom server with your own hard work.
+### Remember [Grasscutter](https://github.com/Grasscutters/Grasscutter) source code is still open, you can do your own custom server with your own hard work.
 ## Required
 - [Java 17 JDK](https://adoptium.net/temurin/releases) 
 - [Docker](https://docs.docker.com/engine/install/)
@@ -77,7 +77,7 @@ Clone this with
 git clone https://github.com/akbaryahya/DockerGS
 cd DockerGS
 cd gs
-# 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8
+# 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8, 7=3.0, 8=3.1
 
 # 2.0.0.100 is your ip computer, make sure you have mongodb installed
 
@@ -93,13 +93,7 @@ sh run.sh local build 8 # Build local aja jar only
 sh run.sh alpine build 8 # Build Docker Image Alpine
 sh run.sh ubuntu build 8 # Build Docker Image Ubuntu
 
-sh run.sh local sync 2 # Sync Grasscutters 2.7 to Patch-2.7
-sh run.sh local sync 3 akbaryahya Patch-2.7 GCPrivate # Sync Patch-2.7 to Patch-2.7-Early
-
 sh run.sh local sync 8 # Sync Grasscutters to 3.1 Yuuki
-
-sh run.sh local sync 5 akbaryahya Patch-2.7-Early GCPrivate # Sync Patch-2.7-Early to Patch-2.8-Early
-sh run.sh local sync 6 akbaryahya Patch-2.8-Early GCPrivate # Sync Patch-2.8-Early to Patch-3.0-Early
 
 sh run.sh data core # Clone Patch Version
 ```
@@ -134,4 +128,4 @@ sh run.sh data core # Clone Patch Version
 | 443 | Web Server for HTTPS. (required) |
 | 22102 | Game Communication (udp) (required) |
 
-Power by [Grasscutter](https://github.com/Melledy/Grasscutter) ❤️
+Power by [Grasscutter](https://github.com/Grasscutters/Grasscutter) ❤️

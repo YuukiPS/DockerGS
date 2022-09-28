@@ -257,9 +257,9 @@ if [ "$metode" = "sync" ];then
   whosm="Grasscutters"
  fi
  if [ -z "$getme" ]; then
-  if [ "$useBranchesProject" = "3.0" ];then
+  if [ "$useBranchesProject" = "3.1" ];then
    getme="development"
-  elif [ "$useBranchesProject" = "3.0-Early" ];then
+  elif [ "$useBranchesProject" = "3.1-Early" ];then
    getme="development"
    # git rebase --ignore-whitespace
   else

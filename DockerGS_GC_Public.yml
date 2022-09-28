@@ -20,7 +20,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2G
+          memory: 1G
     ports:
       - "5712:27017"
     volumes:
@@ -31,14 +31,14 @@ services:
   grasscutter:
     restart: always
     container_name: dockergs
-    image: siakbary/dockergs:alpine-gc-Patch-3.0
+    image: siakbary/dockergs:alpine-gc-3.1
     deploy:
       resources:
         limits:
           memory: 5G
-    command: --database 'mongodb://yourusername:moepasswordroot@mongodb:27017' --web_ip '2.0.0.100' --web_port "80" --game_ip '2.0.0.100' --download_resource 'yes' --java '-Xmx5G' --ssl "false" --web_url_ssl "false"
+    command: --database 'mongodb://yourusername:moepasswordroot@mongodb:27017' --web_ip '2.0.0.100' --web_port "80" --game_ip '2.0.0.100' --download_resource 'yes' --java '-Xmx1G' --ssl "false" --web_url_ssl "false"
     volumes:
-      - ./res/28:/home/dockergs/resources
+      - ./res/31:/home/dockergs/resources
     ports:
       - "22102:22102/udp"
     depends_on:
