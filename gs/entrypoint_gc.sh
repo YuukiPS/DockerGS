@@ -144,6 +144,9 @@ elif echo "$version" | grep -F -w "2.8"; then
 elif echo "$version" | grep -F -w "3.0"; then
  echo "Use res 3.0"
  version_res="3.0"
+elif echo "$version" | grep -F -w "3.1"; then
+ echo "Use res 3.1"
+ version_res="3.1"
 fi
 
 # Time Server
