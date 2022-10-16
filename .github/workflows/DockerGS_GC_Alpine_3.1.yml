@@ -24,6 +24,7 @@ jobs:
       with:
        distribution: temurin
        java-version: '17'
+       cache: 'gradle'
     - name: Docker Login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
