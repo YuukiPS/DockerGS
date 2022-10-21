@@ -1,0 +1,39 @@
+name: DockerGS GC Ubuntu (3.1)
+on:
+  push:
+    paths:
+    - 'gs/os-ubuntu-gc'
+    - 'gs/ver_gc-3.1'
+    - 'gs/entrypoint_gc.sh'
+    - '.github/workflows/DockerGS_GC_Ubuntu_3.1.yml'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Sync DockerGS
+      uses: actions/checkout@v3
+    - name: Sync Grasscutter Yuuki
+      uses: actions/checkout@v3
+      with:
+       repository: akbaryahya/Grasscutter-Yuuki
+       ref: "3.1"
+       token: ${{ secrets.HUB_TOKEN }}
+       path: gs/Grasscutter-Yuuki
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+       distribution: temurin
+       java-version: '17'
+       cache: 'gradle'
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    - name: Docker Login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run:
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build Docker image and Push
+      run: cd gs && chmod +x run.sh && sh run.sh ubuntu build 8 push_multi

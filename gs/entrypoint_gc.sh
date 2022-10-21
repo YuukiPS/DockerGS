@@ -149,12 +149,6 @@ elif echo "$version" | grep -F -w "3.1"; then
  version_res="3.1"
 fi
 
-# Time Server
-if [ "$OSVS" = "Ubuntu" ]; then
-  mv /etc/localtime /etc/localtime-old
-  ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-fi
-
 echo "This system run with OS $OSVS"
 
 # JVM sets its heap size to approximately 25% of the available RAM. In this example, it allocated 4GB on a system with 16GB. (-Xms50M -Xmx1G)
@@ -165,7 +159,7 @@ fi
 # Building Data Source and Generated Resources
 if [ -d "$folder_resources/BinOutput" ] 
 then
-    ls $folder_resources
+    # ls $folder_resources
     echo "Resources folder already exists..."
 else
     echo "Update?"
@@ -186,7 +180,7 @@ if $update
 then
 
    id
-   ls -l $folder_gc
+   # ls -l $folder_gc
 
    git clone -b $version_res https://gitlab.com/yukiz/GrasscutterResources.git
    cp -rf GrasscutterResources/Resources/* $folder_resources

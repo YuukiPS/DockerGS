@@ -93,6 +93,8 @@ sh run.sh local build 8 # Build local aja jar only
 sh run.sh alpine build 8 # Build Docker Image Alpine
 sh run.sh ubuntu build 8 # Build Docker Image Ubuntu
 
+sh run.sh ubuntu build 8 multi # Build Docker Image Ubuntu
+
 sh run.sh local sync 8 # Sync Grasscutters to 3.1 Yuuki
 
 sh run.sh data core # Clone Patch Version

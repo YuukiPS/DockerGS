@@ -1,0 +1,49 @@
+FROM eclipse-temurin:17-jdk as build
+
+WORKDIR /work
+
+# Add User
+RUN adduser --system --group dockergs
+
+# Copy Source Code to work/dockergs
+COPY --chown=dockergs:dockergs Grasscutter-Yuuki ./dockergs
+
+RUN cd dockergs &&\
+    chmod +x gradlew && ./gradlew jar
+
+FROM eclipse-temurin:17-jdk
+RUN  \
+     # Install json utilities for config.json
+     # export DEBIAN_FRONTEND=noninteractive &&\
+     apt update && apt -y install npm git curl &&\
+     npm install -g json
+
+# Sweet Home Alabama :)
+WORKDIR /home
+
+# EXPOSE Web (https) and Game Server
+EXPOSE 443 22102 80
+
+# Add User
+RUN adduser --system --group dockergs
+
+# Copy jar file
+COPY --chown=dockergs:dockergs --from=build /work/dockergs/grasscutter.jar ./dockergs
+
+# Copy Version
+COPY --chown=dockergs:dockergs work_gc ./dockergs
+
+# Copy Entrypoint
+COPY --chown=dockergs:dockergs entrypoint_gc.sh ./dockergs
+
+# Testing
+# RUN ls dockergs
+
+# Make Folder
+RUN mkdir -p ./dockergs/resources &&\
+    chown -R dockergs:dockergs ./dockergs/resources
+
+# User
+USER dockergs
+
+ENTRYPOINT ["sh", "./dockergs/entrypoint_gc.sh"]

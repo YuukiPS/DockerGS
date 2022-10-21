@@ -366,23 +366,32 @@ if [ "$metode" = "build" ];then
  else
 
   # make local file
-  sh run.sh local build $versioncontrol $4
+  # sh run.sh local build $versioncontrol $4
 
   # Version Docker
   echo "Copy file version docker"
   echo -n "$version_last_commit" > $folderwork/ver
 
-  # Bulid Local
-  docker build -t "$mainProject:$version_last_commit" -f os-$os-$useShortProject .;
+  # Bulid Docker Image
+  if [ "$4" = "multi" ];then
+   # for debug
+   docker buildx build -t "siakbary/$mainProject:$version_last_commit" -f os-$os-$useShortProject --platform linux/amd64,linux/arm64 --progress=plain .;
+  elif [ "$4" = "push_multi" ];then
+   # Git action
+   docker buildx build -t "siakbary/$mainProject:$version_last_commit" -t "siakbary/$mainProject:$version_last_sw" -f os-$os-$useShortProject --platform linux/amd64,linux/arm64 --push .;
+  else
+   # for debug fast
+   docker buildx build -t "siakbary/$mainProject:$version_last_commit" -f os-$os-$useShortProject --platform linux/amd64 .;
+  fi
   
   # Tag to multi source
-  echo "Add image to repo public"  
-  docker tag "$mainProject:$version_last_commit" "siakbary/$mainProject:$version_last_commit"
-  docker tag "$mainProject:$version_last_commit" "siakbary/$mainProject:$version_last_sw"
+  # echo "Add image to repo public"  
+  # docker tag "$mainProject:$version_last_commit" "siakbary/$mainProject:$version_last_commit"
+  # docker tag "$mainProject:$version_last_commit" "siakbary/$mainProject:$version_last_sw"
 
   # Private Repo
-  echo "Add image to private repo"  
-  docker tag "$mainProject:$version_last_commit" "repo.yuuki.me/$mainProject:$version_last_commit"
+  # echo "Add image to private repo"  
+  # docker tag "$mainProject:$version_last_commit" "repo.yuuki.me/$mainProject:$version_last_commit"
 
  fi
  
