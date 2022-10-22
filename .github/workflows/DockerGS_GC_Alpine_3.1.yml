@@ -4,6 +4,7 @@ on:
     paths:
       - "gs/os-loc-alpine-gc"
       - "gs/ver_gc-3.1"
+      - "gs/run.sh"
       - "gs/entrypoint_gc.sh"
       - ".github/workflows/DockerGS_GC_Alpine_3.1.yml"
 jobs:
