@@ -310,11 +310,6 @@ if [ "$metode" = "version" ];then
  echo "ver2=$userHub/$mainProject:$version_last_sw" >> $GITHUB_ENV
 fi
 
-if [ "$metode" = "docker_action" ];then
- echo "ver1=$userHub/$mainProject:$version_last_commit" >> $GITHUB_ENV
- echo "ver2=$userHub/$mainProject:$version_last_sw" >> $GITHUB_ENV
-fi
-
 # if build
 if [ "$metode" = "build" ];then
  
@@ -402,6 +397,8 @@ if [ "$metode" = "build" ];then
     --push \
     .;
   elif [ "$4" = "docker_action" ];then
+   echo "ver1=$userHub/$mainProject:$version_last_commit" >> $GITHUB_ENV
+   echo "ver2=$userHub/$mainProject:$version_last_sw" >> $GITHUB_ENV
    sh run.sh local build $versioncontrol $4
   elif [ "$4" = "docker_loc" ];then
    sh run.sh local build $versioncontrol $4
@@ -417,7 +414,7 @@ if [ "$metode" = "build" ];then
    docker tag "$userHub/$mainProject:$version_last_commit" "$userHub/$mainProject:$version_last_commit"
    docker tag "$userHub/$mainProject:$version_last_commit" "$userHub/$mainProject:$version_last_sw"
   fi
-  
+
  fi
  
 fi
