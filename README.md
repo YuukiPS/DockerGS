@@ -35,25 +35,29 @@ docker-compose up -d # linux
 - Then type "account create yourusername" if there is a new response open the game.
 - Yay
 
-### Windows Java Version
+### Windows (Jar Only)
+- Download & Install [Java 17 JDK](https://www.youtube.com/watch?v=cL4GcZ6GJV8) & [MongoDB](https://www.youtube.com/watch?v=wcx3f0eUiAw) (If you don't have) (Remember this does not require Install Docker.)
+- Download file zip, scroll down I'm sure you can find it easily
+- Open file zip and unzip/open again file DockerGS_GC.tar
+- When you successfully unzip/open you will find "work_gc" folder click it then Extract it to folder you want (if you have an "Official/other version" Grasscutter you can overwrite it)
+- Make sure you have a (folder,file) "Resources" which you can get from (Yuuki)[https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.1/GrasscutterResources-3.1.zip] or (tamilpp25)[https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.1.zip]
+- Open Terminal (Make sure you open it by right-clicking on folder that has jar file) then type "java -jar grasscutter.jar"
+- Have fun :)
 
-TODO
-
-### Ubuntu Java Version
-
+### Ubuntu (Jar Only)
 TODO
 
 ## Available
-| Versions | OS | Download |
+| Versions | OS | Platform |
 | ------ | ------ | ------ |
-| Patch-2.6 | Alpine | ? |
-| Patch-2.6-Early | Alpine | ? |
-| Patch-2.7 | Alpine | ? |
-| Patch-2.7-Early | Alpine | ? |
-| Patch-2.8 | Alpine | ? |
-| Patch-2.8-Early | Alpine | ? |
-| 3.0 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.0) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.0/main/DockerGS-GC.zip) |
-| 3.1 | Alpine | [Docker Image](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.1) - [Jar File](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.1/main/DockerGS-GC.zip) |
+| [3.1 (8)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.1) | Alpine | linux/amd64 |
+| [3.1 (8)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=ubuntu-gc-3.1) | Ubuntu | linux/amd64,linux/arm64 |
+
+## Download (Jar Only)
+
+| Versions | Platform |
+| ------ | ------ |
+| [3.1 (8)](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.0/main/DockerGS-GC.zip) | linux/amd64 |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
