@@ -15,6 +15,8 @@ useBranchesProject="3.1"
 useBranchesRes="3.1"
 useResFolder="Resources-JAVA"
 
+userHub="siakbary"
+
 # Version Control
 if [ "$versioncontrol" = "0" ];then
  useBranchesProject="Patch-2.6"
@@ -226,8 +228,8 @@ if [ "$metode" = "start" ];then
   -p 22102:22102/udp \
   -p 443:443/tcp \
   -p 80:80/tcp \
-  siakbary/$mainProject:$version_last_commit \
-  --database "mongodb://$ipdb" \  
+  $userHub/$mainProject:$version_last_commit \
+  --database "mongodb://$ipdb" \
   --web_ip "$ip" \
   --game_ip "$ip" \
   --ssl "false" \
@@ -304,8 +306,13 @@ if [ "$metode" = "fix" ];then
 fi
 
 if [ "$metode" = "version" ];then
- echo "ver1=siakbary/$mainProject:$version_last_commit" >> $GITHUB_ENV
- echo "ver2=siakbary/$mainProject:$version_last_sw" >> $GITHUB_ENV
+ echo "ver1=$userHub/$mainProject:$version_last_commit" >> $GITHUB_ENV
+ echo "ver2=$userHub/$mainProject:$version_last_sw" >> $GITHUB_ENV
+fi
+
+if [ "$metode" = "docker_action" ];then
+ echo "ver1=$userHub/$mainProject:$version_last_commit" >> $GITHUB_ENV
+ echo "ver2=$userHub/$mainProject:$version_last_sw" >> $GITHUB_ENV
 fi
 
 # if build
@@ -370,8 +377,7 @@ if [ "$metode" = "build" ];then
 
  else
 
-  # make local file
-  # sh run.sh local build $versioncontrol $4
+  platform="linux/amd64,linux/arm64" # linux/arm/v7 error with "Couldn't iterate through the jurisdiction policy files: unlimited"
 
   # Version Docker
   echo "Copy file version docker"
@@ -380,32 +386,46 @@ if [ "$metode" = "build" ];then
   # Bulid Docker Image
   if [ "$4" = "multi" ];then
    # for debug
-   docker buildx build -t "siakbary/$mainProject:$version_last_commit" -f os-$os-$useShortProject --platform linux/amd64,linux/arm64,linux/arm/v7 --progress=plain .;
+   docker buildx build \
+    -t "$userHub/$mainProject:$version_last_commit" \
+    -f os-$os-$useShortProject \
+    --platform $platform \
+    --progress=plain \
+    .;
   elif [ "$4" = "push_multi" ];then
    # Git action
-   docker buildx build -t "siakbary/$mainProject:$version_last_commit" -t "siakbary/$mainProject:$version_last_sw" -f os-$os-$useShortProject --platform linux/amd64,linux/arm64,linux/arm/v7 --push .;
+   docker buildx build \
+    -t "$userHub/$mainProject:$version_last_commit" \
+    -t "$userHub/$mainProject:$version_last_sw" \
+    -f os-$os-$useShortProject \
+    --platform $platform \
+    --push \
+    .;
+  elif [ "$4" = "docker_action" ];then
+   sh run.sh local build $versioncontrol $4
+  elif [ "$4" = "docker_loc" ];then
+   sh run.sh local build $versioncontrol $4
+   docker build -t "$userHub/$mainProject:$version_last_commit" -f os-loc-$os-$useShortProject .;
   else
    # for debug fast
-   docker build -t "siakbary/$mainProject:$version_last_commit" -f os-$os-$useShortProject .;
+   docker build \
+   -t "$userHub/$mainProject:$version_last_commit" \
+   -f os-$os-$useShortProject \
+   .;
+   # Tag to multi source
+   echo "Add image to repo public"  
+   docker tag "$userHub/$mainProject:$version_last_commit" "$userHub/$mainProject:$version_last_commit"
+   docker tag "$userHub/$mainProject:$version_last_commit" "$userHub/$mainProject:$version_last_sw"
   fi
   
-  # Tag to multi source
-  # echo "Add image to repo public"  
-  # docker tag "$mainProject:$version_last_commit" "siakbary/$mainProject:$version_last_commit"
-  # docker tag "$mainProject:$version_last_commit" "siakbary/$mainProject:$version_last_sw"
-
-  # Private Repo
-  # echo "Add image to private repo"  
-  # docker tag "$mainProject:$version_last_commit" "repo.yuuki.me/$mainProject:$version_last_commit"
-
  fi
  
 fi
 
 # Push Public
 if [ "$metode" = "push" ];then
- docker push siakbary/$mainProject:$version_last_commit
- docker push siakbary/$mainProject:$version_last_sw
+ docker push $userHub/$mainProject:$version_last_commit
+ docker push $userHub/$mainProject:$version_last_sw
 fi
 
 # Push Private

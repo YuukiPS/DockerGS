@@ -1,0 +1,51 @@
+name: DockerGS GC Alpine (3.1)
+on:
+  push:
+    paths:
+      - "gs/os-alpine-gc"
+      - "gs/ver_gc-3.1"
+      - "gs/entrypoint_gc.sh"
+      - ".github/workflows/DockerGS_GC_Alpine_3.1.yml"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync DockerGS
+        uses: actions/checkout@v3
+      - name: Sync Grasscutter Yuuki
+        uses: actions/checkout@v3
+        with:
+          repository: akbaryahya/Grasscutter-Yuuki
+          ref: "3.1"
+          token: ${{ secrets.HUB_TOKEN }}
+          path: gs/Grasscutter-Yuuki
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: "gradle"
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{secrets.DOCKER_USER}}
+          password: ${{secrets.DOCKER_PASSWORD}}
+        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build Local Jar
+        run: cd gs && chmod +x run.sh && sh run.sh alpine docker_action 8
+      - name: Build Image Docker and Push
+        uses: docker/build-push-action@v3
+        with:
+          context: ./gs
+          file: ./gs/os-loc-ubuntu-gc
+          push: true
+          tags: |
+            ${{ env.ver1 }}
+            ${{ env.ver2 }}
+      - name: Get Jar File then Tar
+        run: cd gs && tar -cvf DockerGS_GC.tar work_gc
+      - name: Upload Tar File
+        uses: actions/upload-artifact@v3
+        with:
+          name: DockerGS-GC
+          path: gs/DockerGS_GC.tar
