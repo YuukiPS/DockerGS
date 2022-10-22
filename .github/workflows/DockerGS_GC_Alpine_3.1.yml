@@ -31,7 +31,7 @@ jobs:
           username: ${{secrets.DOCKER_USER}}
           password: ${{secrets.DOCKER_PASSWORD}}
       - name: Build Local Jar
-        run: cd gs && chmod +x run.sh && sh run.sh alpine docker_action 8
+        run: cd gs && chmod +x run.sh && sh run.sh alpine build 8 docker_action
       - name: Build Image Docker and Push
         uses: docker/build-push-action@v3
         with:
