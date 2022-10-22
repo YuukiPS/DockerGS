@@ -2,7 +2,7 @@ name: DockerGS GC Alpine (3.1)
 on:
   push:
     paths:
-      - "gs/os-alpine-gc"
+      - "gs/os-loc-alpine-gc"
       - "gs/ver_gc-3.1"
       - "gs/entrypoint_gc.sh"
       - ".github/workflows/DockerGS_GC_Alpine_3.1.yml"
@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./gs
-          file: ./gs/os-loc-ubuntu-gc
+          file: ./gs/os-loc-alpine-gc
           push: true
           tags: |
             ${{ env.ver1 }}
