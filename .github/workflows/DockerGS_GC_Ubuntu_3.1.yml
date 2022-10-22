@@ -1,4 +1,4 @@
-name: DockerGS GC Ubuntu (3.1)
+name: DockerGS GC Ubuntu (3.1) (Multi Platform)
 on:
   push:
     paths:
@@ -19,12 +19,6 @@ jobs:
        ref: "3.1"
        token: ${{ secrets.HUB_TOKEN }}
        path: gs/Grasscutter-Yuuki
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-       distribution: temurin
-       java-version: '17'
-       cache: 'gradle'
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
@@ -35,5 +29,14 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Build Docker image and Push
-      run: cd gs && chmod +x run.sh && sh run.sh ubuntu build 8 push_multi
+    - name: Update version in work Folder
+      run: cd gs && chmod +x run.sh && sh run.sh ubuntu version 8
+    - name: Build and Push
+      uses: docker/build-push-action@v3
+      with:
+       context: ./gs
+       file: ./gs/os-ubuntu-gc
+        push: true
+         tags: |
+          ${{ env.ver1 }}
+          ${{ env.ver2 }}

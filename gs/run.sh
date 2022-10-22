@@ -303,6 +303,11 @@ if [ "$metode" = "fix" ];then
  cd ..
 fi
 
+if [ "$metode" = "version" ];then
+ echo "ver1=siakbary/$mainProject:$version_last_commit" >> $GITHUB_ENV
+ echo "ver2=siakbary/$mainProject:$version_last_sw" >> $GITHUB_ENV
+fi
+
 # if build
 if [ "$metode" = "build" ];then
  
@@ -375,13 +380,13 @@ if [ "$metode" = "build" ];then
   # Bulid Docker Image
   if [ "$4" = "multi" ];then
    # for debug
-   docker buildx build -t "siakbary/$mainProject:$version_last_commit" -f os-$os-$useShortProject --platform linux/amd64,linux/arm64 --progress=plain .;
+   docker buildx build -t "siakbary/$mainProject:$version_last_commit" -f os-$os-$useShortProject --platform linux/amd64,linux/arm64,linux/arm/v7 --progress=plain .;
   elif [ "$4" = "push_multi" ];then
    # Git action
-   docker buildx build -t "siakbary/$mainProject:$version_last_commit" -t "siakbary/$mainProject:$version_last_sw" -f os-$os-$useShortProject --platform linux/amd64,linux/arm64 --push .;
+   docker buildx build -t "siakbary/$mainProject:$version_last_commit" -t "siakbary/$mainProject:$version_last_sw" -f os-$os-$useShortProject --platform linux/amd64,linux/arm64,linux/arm/v7 --push .;
   else
    # for debug fast
-   docker buildx build -t "siakbary/$mainProject:$version_last_commit" -f os-$os-$useShortProject --platform linux/amd64 .;
+   docker build -t "siakbary/$mainProject:$version_last_commit" -f os-$os-$useShortProject .;
   fi
   
   # Tag to multi source
