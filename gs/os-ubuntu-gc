@@ -15,7 +15,7 @@ FROM eclipse-temurin:17-jdk
 RUN  \
      # Install json utilities for config.json
      # export DEBIAN_FRONTEND=noninteractive &&\
-     apt update && apt -y install npm git curl &&\
+     apt -y install npm git curl &&\
      npm install -g json
 
 # Sweet Home Alabama :)
