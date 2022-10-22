@@ -36,7 +36,7 @@ jobs:
       with:
        context: ./gs
        file: ./gs/os-ubuntu-gc
-        push: true
-         tags: |
-          ${{ env.ver1 }}
-          ${{ env.ver2 }}
+       push: true
+       tags: |
+        ${{ env.ver1 }}
+        ${{ env.ver2 }}
