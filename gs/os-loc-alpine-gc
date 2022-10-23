@@ -1,24 +1,23 @@
 FROM eclipse-temurin:17-jdk-alpine
 RUN  \
-     # Install json utilities for config.json
-     apk add --no-cache npm git curl gcompat &&\
-     npm install --unsafe-perm -g json
+     # Install json utilities for config.json, TODO: remove git after zip function in gc finished and nodejs
+     apk add --no-cache nodejs git curl &&\
+     cd /usr/bin/ && curl -L https://github.com/trentm/json/raw/master/lib/json.js > json && chmod 755 json
 
-# Sweet Home Alabama :)
-WORKDIR /home
-
-# EXPOSE Web (https) and Game Server
-EXPOSE 443 22102 80
+# Web (https 443) (http 80) (Game 22102)
+EXPOSE 443 80 22102
 
 # Add User
 RUN addgroup --system dockergs && adduser -S -s /bin/false -G dockergs dockergs
 
+# Sweet Home Alabama :)
+WORKDIR /home/dockergs
+
 # Copy files Grasscutter
-COPY --chown=dockergs:dockergs work_gc ./dockergs
-COPY --chown=dockergs:dockergs entrypoint_gc.sh ./dockergs
-RUN mkdir -p ./dockergs/resources && chown -R dockergs:dockergs ./dockergs/resources
+COPY --chown=dockergs:dockergs entrypoint_gc.sh work_gc ./
+RUN mkdir -p ./resources && chown -R dockergs:dockergs ./resources
 
 # User
 USER dockergs
 
-ENTRYPOINT ["sh", "./dockergs/entrypoint_gc.sh"]
+ENTRYPOINT ["sh", "./entrypoint_gc.sh"]

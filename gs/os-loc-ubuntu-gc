@@ -5,24 +5,20 @@ RUN  \
      cd /usr/bin/ && curl -L https://github.com/trentm/json/raw/master/lib/json.js > json && chmod 755 json &&\
      apt-get clean && apt-get autoclean && apt-get autoremove --yes
 
-# Sweet Home Alabama :)
-WORKDIR /home
-
-# EXPOSE Web (https) and Game Server
-EXPOSE 443 22102 80
+# Web (https 443) (http 80) (Game 22102)
+EXPOSE 443 80 22102
 
 # Add User
 RUN adduser --system --group dockergs
 
-# Copy work_gc
-COPY --chown=dockergs:dockergs work_gc ./dockergs
-# Copy Entrypoint
-COPY --chown=dockergs:dockergs entrypoint_gc.sh ./dockergs
-# Make Folder
-RUN mkdir -p ./dockergs/resources &&\
-    chown -R dockergs:dockergs ./dockergs/resources
+# Sweet Home Alabama :)
+WORKDIR /home/dockergs
+
+# Copy files Grasscutter
+COPY --chown=dockergs:dockergs entrypoint_gc.sh work_gc ./
+RUN mkdir -p ./resources && chown -R dockergs:dockergs ./resources
 
 # User
 USER dockergs
 
-ENTRYPOINT ["sh", "./dockergs/entrypoint_gc.sh"]
+ENTRYPOINT ["sh", "./entrypoint_gc.sh"]
