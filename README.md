@@ -36,13 +36,13 @@ docker-compose up -d # linux
 - Yay
 
 ### Windows (Jar Only)
-- Download & Install [Java 17 JDK](https://www.youtube.com/watch?v=cL4GcZ6GJV8) & [MongoDB](https://www.youtube.com/watch?v=wcx3f0eUiAw) (If you don't have) (Remember this does not require Install Docker.)
-- Download file zip, scroll down I'm sure you can find it easily
-- Open file zip and unzip/open again file DockerGS_GC.tar
-- When you successfully unzip/open you will find "work_gc" folder click it then Extract it to folder you want (if you have an "Official/other version" Grasscutter you can overwrite it)
-- Make sure you have a (folder,file) "Resources" which you can get from (Yuuki)[https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.1/GrasscutterResources-3.1.zip] or (tamilpp25)[https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.1.zip]
-- Open Terminal (Make sure you open it by right-clicking on folder that has jar file) then type "java -jar grasscutter.jar"
-- Have fun :)
+1. Download & Install [Java 17 JDK](https://www.youtube.com/watch?v=cL4GcZ6GJV8) & [MongoDB](https://www.youtube.com/watch?v=wcx3f0eUiAw) (If you don't have) (Remember this does not require Install Docker.)
+2. Download file zip, scroll down I'm sure you can find it easily
+3. Open file zip and unzip/open again file DockerGS_GC.tar
+4. When you successfully unzip/open you will find "work_gc" folder click it then Extract it to folder you want (if you have an "Official/other version" Grasscutter you can overwrite it)
+5. Make sure you have a (folder,file) "Resources" which you can get from [Yuuki](https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.1/GrasscutterResources-3.1.zip) or [tamilpp25](https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.1.zip)
+6. Open Terminal (Make sure you open it by right-clicking on folder that has jar file) then type "java -jar grasscutter.jar"
+7. Have fun :)
 
 ### Ubuntu (Jar Only)
 TODO
