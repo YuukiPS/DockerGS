@@ -182,7 +182,7 @@ then
    id
    # ls -l $folder_gc
 
-   git clone -b $version_res https://gitlab.com/yukiz/GrasscutterResources.git
+   git clone --depth=1 -b $version_res https://gitlab.com/yukiz/GrasscutterResources.git
    cp -rf GrasscutterResources/Resources/* $folder_resources
    rm -R -f GrasscutterResources
 fi

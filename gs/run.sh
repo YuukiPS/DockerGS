@@ -407,7 +407,7 @@ if [ "$metode" = "build" ];then
    # for debug fast
    docker build \
    -t "$userHub/$mainProject:$version_last_commit" \
-   -f os-$os-$useShortProject \
+   -f os-loc-$os-$useShortProject \
    .;
    # Tag to multi source
    echo "Add image to repo public"  
