@@ -46,10 +46,8 @@ jobs:
             ${{ env.ver2 }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - name: Get Jar File then Tar
-        run: cd gs && tar -cvf DockerGS_GC.tar work_gc
       - name: Upload Tar File
         uses: actions/upload-artifact@v3
         with:
           name: DockerGS-GC
-          path: gs/DockerGS_GC.tar
+          path: gs/work_gc

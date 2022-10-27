@@ -9,6 +9,7 @@ versioncontrol=$3
 mainProject="dockergs"
 useProject="Grasscutter-Yuuki"
 useShortProject="gc"
+useData="Grasscutter-Data"
 useStart="local"
 useMetode="build"
 useBranchesProject="3.1"
@@ -56,6 +57,7 @@ version_rshash="unknown";
 # Config file
 folderwork="work_$useShortProject"
 foldertodo="todo_$useShortProject"
+folderworkdata="$folderwork/data"
 filejson="$folderwork/config.json" 
 filejson_res="$foldertodo/config.backup"
 
@@ -76,26 +78,37 @@ if [ "$os" = "repo" ];then
  
  if [ "$metode" = "java" ];then
   echo "~ Get Grasscutter-Yuuki"
-  git clone https://github.com/akbaryahya/Grasscutter-Yuuki Grasscutter-Yuuki
+  git clone --depth=1 https://github.com/akbaryahya/Grasscutter-Yuuki Grasscutter-Yuuki
  fi
 
  if [ "$metode" = "ts" ];then
   echo "~ Get HuTaoGS-Yuuki"
-  git clone https://github.com/akbaryahya/HuTaoGS-Yuuki HuTaoGS-Yuuki
+  git clone --depth=1 https://github.com/akbaryahya/HuTaoGS-Yuuki HuTaoGS-Yuuki
  fi
 
  if [ "$metode" = "res_ts" ];then
   echo "~ Get Data Resources Java for HuTaoGS (TS)"
-  git clone https://github.com/NotArandomGUY/HuTao-GD Resources-TS
+  git clone --depth=1 https://github.com/NotArandomGUY/HuTao-GD Resources-TS
  fi
 
  if [ "$metode" = "res_java" ];then
   echo "~ Get Data Resources Java for Grasscutter (Java)"
-  git clone https://gitlab.com/yukiz/GrasscutterResources Resources-JAVA
+  git clone --depth=1 https://gitlab.com/yukiz/GrasscutterResources Resources-JAVA
+ fi
+
+ if [ "$metode" = "data" ];then
+  echo "~ Get Data Resources"
+  git clone --depth=1 https://gitlab.com/yukiz/grasscutter-data $useData
  fi
 
  echo "EXIT NOW"
  exit 1
+fi
+
+# Get Data if not found (TODO: add Resources too?)
+if [ ! -d "$useData" ]; then  
+  echo "No Found Data, let's clone first"
+  sh run.sh repo data
 fi
 
 echo "OS: $os - Metode: $metode - Branch: $useBranchesProject - Project: $useProject ($useShortProject)"
@@ -358,8 +371,17 @@ if [ "$metode" = "build" ];then
   echo "Remove $folderwork file..."
   rm -R -f $folderwork/*
 
+  if [ ! -d "$folderworkdata" ]; then
+   echo "Make folder $folderworkdata"
+   mkdir -p $folderworkdata
+  fi
+
   echo "Copy jar file..."  
   cp -rTf $useProject/grasscutter*.jar $folderwork/grasscutter.jar
+
+  echo "Copy res file..." # TODO: remove this or get better gc
+  # cp -rf $useProject/src/main/resources/defaults/data/* $folderworkdata/
+  cp -rf $useData/data/* $folderworkdata/
 
   echo "Remove jar Grasscutter"  
   rm $useProject/grasscutter*.jar
@@ -373,10 +395,6 @@ if [ "$metode" = "build" ];then
  else
 
   platform="linux/amd64,linux/arm64" # linux/arm/v7 error with "Couldn't iterate through the jurisdiction policy files: unlimited"
-
-  # Version Docker
-  echo "Copy file version docker"
-  echo -n "$version_last_commit" > $folderwork/ver
 
   # Bulid Docker Image
   if [ "$4" = "multi" ];then
@@ -400,8 +418,18 @@ if [ "$metode" = "build" ];then
    echo "ver1=$userHub/$mainProject:$version_last_commit" >> $GITHUB_ENV
    echo "ver2=$userHub/$mainProject:$version_last_sw" >> $GITHUB_ENV
    sh run.sh local build $versioncontrol $4
+
+   # Version Docker
+   echo "Copy file version docker"
+   echo -n "$version_last_commit" > $folderwork/ver
+
   elif [ "$4" = "docker_loc" ];then
    sh run.sh local build $versioncontrol $4
+
+   # Version Docker
+   echo "Copy file version docker"
+   echo -n "$version_last_commit" > $folderwork/ver
+
    docker build -t "$userHub/$mainProject:$version_last_commit" -f os-loc-$os-$useShortProject .;
   else
    # for debug fast
