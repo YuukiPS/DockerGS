@@ -57,7 +57,7 @@ TODO
 
 | Versions | Platform |
 | ------ | ------ |
-| [3.1 (8)](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.0/main/DockerGS-GC.zip) | linux/amd64 |
+| [3.1 (8)](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.1/main/DockerGS-GC.zip) | linux/amd64 |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
