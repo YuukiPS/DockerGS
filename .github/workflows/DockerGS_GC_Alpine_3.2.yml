@@ -6,7 +6,7 @@ on:
       - "gs/ver_gc-3.2"
       - "gs/run.sh"
       - "gs/entrypoint_gc.sh"
-      - ".github/workflows/DockerGS_GC_Alpine_3.1.yml"
+      - ".github/workflows/DockerGS_GC_Alpine_3.2.yml"
 jobs:
   build:
     runs-on: ubuntu-latest
