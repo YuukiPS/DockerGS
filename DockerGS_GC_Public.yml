@@ -31,7 +31,7 @@ services:
   grasscutter:
     restart: always
     container_name: dockergs
-    image: siakbary/dockergs:alpine-gc-3.1
+    image: siakbary/dockergs:alpine-gc-3.2
     deploy:
       resources:
         limits:

@@ -46,6 +46,9 @@ elif [ "$versioncontrol" = "7" ];then
 elif [ "$versioncontrol" = "8" ];then
  useBranchesProject="3.1"
  useBranchesRes="3.1"
+elif [ "$versioncontrol" = "9" ];then
+ useBranchesProject="3.2"
+ useBranchesRes="3.2"
 fi
 
 build_gc="$useProject/bin $useProject/logs $useProject/resources $useProject/config.json $useProject/plugins $useProject/.gradle"
@@ -438,9 +441,9 @@ if [ "$metode" = "build" ];then
    -f os-loc-$os-$useShortProject \
    .;
    # Tag to multi source
-   echo "Add image to repo public"  
-   docker tag "$userHub/$mainProject:$version_last_commit" "$userHub/$mainProject:$version_last_commit"
-   docker tag "$userHub/$mainProject:$version_last_commit" "$userHub/$mainProject:$version_last_sw"
+   #echo "Add image to repo public"  
+   #docker tag "$userHub/$mainProject:$version_last_commit" "$userHub/$mainProject:$version_last_commit"
+   #docker tag "$userHub/$mainProject:$version_last_commit" "$userHub/$mainProject:$version_last_sw"
   fi
 
  fi
