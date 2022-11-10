@@ -181,13 +181,9 @@ fi
 
 if $update
 then
-
    id
-   # ls -l $folder_gc
-
-   git clone --depth=1 -b $version_res https://gitlab.com/yukiz/GrasscutterResources.git
-   cp -rf GrasscutterResources/Resources/* $folder_resources
-   rm -R -f GrasscutterResources
+   ls -l
+   curl -o resources.zip https://gitlab.com/yukiz/GrasscutterResources/-/archive/$version_res/GrasscutterResources-$version_res.zip
 fi
 
 if [ ! -f "config.json" ]; then

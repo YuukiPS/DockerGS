@@ -238,9 +238,12 @@ if [ "$metode" = "start" ];then
   fi
   echo "Start Docker with IP $ip"
   # --args "-debug" \
+  # -v $res:/home/dockergs/resources \
+  # //c/Users/Administrator/Desktop/Projek/Docker/GS/gs/todo_gc/config.backup
   docker run \
   --rm -it \
   -v $res:/home/dockergs/resources \
+  -v //c/Users/Administrator/Desktop/Projek/Docker/GS/gs/todo_gc/config.backup:/home/dockergs/config.json \
   -p 22102:22102/udp \
   -p 443:443/tcp \
   -p 80:80/tcp \
@@ -435,6 +438,9 @@ if [ "$metode" = "build" ];then
 
    docker build -t "$userHub/$mainProject:$version_last_commit" -f os-loc-$os-$useShortProject .;
   else
+
+   # sh run.sh local build $versioncontrol $4
+
    # for debug fast
    docker build \
    -t "$userHub/$mainProject:$version_last_commit" \
