@@ -217,9 +217,9 @@ if [ "$metode" = "start" ];then
   
   if [ "$4" = "debug" ];then 
    # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp bin 
-   java -jar grasscutter.jar -debug
+   java -Dfile.encoding=UTF-8 -jar grasscutter.jar -debug
   else
-   java -jar grasscutter.jar
+   java -Dfile.encoding=UTF-8 -jar grasscutter.jar
   fi
 
  else

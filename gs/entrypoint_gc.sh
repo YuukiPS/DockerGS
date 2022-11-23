@@ -320,4 +320,4 @@ else
 fi
 
 # Game Server
-java $set_java -jar grasscutter.jar $set_args
+java $set_java -Dfile.encoding=UTF-8 -jar grasscutter.jar $set_args
