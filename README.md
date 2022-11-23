@@ -27,7 +27,7 @@ siakbary/dockergs:alpine-gc-3.2 \
 ```
 or if you have [Docker Compose](https://docs.docker.com/compose/install/)
 ```sh
-git clone https://github.com/akbaryahya/DockerGS
+git clone https://github.com/YuukiPS/DockerGS
 cd DockerGS
 # docker compose up  # windows
 docker-compose up -d # linux
@@ -58,8 +58,8 @@ TODO
 
 | Versions | Platform |
 | ------ | ------ |
-| [3.1 (8)](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.1/main/DockerGS-GC.zip) | linux/amd64 |
-| [3.2 (9)](https://nightly.link/akbaryahya/DockerGS/workflows/DockerGS_GC_Alpine_3.2/main/DockerGS-GC.zip) | linux/amd64 |
+| [3.1 (8)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.1/main/DockerGS-GC.zip) | linux/amd64 |
+| [3.2 (9)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.2/main/DockerGS-GC.zip) | linux/amd64 |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
@@ -80,7 +80,7 @@ Always updated from developer version and some from Pull requests. Version Witho
 
 Clone this with
 ```sh
-git clone https://github.com/akbaryahya/DockerGS
+git clone https://github.com/YuukiPS/DockerGS
 cd DockerGS
 cd gs
 # 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8, 7=3.0, 8=3.1, 9=3.2

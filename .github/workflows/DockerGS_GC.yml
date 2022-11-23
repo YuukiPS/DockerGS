@@ -27,7 +27,7 @@ jobs:
       - name: Sync Grasscutter Yuuki
         uses: actions/checkout@v3
         with:
-          repository: akbaryahya/Grasscutter-Yuuki
+          repository: YuukiPS/GSServer-GC
           ref: ${{ github.event.inputs.branches }}
           token: ${{ secrets.HUB_TOKEN }}
           path: gs/Grasscutter-Yuuki

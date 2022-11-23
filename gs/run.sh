@@ -80,13 +80,13 @@ if [ "$os" = "repo" ];then
  echo "Start clone repo..."
  
  if [ "$metode" = "java" ];then
-  echo "~ Get Grasscutter-Yuuki"
-  git clone --depth=1 https://github.com/akbaryahya/Grasscutter-Yuuki Grasscutter-Yuuki
+  echo "~ Get GSServer-GC"
+  git clone --depth=1 https://github.com/YuukiPS/GSServer-GC Grasscutter-Yuuki
  fi
 
  if [ "$metode" = "ts" ];then
-  echo "~ Get HuTaoGS-Yuuki"
-  git clone --depth=1 https://github.com/akbaryahya/HuTaoGS-Yuuki HuTaoGS-Yuuki
+  echo "~ Get GSServer-HuTao"
+  git clone --depth=1 https://github.com/YuukiPS/GSServer-HuTao HuTaoGS-Yuuki
  fi
 
  if [ "$metode" = "res_ts" ];then
