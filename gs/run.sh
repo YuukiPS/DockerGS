@@ -12,8 +12,8 @@ useShortProject="gc"
 useData="Grasscutter-Data"
 useStart="local"
 useMetode="build"
-useBranchesProject="3.1"
-useBranchesRes="3.1"
+useBranchesProject="3.3"
+useBranchesRes="3.3"
 useResFolder="Resources-JAVA"
 
 userHub="siakbary"
@@ -49,6 +49,9 @@ elif [ "$versioncontrol" = "8" ];then
 elif [ "$versioncontrol" = "9" ];then
  useBranchesProject="3.2"
  useBranchesRes="3.2"
+elif [ "$versioncontrol" = "10" ];then
+ useBranchesProject="3.3"
+ useBranchesRes="3.3"
 fi
 
 build_gc="$useProject/bin $useProject/logs $useProject/resources $useProject/config.json $useProject/plugins $useProject/.gradle"
@@ -278,9 +281,9 @@ if [ "$metode" = "sync" ];then
   whosm="Grasscutters"
  fi
  if [ -z "$getme" ]; then
-  if [ "$useBranchesProject" = "3.1" ];then
+  if [ "$useBranchesProject" = "3.3" ];then
    getme="development"
-  elif [ "$useBranchesProject" = "3.1-Early" ];then
+  elif [ "$useBranchesProject" = "3.3-Early" ];then
    getme="development"
    # git rebase --ignore-whitespace
   else

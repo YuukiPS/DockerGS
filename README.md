@@ -53,6 +53,7 @@ TODO
 | [3.1 (8)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.1) | Alpine | linux/amd64 |
 | [3.1 (8)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=ubuntu-gc-3.1) | Ubuntu | linux/amd64,linux/arm64 |
 | [3.2 (9)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.2) | Alpine | linux/amd64 |
+| [3.3 (10)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.3) | Alpine | linux/amd64 |
 
 ## Download (Jar Only)
 
@@ -60,6 +61,7 @@ TODO
 | ------ | ------ |
 | [3.1 (8)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.1/main/DockerGS-GC.zip) | linux/amd64 |
 | [3.2 (9)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.2/main/DockerGS-GC.zip) | linux/amd64 |
+| [3.3 (10)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.3/main/DockerGS-GC.zip) | linux/amd64 |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
@@ -89,19 +91,19 @@ cd gs
 
 sh run.sh # default build localhost
 
-sh run.sh local res 9 # Get Resources File Based Version Server
+sh run.sh local res 10 # Get Resources File Based Version Server
 
-sh run.sh local start 9 # run localhost server for without docker
-sh run.sh alpine start 9 2.0.0.100 # run localhost server for with docker alpine
-sh run.sh ubuntu start 9 2.0.0.100 # run localhost server for with docker ubuntu
+sh run.sh local start 10 # run localhost server for without docker
+sh run.sh alpine start 10 2.0.0.100 # run localhost server for with docker alpine
+sh run.sh ubuntu start 10 2.0.0.100 # run localhost server for with docker ubuntu
 
-sh run.sh local build 9 # Build local aja jar only
-sh run.sh alpine build 9 # Build Docker Image Alpine
-sh run.sh ubuntu build 9 # Build Docker Image Ubuntu
+sh run.sh local build 10 # Build local aja jar only
+sh run.sh alpine build 10 # Build Docker Image Alpine
+sh run.sh ubuntu build 10 # Build Docker Image Ubuntu
 
-sh run.sh ubuntu build 9 multi # Build Docker Image Ubuntu
+sh run.sh ubuntu build 10 multi # Build Docker Image Ubuntu
 
-sh run.sh local sync 9 # Sync Grasscutters to Yuuki
+sh run.sh local sync 10 # Sync Grasscutters to Yuuki
 
 sh run.sh data core # Clone Patch Version
 ```
