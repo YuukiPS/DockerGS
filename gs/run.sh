@@ -7,14 +7,14 @@ versioncontrol=$3
 
 # Project (We use Grasscutter as main project)
 mainProject="dockergs"
-useProject="Grasscutter-Yuuki"
+useProject="GSServer-GC"
 useShortProject="gc"
-useData="Grasscutter-Data"
+useData="GC-Data"
 useStart="local"
 useMetode="build"
 useBranchesProject="3.3"
 useBranchesRes="3.3"
-useResFolder="Resources-JAVA"
+useResFolder="GC-Resources"
 
 userHub="siakbary"
 
@@ -84,12 +84,12 @@ if [ "$os" = "repo" ];then
  
  if [ "$metode" = "java" ];then
   echo "~ Get GSServer-GC"
-  git clone --depth=1 https://github.com/YuukiPS/GSServer-GC Grasscutter-Yuuki
+  git clone --depth=1 https://github.com/YuukiPS/GSServer-GC GSServer-GC
  fi
 
  if [ "$metode" = "ts" ];then
   echo "~ Get GSServer-HuTao"
-  git clone --depth=1 https://github.com/YuukiPS/GSServer-HuTao HuTaoGS-Yuuki
+  git clone --depth=1 https://github.com/YuukiPS/GSServer-HuTao GSServer-HuTao
  fi
 
  if [ "$metode" = "res_ts" ];then
@@ -99,12 +99,12 @@ if [ "$os" = "repo" ];then
 
  if [ "$metode" = "res_java" ];then
   echo "~ Get Data Resources Java for Grasscutter (Java)"
-  git clone --depth=1 https://gitlab.com/yukiz/GrasscutterResources Resources-JAVA
+  git clone --depth=1 https://gitlab.com/YuukiPS/GC-Resources GC-Resources
  fi
 
  if [ "$metode" = "data" ];then
   echo "~ Get Data Resources"
-  git clone --depth=1 https://gitlab.com/yukiz/grasscutter-data $useData
+  git clone --depth=1 https://gitlab.com/YuukiPS/GC-Data $useData
  fi
 
  echo "EXIT NOW"

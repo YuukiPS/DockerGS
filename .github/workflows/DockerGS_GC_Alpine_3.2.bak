@@ -19,7 +19,7 @@ jobs:
           repository: YuukiPS/GSServer-GC
           ref: "3.2"
           token: ${{ secrets.HUB_TOKEN }}
-          path: gs/Grasscutter-Yuuki
+          path: gs/GSServer-GC
       - name: Setup Java
         uses: actions/setup-java@v3
         with:

@@ -6,7 +6,7 @@ WORKDIR /work
 RUN adduser --system --group dockergs
 
 # Copy Source Code to work/dockergs
-COPY --chown=dockergs:dockergs Grasscutter-Yuuki ./dockergs
+COPY --chown=dockergs:dockergs GSServer-GC ./dockergs
 
 # Make jar
 RUN cd dockergs &&\

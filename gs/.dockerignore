@@ -1,10 +1,15 @@
-HuTaoGS-Yuuki
-# Grasscutter-Yuuki
-Grasscutter-Protos
-Grasscutter-Data
-Resources-JAVA
-Resources-TS
+GC-Data
+GC-Proto
+GC-Resources
+
+GSServer-GC
+GSServer-HuTao
+
+HuTao-Resources
+
 todo_*
 os-*
 run.sh
 ver_*
+
+Grasscutter-Yuuki
