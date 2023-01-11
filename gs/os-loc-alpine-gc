@@ -1,7 +1,7 @@
 FROM eclipse-temurin:17-jdk-alpine
 RUN  \
-     # Install json utilities for config.json, TODO: remove git after zip function in gc finished and nodejs
-     apk add --no-cache nodejs git curl &&\
+     # Install json utilities for config.json, TODO: remove git after zip function in gc finished and nodejs, procps used for ps monitors
+     apk add --no-cache nodejs git curl procps &&\
      cd /usr/bin/ && curl -L https://github.com/trentm/json/raw/master/lib/json.js > json && chmod 755 json
 
 # Web (https 443) (http 80) (Game 22102)
