@@ -12,8 +12,8 @@ useShortProject="gc"
 useData="GC-Data"
 useStart="local"
 useMetode="build"
-useBranchesProject="3.3"
-useBranchesRes="3.3"
+useBranchesProject="3.4"
+useBranchesRes="3.4"
 useResFolder="GC-Resources"
 
 userHub="siakbary"
@@ -52,6 +52,9 @@ elif [ "$versioncontrol" = "9" ];then
 elif [ "$versioncontrol" = "10" ];then
  useBranchesProject="3.3"
  useBranchesRes="3.3"
+elif [ "$versioncontrol" = "11" ];then
+ useBranchesProject="3.4"
+ useBranchesRes="3.4"
 fi
 
 build_gc="$useProject/bin $useProject/logs $useProject/resources $useProject/config.json $useProject/plugins $useProject/.gradle"
@@ -281,9 +284,9 @@ if [ "$metode" = "sync" ];then
   whosm="Grasscutters"
  fi
  if [ -z "$getme" ]; then
-  if [ "$useBranchesProject" = "3.3" ];then
+  if [ "$useBranchesProject" = "3.4" ];then
    getme="development"
-  elif [ "$useBranchesProject" = "3.3-Early" ];then
+  elif [ "$useBranchesProject" = "3.4-Early" ];then
    getme="development"
    # git rebase --ignore-whitespace
   else
