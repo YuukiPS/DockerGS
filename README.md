@@ -73,7 +73,8 @@ TODO
 Always updated from developer version and some from Pull requests. Version Without "Early" is same except that we check very carefully if any feature doesn't work or function doesn't work we ignore commits.
 
 ## How to build this? 
-### Source code (Patch Version) is closed now because many are remove "source link" from their server, so at this time you can only do pull from Docker Image  or Jar File.
+Source code (Patch Version) is closed now because many are remove "source link,credits" from public server, so at this time you can only do pull from Docker Image  or Jar File.<br/>
+If you wish to contribute, please contact me.
 ### Remember [Grasscutter](https://github.com/Grasscutters/Grasscutter) source code is still open, you can do your own custom server with your own hard work.
 ## Required
 - [Java 17 JDK](https://adoptium.net/temurin/releases) 
@@ -139,5 +140,8 @@ sh run.sh data core # Clone Patch Version
 | 80 | Web Server for HTTP. (Not required) |
 | 443 | Web Server for HTTPS. (required) |
 | 22102 | Game Communication (udp) (required) |
+
+## Contribution
+ - [NickTheHuy (Hiro)](https://github.com/NickTheHuy/)<br/>
 
 Power by [Grasscutter](https://github.com/Grasscutters/Grasscutter) ❤️
