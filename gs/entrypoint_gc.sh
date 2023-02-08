@@ -187,9 +187,10 @@ fi
 
 if $update
 then
-   id
-   ls -l
-   curl -o resources.zip https://gitlab.com/yukiz/GrasscutterResources/-/archive/$version_res/GrasscutterResources-$version_res.zip
+   # id
+   # ls -l
+   echo "Download Res $version_res"
+   curl -o resources.zip https://gitlab.com/YuukiPS/GC-Resources/-/archive/$version_res/GC-Resources-$version_res.zip
 fi
 
 if [ ! -f "config.json" ]; then

@@ -249,7 +249,6 @@ if [ "$metode" = "start" ];then
   docker run \
   --rm -it \
   -v $res:/home/dockergs/resources \
-  -v //c/Users/Administrator/Desktop/Projek/Docker/GS/gs/todo_gc/config.backup:/home/dockergs/config.json \
   -p 22102:22102/udp \
   -p 443:443/tcp \
   -p 80:80/tcp \
