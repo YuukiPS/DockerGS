@@ -57,7 +57,8 @@ elif [ "$versioncontrol" = "11" ];then
  useBranchesRes="3.4"
 fi
 
-build_gc="$useProject/bin $useProject/logs $useProject/resources $useProject/config.json $useProject/plugins $useProject/.gradle"
+build_gc="$useProject/.gradle $useProject/bin $useProject/build"
+# $useProject/logs $useProject/resources $useProject/config.json $useProject/plugins
 
 # Version
 version_pjhash="unknown";
@@ -355,9 +356,9 @@ if [ "$metode" = "build" ];then
    fi
 
    echo "Remove File Build GC (beginning)"
-   rm -R -f $build_gc
+   rm -rf $build_gc
    echo "Remove file $folderwork folder (ending)"   
-   rm -R -f $folderwork/*
+   rm -rf $folderwork/*
 
   fi
 
