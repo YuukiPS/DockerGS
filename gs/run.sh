@@ -61,7 +61,7 @@ elif [ "$versioncontrol" = "12" ];then
  useBranchesRes="3.5"
 fi
 
-build_gc="$useProject/.gradle $useProject/bin $useProject/build"
+build_gc="$useProject/.gradle $useProject/bin $useProject/build $useProject/src/generated"
 # $useProject/logs $useProject/resources $useProject/config.json $useProject/plugins
 
 # Version
