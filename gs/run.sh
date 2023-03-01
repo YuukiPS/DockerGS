@@ -4,6 +4,7 @@
 os=$1
 metode=$2
 versioncontrol=$3
+isprivate=$5
 
 # Project (We use Grasscutter as main project)
 mainProject="dockergs"
@@ -343,6 +344,10 @@ fi
 # if build
 if [ "$metode" = "build" ];then
  
+ if [ "$isprivate" = "pv" ];then
+  $userHub = "repo.yuuki.me"
+ fi
+ 
  # if localhost
 
  if [ "$os" = "local" ];then    
@@ -434,14 +439,14 @@ if [ "$metode" = "build" ];then
   elif [ "$4" = "docker_action" ];then
    echo "ver1=$userHub/$mainProject:$version_last_commit" >> $GITHUB_ENV
    echo "ver2=$userHub/$mainProject:$version_last_sw" >> $GITHUB_ENV
-   sh run.sh local build $versioncontrol $4
+   sh run.sh local build $versioncontrol $4 $5
 
    # Version Docker
    echo "Copy file version docker"
    echo -n "$version_last_commit" > $folderwork/ver
 
   elif [ "$4" = "docker_loc" ];then
-   sh run.sh local build $versioncontrol $4
+   sh run.sh local build $versioncontrol $4 $5
 
    # Version Docker
    echo "Copy file version docker"

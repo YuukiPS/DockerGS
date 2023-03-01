@@ -1,4 +1,4 @@
-name: DockerGS GC Alpine (3.5) (Private) (tes1)
+name: DockerGS GC Alpine (3.5) (Private) (tes2)
 on:
   push:
     paths:
@@ -35,7 +35,7 @@ jobs:
           username: ${{secrets.DOCKER_USER_PRIVATE}}
           password: ${{secrets.DOCKER_PASSWORD_PRIVATE}}
       - name: Build Local Jar
-        run: cd gs && chmod +x run.sh && sh run.sh alpine build 12 docker_action
+        run: cd gs && chmod +x run.sh && sh run.sh alpine build 12 docker_action pv
       - name: Build Image Docker and Push
         uses: docker/build-push-action@v3
         with:
