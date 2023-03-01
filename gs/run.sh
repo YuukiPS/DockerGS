@@ -12,8 +12,8 @@ useShortProject="gc"
 useData="GC-Data"
 useStart="local"
 useMetode="build"
-useBranchesProject="3.4"
-useBranchesRes="3.4"
+useBranchesProject="3.5"
+useBranchesRes="3.5"
 useResFolder="GC-Resources"
 
 userHub="siakbary"
@@ -55,6 +55,9 @@ elif [ "$versioncontrol" = "10" ];then
 elif [ "$versioncontrol" = "11" ];then
  useBranchesProject="3.4"
  useBranchesRes="3.4"
+elif [ "$versioncontrol" = "12" ];then
+ useBranchesProject="3.5"
+ useBranchesRes="3.5"
 fi
 
 build_gc="$useProject/.gradle $useProject/bin $useProject/build"
@@ -70,7 +73,7 @@ foldertodo="todo_$useShortProject"
 folderworkdata="$folderwork/data"
 filejson="$folderwork/config.json" 
 filejson_res="$foldertodo/config.backup"
-
+filecache="$folderwork/cache/TextMapCache.bin"
 # Check OS
 if [ -z "$os" ]; then
  os=$useStart
@@ -215,6 +218,8 @@ if [ "$metode" = "start" ];then
 
  if [ "$os" = "local" ];then
 
+  rm -rf $filecache
+
   if test -f "$filejson_res"; then
     echo "Found file config.backup"
     cp -rTf $filejson_res $filejson
@@ -284,9 +289,9 @@ if [ "$metode" = "sync" ];then
   whosm="Grasscutters"
  fi
  if [ -z "$getme" ]; then
-  if [ "$useBranchesProject" = "3.4" ];then
+  if [ "$useBranchesProject" = "3.5" ];then
    getme="development"
-  elif [ "$useBranchesProject" = "3.4-Early" ];then
+  elif [ "$useBranchesProject" = "3.5-Early" ];then
    getme="development"
    # git rebase --ignore-whitespace
   else

@@ -156,6 +156,9 @@ elif echo "$version" | grep -F -w "3.3"; then
 elif echo "$version" | grep -F -w "3.4"; then
  echo "Use res 3.4"
  version_res="3.4"
+elif echo "$version" | grep -F -w "3.5"; then
+ echo "Use res 3.5"
+ version_res="3.5"
 fi
 
 echo "This system run with OS $OSVS"
