@@ -125,7 +125,12 @@ if [ ! -d "$useData" ]; then
   sh run.sh repo data
 fi
 
-echo "OS: $os - Metode: $metode - Branch: $useBranchesProject - Project: $useProject ($useShortProject)"
+if [ "$isprivate" = "pv" ];then
+    echo "Private Mode0"
+    userHub="repo.yuuki.me"
+fi
+
+echo "OS: $os - Metode: $metode - Branch: $useBranchesProject - Project: $useProject ($useShortProject) > $userHub"
 
 # Check Folder Project
 cd $useProject
@@ -342,11 +347,7 @@ if [ "$metode" = "version" ];then
 fi
 
 # if build
-if [ "$metode" = "build" ];then
- 
- if [ "$isprivate" = "pv" ];then
-  $userHub = "repo.yuuki.me"
- fi
+if [ "$metode" = "build" ];then 
  
  # if localhost
 
@@ -437,6 +438,12 @@ if [ "$metode" = "build" ];then
     --push \
     .;
   elif [ "$4" = "docker_action" ];then
+
+   if [ "$5" = "pv" ];then
+    echo "Private Mode2"
+    userHub="repo.yuuki.me"
+   fi
+
    echo "ver1=$userHub/$mainProject:$version_last_commit" >> $GITHUB_ENV
    echo "ver2=$userHub/$mainProject:$version_last_sw" >> $GITHUB_ENV
    sh run.sh local build $versioncontrol $4 $5
