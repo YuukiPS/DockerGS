@@ -15,7 +15,7 @@ docker run --rm -it \
 -v resources:/home/dockergs/resources \
 -p 22102:22102/udp \
 -p 80:80/tcp \
-siakbary/dockergs:alpine-gc-3.5 \
+siakbary/dockergs:alpine-gc-3.4 \
 --database 'mongodb://2.0.0.100:2777' \
 --web_ip '2.0.0.100' \
 --web_port '80' \
@@ -55,7 +55,6 @@ TODO
 | [3.2 (9)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.2) | Alpine | linux/amd64 |
 | [3.3 (10)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.3) | Alpine | linux/amd64 |
 | [3.4 (11)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.4) | Alpine | linux/amd64 |
-| [3.5 (12)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.5) | Alpine | linux/amd64 |
 
 ## Download (Jar Only)
 
@@ -65,19 +64,16 @@ TODO
 | [3.2 (9)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.2/main/DockerGS-GC.zip) | linux/amd64 |
 | [3.3 (10)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.3/main/DockerGS-GC.zip) | linux/amd64 |
 | [3.4 (11)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.4/main/DockerGS-GC.zip) | linux/amd64 |
-| [3.5 (12)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.5/main/DockerGS-GC.zip) | linux/amd64 |
+
+Note: 3.5 it's still unstable, so while it's still private, if things get better we'll make an open source version later.
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
 * [10 best practices to build a Java container with Docker](https://snyk.io/blog/best-practices-to-build-java-containers-with-docker/)
 
-### What is "**Early**"?
-Always updated from developer version and some from Pull requests. Version Without "Early" is same except that we check very carefully if any feature doesn't work or function doesn't work we ignore commits.
-
 ## How to build this? 
-Source code (Patch Version) is closed now because many are remove "source link,credits" from public server, so at this time you can only do pull from Docker Image  or Jar File.<br/>
-If you wish to contribute, please contact me.
-### Remember [Grasscutter](https://github.com/Grasscutters/Grasscutter) source code is still open, you can do your own custom server with your own hard work.
+Source code YuukiPS is closed now because many people are remove "source link,credits" from public server/vip forum download, so we will only provide original [Grasscutter Quest](https://github.com/Anime-Game-Servers/Grasscutter-Quests) or [Grasscutter](https://github.com/Grasscutters/Grasscutter) version for docker/jar later.<br/>
+## If you wish to Contribute YuukiPS, please contact me.
 ## Required
 - [Java 17 JDK](https://adoptium.net/temurin/releases) 
 - [Docker](https://docs.docker.com/engine/install/)
@@ -96,19 +92,19 @@ cd gs
 
 sh run.sh # default build localhost
 
-sh run.sh local res 11 # Get Resources File Based Version Server
+sh run.sh local res 12 # Get Resources File Based Version Server
 
-sh run.sh local start 11 # run localhost server for without docker
-sh run.sh alpine start 11 2.0.0.100 # run localhost server for with docker alpine
-sh run.sh ubuntu start 11 2.0.0.100 # run localhost server for with docker ubuntu
+sh run.sh local start 12 # run localhost server for without docker
+sh run.sh alpine start 12 2.0.0.100 # run localhost server for with docker alpine
+sh run.sh ubuntu start 12 2.0.0.100 # run localhost server for with docker ubuntu
 
-sh run.sh local build 11 # Build local aja jar only
-sh run.sh alpine build 11 # Build Docker Image Alpine
-sh run.sh ubuntu build 11 # Build Docker Image Ubuntu
+sh run.sh local build 12 # Build local aja jar only
+sh run.sh alpine build 12 # Build Docker Image Alpine
+sh run.sh ubuntu build 12 # Build Docker Image Ubuntu
 
-sh run.sh ubuntu build 11 multi # Build Docker Image Ubuntu
+sh run.sh ubuntu build 12 multi # Build Docker Image Ubuntu
 
-sh run.sh local sync 11 # Sync Grasscutters to Yuuki
+sh run.sh local sync 12 # Sync Grasscutters to Yuuki
 
 sh run.sh data core # Clone Patch Version
 ```
