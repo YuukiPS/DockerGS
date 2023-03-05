@@ -12,10 +12,6 @@ OPTS=$(getopt -a -n dockergs --options $SHORT --longoptions $LONG -- "$@")
 
 VALID_ARGUMENTS=$# # Returns the count of arguments that are in short or long options
 
-if [ "$VALID_ARGUMENTS" -eq 0 ]; then
-  help
-fi
-
 eval set -- "$OPTS"
 
 while :
