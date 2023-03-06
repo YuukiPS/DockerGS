@@ -460,6 +460,17 @@ if [ "$metode" = "build" ];then
    echo -n "$version_last_commit" > $folderwork/ver
 
    docker build -t "$userHub/$mainProject:$version_last_commit" -f os-loc-$os-$useShortProject .;
+
+   elif [ "$4" = "docker_private_push" ];then
+   sh run.sh local build $versioncontrol $4 $5
+
+   # Version Docker
+   echo "Copy file version docker"
+   echo -n "$version_last_commit" > $folderwork/ver
+
+   docker build -t "repo.yuuki.me/$mainProject:$version_last_commit" -f os-loc-$os-$useShortProject .;
+   docker push repo.yuuki.me/$mainProject:$version_last_commit
+
   else
 
    # sh run.sh local build $versioncontrol $4
