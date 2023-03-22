@@ -59,6 +59,9 @@ elif [ "$versioncontrol" = "11" ];then
 elif [ "$versioncontrol" = "12" ];then
  useBranchesProject="3.5"
  useBranchesRes="3.5"
+elif [ "$versioncontrol" = "13" ];then
+ useBranchesProject="3.5-quest"
+ useBranchesRes="3.5"
 fi
 
 build_gc="$useProject/.gradle $useProject/bin $useProject/build $useProject/src/generated"
