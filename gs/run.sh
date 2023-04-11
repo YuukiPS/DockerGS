@@ -389,7 +389,7 @@ if [ "$metode" = "build" ];then
   echo "Start bulid..."
   cd $useProject
 
-  # Linux User
+  # Linux User tes
   # chmod +x gradlew
   # chmod 757 -R lib
 
