@@ -389,12 +389,6 @@ if [ "$metode" = "build" ];then
   echo "Start bulid..."
   cd $useProject
   
-  # Linux User
-  chmod +x gradlew
-  chmod +x lib/grasskcpper-yuuki.jar
-  chmod +x lib/bytes-yuuki.jar
-  chmod +x lib/bcrypt-yuuki.jar
-
   echo "Update lib stuff"
   ./gradlew
 
