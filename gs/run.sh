@@ -389,6 +389,7 @@ if [ "$metode" = "build" ];then
   echo "Start bulid..."
   cd $useProject
 
+  md5sum lib/grasskcpper.jar
   # Linux User tes
   # chmod +x gradlew
   # chmod 757 -R lib
