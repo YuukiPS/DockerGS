@@ -389,6 +389,9 @@ if [ "$metode" = "build" ];then
   echo "Start bulid..."
   cd $useProject
   
+  # Linux User
+  chmod +x gradlew
+
   echo "Update lib stuff"
   ./gradlew
 
