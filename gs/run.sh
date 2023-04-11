@@ -390,7 +390,7 @@ if [ "$metode" = "build" ];then
   cd $useProject
 
   # Linux User
-  # chmod +x gradlew
+  chmod +x gradlew
 
   echo "Update lib stuff"
   ./gradlew
