@@ -391,7 +391,9 @@ if [ "$metode" = "build" ];then
   
   # Linux User
   chmod +x gradlew
-  chmod 755 .
+  chmod +x lib/grasskcpper-yuuki.jar
+  chmod +x lib/bytes-yuuki.jar
+  chmod +x lib/bcrypt-yuuki.jar
 
   echo "Update lib stuff"
   ./gradlew
