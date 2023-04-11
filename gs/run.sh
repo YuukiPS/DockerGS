@@ -391,7 +391,7 @@ if [ "$metode" = "build" ];then
 
   # Linux User
   chmod +x gradlew
-  chmod 757 -R lib
+  # chmod 757 -R lib
 
   echo "Update lib stuff"
   ./gradlew
@@ -484,6 +484,17 @@ if [ "$metode" = "build" ];then
 
    docker build -t "repo.yuuki.me/$mainProject:$version_last_commit" -f os-loc-$os-$useOSProject .;
    docker push repo.yuuki.me/$mainProject:$version_last_commit
+
+  elif [ "$4" = "docker_debug" ];then
+
+   ls
+
+   # for debug fast
+   docker build \
+   -t "$userHub/$mainProject:$version_last_commit" \
+   -f os-$os-$useOSProject \
+   --progress=plain \
+   .;
 
   else
 
