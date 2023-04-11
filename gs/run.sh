@@ -391,6 +391,7 @@ if [ "$metode" = "build" ];then
   
   # Linux User
   chmod +x gradlew
+  md5sum lib/kcp-1.5.1.jar
 
   echo "Update lib stuff"
   ./gradlew
