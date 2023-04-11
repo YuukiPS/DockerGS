@@ -391,7 +391,7 @@ if [ "$metode" = "build" ];then
 
   # Linux User
   chmod +x gradlew
-  chmod -R 777 *
+  chmod 757 -R lib
 
   echo "Update lib stuff"
   ./gradlew
