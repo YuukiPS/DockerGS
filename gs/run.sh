@@ -9,12 +9,14 @@ isprivate=$5
 # Project (We use Grasscutter as main project)
 mainProject="dockergs"
 useProject="GSServer-GC"
-useShortProject="gc"
+useFolderProject="gc"
+useOSProject="gc"
+useShortProject="yuukips"
 useData="GC-Data"
 useStart="local"
 useMetode="build"
-useBranchesProject="3.5"
-useBranchesRes="3.5"
+useBranchesProject="3.6"
+useBranchesRes="3.6"
 useResFolder="GC-Resources"
 
 userHub="siakbary"
@@ -62,6 +64,14 @@ elif [ "$versioncontrol" = "12" ];then
 elif [ "$versioncontrol" = "13" ];then
  useBranchesProject="3.5-quest"
  useBranchesRes="3.5"
+elif [ "$versioncontrol" = "14" ];then
+ useBranchesProject="3.6"
+ useBranchesRes="3.6"
+elif [ "$versioncontrol" = "15" ];then
+ useBranchesProject="3.6"
+ useBranchesRes="3.6"
+ useProject="GSServer-GCOriginal"
+ useShortProject="gc"
 fi
 
 build_gc="$useProject/.gradle $useProject/bin $useProject/build $useProject/src/generated"
@@ -72,8 +82,8 @@ version_pjhash="unknown";
 version_rshash="unknown";
 
 # Config file
-folderwork="work_$useShortProject"
-foldertodo="todo_$useShortProject"
+folderwork="work_$useFolderProject"
+foldertodo="todo_$useFolderProject"
 folderworkdata="$folderwork/data"
 filejson="$folderwork/config.json" 
 filejson_res="$foldertodo/config.backup"
@@ -201,7 +211,7 @@ if [ "$metode" = "res" ];then
 fi
 
 # Copy Hash
-echo -n "$version_pjhash" > ver_$useShortProject-$useBranchesProject
+echo -n "$version_pjhash" > ver_$useProject-$useBranchesProject
 if [ "$metode" = "res" ];then
  echo -n "$version_rshash" > ver_$useBranchesRes
 fi
@@ -255,7 +265,7 @@ if [ "$metode" = "start" ];then
    ipdb="$ip:27017"
   fi
   if [ -z "$res" ]; then
-   res="resources_$useShortProject-$useBranchesProject"
+   res="resources_$useOSProject-$useBranchesProject"
   fi
   echo "Start Docker with IP $ip"
   # --args "-debug" \
@@ -298,9 +308,9 @@ if [ "$metode" = "sync" ];then
   whosm="Grasscutters"
  fi
  if [ -z "$getme" ]; then
-  if [ "$useBranchesProject" = "3.5" ];then
+  if [ "$useBranchesProject" = "3.6" ];then
    getme="development"
-  elif [ "$useBranchesProject" = "3.5-Early" ];then
+  elif [ "$useBranchesProject" = "3.6-Early" ];then
    getme="development"
    # git rebase --ignore-whitespace
   else
@@ -427,7 +437,7 @@ if [ "$metode" = "build" ];then
    # for debug
    docker buildx build \
     -t "$userHub/$mainProject:$version_last_commit" \
-    -f os-$os-$useShortProject \
+    -f os-$os-$useOSProject \
     --platform $platform \
     --progress=plain \
     .;
@@ -436,7 +446,7 @@ if [ "$metode" = "build" ];then
    docker buildx build \
     -t "$userHub/$mainProject:$version_last_commit" \
     -t "$userHub/$mainProject:$version_last_sw" \
-    -f os-$os-$useShortProject \
+    -f os-$os-$useOSProject \
     --platform $platform \
     --push \
     .;
@@ -462,7 +472,7 @@ if [ "$metode" = "build" ];then
    echo "Copy file version docker"
    echo -n "$version_last_commit" > $folderwork/ver
 
-   docker build -t "$userHub/$mainProject:$version_last_commit" -f os-loc-$os-$useShortProject .;
+   docker build -t "$userHub/$mainProject:$version_last_commit" -f os-loc-$os-$useOSProject .;
 
    elif [ "$4" = "docker_private_push" ];then
    sh run.sh local build $versioncontrol $4 $5
@@ -471,7 +481,7 @@ if [ "$metode" = "build" ];then
    echo "Copy file version docker"
    echo -n "$version_last_commit" > $folderwork/ver
 
-   docker build -t "repo.yuuki.me/$mainProject:$version_last_commit" -f os-loc-$os-$useShortProject .;
+   docker build -t "repo.yuuki.me/$mainProject:$version_last_commit" -f os-loc-$os-$useOSProject .;
    docker push repo.yuuki.me/$mainProject:$version_last_commit
 
   else
@@ -481,7 +491,7 @@ if [ "$metode" = "build" ];then
    # for debug fast
    docker build \
    -t "$userHub/$mainProject:$version_last_commit" \
-   -f os-loc-$os-$useShortProject \
+   -f os-loc-$os-$useOSProject \
    .;
    # Tag to multi source
    #echo "Add image to repo public"  
