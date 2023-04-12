@@ -16,7 +16,7 @@ jobs:
       - name: Sync Grasscutter Yuuki
         uses: actions/checkout@v3
         with:
-          repository: YuukiPS/Grasscutters-Original
+          repository: gitlab.com/YuukiPS/Grasscutters-Original
           ref: "3.6"
           path: gs/GSServer-GCOriginal
       - name: Setup Java

@@ -309,16 +309,13 @@ if [ "$metode" = "sync" ];then
  fi
  if [ -z "$getme" ]; then
   if [ "$useBranchesProject" = "3.6" ];then
-   getme="development"
-  elif [ "$useBranchesProject" = "3.6-Early" ];then
-   getme="development"
-   # git rebase --ignore-whitespace
+   getme="unstable-quests"
   else
-   getme="2.6"
+   getme="development"
   fi
  fi
  # --allow-unrelated-histories only do it if it's really needed, because I hate conflicts so better use "git cherry-pick <first_commit>..<last_commit>"
- git pull https://github.com/$whosm/$dlrepo.git $getme 
+ git pull https://github.com/$whosm/$dlrepo.git $getme --allow-unrelated-histories
  cd ..
 fi
 
