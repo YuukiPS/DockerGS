@@ -15,7 +15,7 @@ docker run --rm -it \
 -v resources:/home/dockergs/resources \
 -p 22102:22102/udp \
 -p 80:80/tcp \
-siakbary/dockergs:alpine-gc-3.4 \
+siakbary/dockergs:alpine-gc-3.6 \
 --database 'mongodb://2.0.0.100:2777' \
 --web_ip '2.0.0.100' \
 --web_port '80' \
@@ -50,22 +50,13 @@ TODO
 ## Available
 | Versions | OS | Platform |
 | ------ | ------ | ------ |
-| [3.1 (8)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.1) | Alpine | linux/amd64 |
-| [3.1 (8)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=ubuntu-gc-3.1) | Ubuntu | linux/amd64,linux/arm64 |
-| [3.2 (9)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.2) | Alpine | linux/amd64 |
-| [3.3 (10)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.3) | Alpine | linux/amd64 |
-| [3.4 (11)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.4) | Alpine | linux/amd64 |
+| [3.6 (15)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.6) | Alpine | linux/amd64 |
 
 ## Download (Jar Only)
 
 | Versions | Platform |
 | ------ | ------ |
-| [3.1 (8)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.1/main/DockerGS-GC.zip) | linux/amd64 |
-| [3.2 (9)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.2/main/DockerGS-GC.zip) | linux/amd64 |
-| [3.3 (10)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.3/main/DockerGS-GC.zip) | linux/amd64 |
-| [3.4 (11)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.4/main/DockerGS-GC.zip) | linux/amd64 |
-
-Note: 3.6 it's still unstable, so while it's still private, if things get better we'll make an open source version later.
+| [3.6 (15)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.6_Public/main/DockerGS-GC.zip) | linux/amd64 |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
