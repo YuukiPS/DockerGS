@@ -6,8 +6,8 @@ help()
     exit 2
 }
 
-SHORT=db:,webip:,webport:,weburlssl:,gameip:,gameport:,msgwc,mailmsg:,dlres:,j:,ag:,lang:,loginpass:,po:,nmsv:,nmow:,nmrg:,ssl:,tk:,h
-LONG=database:,web_ip:,web_port:,web_url_ssl:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,args:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,ssl:,token:,help
+SHORT=db:,webip:,webport:,weburlssl:,gameip:,gameport:,msgwc,mailmsg:,dlres:,j:,ag:,lang:,loginpass:,po:,nmsv:,nmow:,nmrg:,ssl:,ac:,tk:,h
+LONG=database:,web_ip:,web_port:,web_url_ssl:,game_ip:,game_port:,message_welcome:,mail_message:,download_resource:,java:,args:,language:,login_password:,player_online:,name_server:,name_owner:,name_region:,ssl:,autocreate:,token:,help
 OPTS=$(getopt -a -n dockergs --options $SHORT --longoptions $LONG -- "$@")
 
 VALID_ARGUMENTS=$# # Returns the count of arguments that are in short or long options
@@ -36,6 +36,10 @@ do
       ;;
     -ssl | --ssl )
       set_ssl="$2"
+      shift 2
+      ;;
+    -ac | --autocreate )
+      set_autoCreate="$2"
       shift 2
       ;;
     -gameip | --game_ip )
@@ -244,6 +248,16 @@ if [ ! -f "config.json" ]; then
   web_url_ssl="false"
  fi
 
+ # PASSWORD
+ if [ -z "$set_login_password" ]; then
+  set_login_password="false"
+ fi
+
+ # PASSWORD
+ if [ -z "$set_autoCreate" ]; then
+  set_autoCreate="true"
+ fi 
+
  # if no config just boot
  java -jar grasscutter.jar -version
 
@@ -271,6 +285,8 @@ if [ ! -f "config.json" ]; then
  fi
 
  echo "Server Ip Game: $set_game_ip:$set_game_port"
+ echo "Server Password: $set_login_password"
+ echo "Server Auto Create Acc: $set_autoCreate"
 
  # Welcome message
  if [ -z "$set_message_welcome" ]; then
@@ -310,8 +326,11 @@ if [ ! -f "config.json" ]; then
  # Config max number of player online
  json -q -I -f config.json -e "this.account.maxPlayer='$set_player_online'"
  
- # Config password
- json -q -I -f config.json -e "this.account.EXPERIMENTAL_RealPassword='$set_login_password'" 
+ # Config Password
+ json -q -I -f config.json -e "this.account.EXPERIMENTAL_RealPassword='$set_login_password'"
+
+ # Config Auto Create
+ json -q -I -f config.json -e "this.account.autoCreate='$set_autoCreate'" 
 
  # Config Welcome Message
  json -q -I -f config.json -e "this.server.game.joinOptions.welcomeMessage='$set_message_welcome'"

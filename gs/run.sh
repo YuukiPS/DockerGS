@@ -269,6 +269,7 @@ if [ "$metode" = "start" ];then
   fi
   echo "Start Docker with IP $ip"
   # --args "-debug" \
+  # --login_password "true" \
   # -v $res:/home/dockergs/resources \
   # //c/Users/Administrator/Desktop/Projek/Docker/GS/gs/todo_gc/config.backup
   docker run \
@@ -283,8 +284,7 @@ if [ "$metode" = "start" ];then
   --game_ip "$ip" \
   --ssl "false" \
   --web_url_ssl "false" \
-  --token "local" \
-  --login_password "true"
+  --token "local"
 
  fi
 
