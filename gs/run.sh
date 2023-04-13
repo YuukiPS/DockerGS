@@ -315,7 +315,7 @@ if [ "$metode" = "sync" ];then
   fi
  fi
  # --allow-unrelated-histories only do it if it's really needed, because I hate conflicts so better use "git cherry-pick <first_commit>..<last_commit>"
- git pull https://github.com/$whosm/$dlrepo.git $getme --allow-unrelated-histories
+ git pull https://github.com/$whosm/$dlrepo.git $getme
  cd ..
 fi
 

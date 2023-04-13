@@ -155,6 +155,9 @@ elif echo "$version" | grep -F -w "3.4"; then
 elif echo "$version" | grep -F -w "3.5"; then
  echo "Use res 3.5"
  version_res="3.5"
+elif echo "$version" | grep -F -w "3.6"; then
+ echo "Use res 3.6"
+ version_res="3.6"
 fi
 
 echo "This system run with OS $OSVS"
@@ -170,8 +173,12 @@ then
     # ls $folder_resources
     echo "Resources folder already exists..."
 else
-    echo "Update?"
-    update=true
+    if test -f "$folder_resources/resources.zip"; then
+     echo "Resources file already exists..."
+    else
+     echo "Update resources.zip ..."
+     update=true
+    fi
 fi
 
 # Foce Mode
@@ -189,7 +196,7 @@ then
    # id
    # ls -l
    echo "Download Res $version_res"
-   curl -o resources.zip https://gitlab.com/YuukiPS/GC-Resources/-/archive/$version_res/GC-Resources-$version_res.zip
+   curl -o $folder_resources/resources.zip https://gitlab.com/YuukiPS/GC-Resources/-/archive/$version_res/GC-Resources-$version_res.zip
 fi
 
 if [ ! -f "config.json" ]; then
@@ -238,7 +245,7 @@ if [ ! -f "config.json" ]; then
  fi
 
  # if no config just boot
- java -jar grasscutter.jar -boot
+ java -jar grasscutter.jar -version
 
  # ip/domain public for web (Outside docker)
  if [ -z "$set_web_ip" ]; then

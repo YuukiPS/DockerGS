@@ -9,7 +9,7 @@ services:
     volumes:
       - data:/data/db
   grasscutter:
-    image: siakbary/dockergs:alpine-gc-3.5
+    image: siakbary/dockergs:alpine-gc-3.6
     command: --database 'mongodb://mongodb:27017' --web_ip '2.0.0.100' --web_port "80" --game_ip '2.0.0.100' --download_resource 'yes' --java '-Xmx1G' --ssl "false" --web_url_ssl "false"
     restart: unless-stopped
     volumes:
