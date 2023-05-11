@@ -309,7 +309,7 @@ if [ "$metode" = "sync" ];then
  fi
  if [ -z "$getme" ]; then
   if [ "$useBranchesProject" = "3.6" ];then
-   getme="unstable-quests"
+   getme="unstable"
   else
    getme="development"
   fi
