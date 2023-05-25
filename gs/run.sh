@@ -15,8 +15,8 @@ useShortProject="yuukips"
 useData="GC-Data"
 useStart="local"
 useMetode="build"
-useBranchesProject="3.6"
-useBranchesRes="3.6"
+useBranchesProject="3.7"
+useBranchesRes="3.7"
 useResFolder="GC-Resources"
 
 userHub="siakbary"
@@ -72,6 +72,9 @@ elif [ "$versioncontrol" = "15" ];then
  useBranchesRes="3.6"
  useProject="GSServer-GCOriginal"
  useShortProject="gc"
+elif [ "$versioncontrol" = "16" ];then
+ useBranchesProject="3.7"
+ useBranchesRes="3.7"
 fi
 
 build_gc="$useProject/.gradle $useProject/bin $useProject/build $useProject/src/generated"
@@ -265,7 +268,7 @@ if [ "$metode" = "start" ];then
    ipdb="$ip:27017"
   fi
   if [ -z "$res" ]; then
-   res="resources_$useOSProject-$useBranchesProject"
+   res="resources4_$useOSProject-$useBranchesProject"
   fi
   echo "Start Docker with IP $ip"
   # --args "-debug" \
