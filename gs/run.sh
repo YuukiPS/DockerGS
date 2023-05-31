@@ -75,6 +75,11 @@ elif [ "$versioncontrol" = "15" ];then
 elif [ "$versioncontrol" = "16" ];then
  useBranchesProject="3.7"
  useBranchesRes="3.7"
+elif [ "$versioncontrol" = "17" ];then
+ useBranchesProject="3.7"
+ useBranchesRes="3.7"
+ useProject="GSServer-GCOriginal"
+ useShortProject="gc"
 fi
 
 build_gc="$useProject/.gradle $useProject/bin $useProject/build $useProject/src/generated"
@@ -311,12 +316,13 @@ if [ "$metode" = "sync" ];then
   whosm="Grasscutters"
  fi
  if [ -z "$getme" ]; then
-  if [ "$useBranchesProject" = "3.6" ];then
+  if [ "$useBranchesProject" = "3.7" ];then
    getme="unstable"
   else
    getme="development"
   fi
  fi
+ echo "pull $useProject"
  # --allow-unrelated-histories only do it if it's really needed, because I hate conflicts so better use "git cherry-pick <first_commit>..<last_commit>"
  git pull https://github.com/$whosm/$dlrepo.git $getme
  cd ..
