@@ -317,9 +317,9 @@ if [ "$metode" = "sync" ];then
  fi
  if [ -z "$getme" ]; then
   if [ "$useBranchesProject" = "3.7" ];then
-   getme="unstable"
-  else
    getme="development"
+  else
+   getme="unstable"
   fi
  fi
  echo "pull $useProject"
@@ -357,6 +357,12 @@ fi
 if [ "$metode" = "fix" ];then
  cd $useProject
  npx prettier --config .prettierrc.json --write .
+ cd ..
+fi
+
+if [ "$metode" = "fix2" ];then
+ cd $useProject
+ ./gradlew spotlessApply
  cd ..
 fi
 
