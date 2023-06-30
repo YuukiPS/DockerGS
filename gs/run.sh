@@ -73,7 +73,7 @@ elif [ "$versioncontrol" = "15" ]; then
   useProject="GSServer-GCOriginal"
   useShortProject="gc"
 elif [ "$versioncontrol" = "16" ]; then
-  useBranchesProject="3.7"
+  useBranchesProject="3.7-testing"
   useBranchesRes="3.7"
 elif [ "$versioncontrol" = "17" ]; then
   useBranchesProject="3.7"
@@ -363,6 +363,12 @@ fi
 if [ "$metode" = "fix2" ]; then
   cd $useProject
   ./gradlew spotlessApply
+  cd ..
+fi
+
+if [ "$metode" = "fix3" ]; then
+  cd $useProject
+  ./gradlew spotlessDiagnose
   cd ..
 fi
 

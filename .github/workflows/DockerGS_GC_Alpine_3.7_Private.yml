@@ -1,9 +1,9 @@
-name: DockerGS GC Alpine (3.7) (Private)
+name: DockerGS GC Alpine (3.7) (Private) (testing)
 on:
   push:
     paths:
       - "gs/os-loc-alpine-gc"
-      - "gs/ver_GSServer-GC-3.7"
+      - "gs/ver_GSServer-GC-3.7-testing"
       - "gs/run.sh"
       - "gs/entrypoint_gc.sh"
       - ".github/workflows/DockerGS_GC_Alpine_3.7_Private.yml"
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: YuukiPS/GSServer-GC
-          ref: "3.7"
+          ref: "3.7-testing"
           token: ${{ secrets.HUB_TOKEN }}
           path: gs/GSServer-GC
       - name: Setup Java

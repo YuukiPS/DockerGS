@@ -5,11 +5,11 @@ on:
       branches:
         description: "Branches"
         required: true
-        default: "3.1"
+        default: "3.7"
       patch:
         description: "Patch"
         required: true
-        default: "8"
+        default: "17"
       os:
         description: "OS"
         required: true
@@ -24,13 +24,13 @@ jobs:
     steps:
       - name: Sync DockerGS
         uses: actions/checkout@v3
-      - name: Sync Grasscutter Yuuki
+      - name: Sync Grasscutter Original
         uses: actions/checkout@v3
         with:
-          repository: YuukiPS/GSServer-GC
+          repository: YuukiPS/Grasscutters-Original
           ref: ${{ github.event.inputs.branches }}
           token: ${{ secrets.HUB_TOKEN }}
-          path: gs/GSServer-GC
+          path: gs/GSServer-GCOriginal
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
