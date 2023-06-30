@@ -1,4 +1,4 @@
-name: DockerGS GC Alpine (3.7) (Private) (testing)
+name: DockerGS GC Alpine (3.7) (Private) (testing_v2)
 on:
   push:
     paths:
