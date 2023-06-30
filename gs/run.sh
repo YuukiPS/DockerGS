@@ -407,6 +407,10 @@ if [ "$metode" = "build" ]; then
     echo "Start bulid..."
     cd $useProject
 
+    # echo "Fix Permission"
+    # chmod +x gradlew
+    # git update-index --chmod=+x gradlew
+
     echo "Update lib stuff"
     ./gradlew
 
