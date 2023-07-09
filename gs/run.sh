@@ -85,8 +85,8 @@ if [ "$os" = "repo" ]; then
   fi
 
   if [ "$metode" = "gc" ]; then
-    echo "~ Get GSServer-GC"
-    git clone --depth=1 https://github.com/YuukiPS/GSServer-GC GSServer-GC
+    echo "~ Get GSServer-GCOriginal"
+    git clone --depth=1 https://github.com/YuukiPS/Grasscutters-Original GSServer-GCOriginal
   fi
 
   if [ "$metode" = "gc_res" ]; then
