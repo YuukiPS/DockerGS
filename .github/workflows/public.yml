@@ -1,19 +1,19 @@
-name: DockerGS GC (Multi Platform)
+name: DockerGS (Multi Platform) (Ubuntu Build)
 on:
   workflow_dispatch:
     inputs:
+      repo:
+        description: "Repo"
+        required: true
+        default: "YuukiPS/Grasscutters-Original"
       branches:
-        description: "Branches"
+        description: "Branches Repo"
         required: true
         default: "3.7"
-      patch:
-        description: "Patch"
+      resources:
+        description: "Branches Resources"
         required: true
-        default: "17"
-      os:
-        description: "OS"
-        required: true
-        default: "ubuntu"
+        default: "3.7"
       platforms:
         description: "Platforms"
         required: true
@@ -24,13 +24,12 @@ jobs:
     steps:
       - name: Sync DockerGS
         uses: actions/checkout@v3
-      - name: Sync Grasscutter Original
+      - name: Sync Repo
         uses: actions/checkout@v3
         with:
-          repository: YuukiPS/Grasscutters-Original
+          repository: ${{ github.event.inputs.repo }}
           ref: ${{ github.event.inputs.branches }}
-          token: ${{ secrets.HUB_TOKEN }}
-          path: gs/GSServer-GCOriginal
+          path: gs/tmp
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -40,14 +39,14 @@ jobs:
         with:
           username: ${{secrets.DOCKER_USER}}
           password: ${{secrets.DOCKER_PASSWORD}}
-      - name: Get Version
-        run: cd gs && chmod +x run.sh && sh run.sh ${{ github.event.inputs.os }} version ${{ github.event.inputs.patch }}
+      - name: Get Version only #1=os for ubuntu,2 metode for version_action, 3 for version branches, 4 for version resources (normal not need)
+        run: cd gs && chmod +x run.sh && sh run.sh ubuntu version_action ${{ github.event.inputs.branches }} ${{ github.event.inputs.resources }}
       - name: Build and Push
         uses: docker/build-push-action@v3
         with:
           context: ./gs
-          file: ./gs/os-${{ github.event.inputs.os }}-gc
-          platforms: ${{ github.event.inputs.platforms }}
+          file: ./gs/os-ubuntu-gc-action # use image tmp
+          platforms: ubuntu
           push: true
           tags: |
             ${{ env.ver1 }}

@@ -4,82 +4,49 @@
 os=$1
 metode=$2
 versioncontrol=$3
-isprivate=$5
 
-# Project (We use Grasscutter as main project)
+# Project (We use Grasscutter Original as main project)
 mainProject="dockergs"
-useProject="GSServer-GC"
 useFolderProject="gc"
 useOSProject="gc"
-useShortProject="yuukips"
 useData="GC-Data"
 useStart="local"
 useMetode="build"
+useResFolder="GC-Resources"
+# for version
+useProject="GSServer-GCOriginal" # folder project
+useShortProject="gc"
 useBranchesProject="3.7"
 useBranchesRes="3.7"
-useResFolder="GC-Resources"
 
 userHub="siakbary"
 
-# Version Control
-if [ "$versioncontrol" = "0" ]; then
-  useBranchesProject="Patch-2.6"
-  useBranchesRes="2.6"
-elif [ "$versioncontrol" = "1" ]; then
-  useBranchesProject="Patch-2.6-Early"
-  useBranchesRes="2.6"
-elif [ "$versioncontrol" = "2" ]; then
-  useBranchesProject="Patch-2.7"
-  useBranchesRes="2.7"
-elif [ "$versioncontrol" = "3" ]; then
-  useBranchesProject="Patch-2.7-Early"
-  useBranchesRes="2.7"
-elif [ "$versioncontrol" = "4" ]; then
-  useBranchesProject="Patch-2.8"
-  useBranchesRes="2.8"
-elif [ "$versioncontrol" = "5" ]; then
-  useBranchesProject="Patch-2.8-Early"
-  useBranchesRes="2.8"
-elif [ "$versioncontrol" = "6" ]; then
-  useBranchesProject="Patch-3.0-Early"
-  useBranchesRes="3.0"
-elif [ "$versioncontrol" = "7" ]; then
-  useBranchesProject="3.0"
-  useBranchesRes="3.0"
-elif [ "$versioncontrol" = "8" ]; then
-  useBranchesProject="3.1"
-  useBranchesRes="3.1"
-elif [ "$versioncontrol" = "9" ]; then
-  useBranchesProject="3.2"
-  useBranchesRes="3.2"
-elif [ "$versioncontrol" = "10" ]; then
-  useBranchesProject="3.3"
-  useBranchesRes="3.3"
-elif [ "$versioncontrol" = "11" ]; then
-  useBranchesProject="3.4"
-  useBranchesRes="3.4"
-elif [ "$versioncontrol" = "12" ]; then
-  useBranchesProject="3.5"
-  useBranchesRes="3.5"
-elif [ "$versioncontrol" = "13" ]; then
-  useBranchesProject="3.5-quest"
-  useBranchesRes="3.5"
-elif [ "$versioncontrol" = "14" ]; then
-  useBranchesProject="3.6"
-  useBranchesRes="3.6"
-elif [ "$versioncontrol" = "15" ]; then
-  useBranchesProject="3.6"
-  useBranchesRes="3.6"
-  useProject="GSServer-GCOriginal"
-  useShortProject="gc"
-elif [ "$versioncontrol" = "16" ]; then
-  useBranchesProject="3.7-testing"
-  useBranchesRes="3.7"
-elif [ "$versioncontrol" = "17" ]; then
-  useBranchesProject="3.7"
-  useBranchesRes="3.7"
-  useProject="GSServer-GCOriginal"
-  useShortProject="gc"
+# Version Control by User
+if [ "$2" != "version_action" ]; then
+
+  if [ "$versioncontrol" = "16" ]; then # for private stable
+    useBranchesProject="3.7"
+    useBranchesRes="3.7"
+    useShortProject="yuukips"
+    useProject="GSServer-GC"
+  elif [ "$versioncontrol" = "17" ]; then # for private quest (no-stable)
+    useBranchesProject="3.7-quest"
+    useBranchesRes="3.7"
+    useShortProject="yuukips"
+    useProject="GSServer-GC"
+  elif [ "$versioncontrol" = "18" ]; then # for public
+    useBranchesProject="3.7"
+    useBranchesRes="3.7"
+  fi
+
+fi
+
+# Version Control by Github Action (use tmp folder)
+# #1=os for ubuntu,2 metode for version_action, 3 for version branches, 4 for version resources (normal not need)
+if [ "$2" = "version_action" ]; then
+  useProject="tmp"
+  useBranchesProject=$3
+  useBranchesRes=$4
 fi
 
 build_gc="$useProject/.gradle $useProject/bin $useProject/build $useProject/src/generated"
@@ -96,6 +63,7 @@ folderworkdata="$folderwork/data"
 filejson="$folderwork/config.json"
 filejson_res="$foldertodo/config.backup"
 filecache="$folderwork/cache/TextMapCache.bin"
+
 # Check OS
 if [ -z "$os" ]; then
   os=$useStart
@@ -111,42 +79,38 @@ if [ "$os" = "repo" ]; then
 
   echo "Start clone repo..."
 
-  if [ "$metode" = "java" ]; then
+  if [ "$metode" = "yuuki_gc" ]; then
     echo "~ Get GSServer-GC"
     git clone --depth=1 https://github.com/YuukiPS/GSServer-GC GSServer-GC
   fi
 
-  if [ "$metode" = "ts" ]; then
-    echo "~ Get GSServer-HuTao"
-    git clone --depth=1 https://github.com/YuukiPS/GSServer-HuTao GSServer-HuTao
+  if [ "$metode" = "gc" ]; then
+    echo "~ Get GSServer-GC"
+    git clone --depth=1 https://github.com/YuukiPS/GSServer-GC GSServer-GC
   fi
 
-  if [ "$metode" = "res_ts" ]; then
-    echo "~ Get Data Resources Java for HuTaoGS (TS)"
-    git clone --depth=1 https://github.com/NotArandomGUY/HuTao-GD Resources-TS
-  fi
-
-  if [ "$metode" = "res_java" ]; then
-    echo "~ Get Data Resources Java for Grasscutter (Java)"
+  if [ "$metode" = "gc_res" ]; then
+    echo "~ Get Data Resources Grasscutter"
     git clone --depth=1 https://gitlab.com/YuukiPS/GC-Resources GC-Resources
   fi
 
-  if [ "$metode" = "data" ]; then
+  if [ "$metode" = "gc_data" ]; then
     echo "~ Get Data Resources"
     git clone --depth=1 https://gitlab.com/YuukiPS/GC-Data $useData
   fi
 
-  echo "EXIT NOW"
+  echo "Clone repo done..."
   exit 1
 fi
 
-# Get Data if not found (TODO: add Resources too?)
+# Get Data GC (TODO: skip if not use gc)
 if [ ! -d "$useData" ]; then
   echo "No Found Data, let's clone first"
-  sh run.sh repo data
+  sh run.sh repo gc_data
 fi
 
-if [ "$isprivate" = "pv" ]; then
+# for YuukiPS (cmd5)
+if [ "$5" = "pv" ]; then
   echo "Private Mode0"
   userHub="repo.yuuki.me"
 fi
@@ -366,15 +330,17 @@ if [ "$metode" = "fix2" ]; then
   cd ..
 fi
 
-if [ "$metode" = "fix3" ]; then
+if [ "$metode" = "check2" ]; then
   cd $useProject
   ./gradlew spotlessDiagnose
   cd ..
 fi
 
-if [ "$metode" = "version" ]; then
+# Get version only
+if [ "$metode" = "version_action" ]; then
   echo "ver1=$userHub/$mainProject:$version_last_commit" >>$GITHUB_ENV
   echo "ver2=$userHub/$mainProject:$version_last_sw" >>$GITHUB_ENV
+  echo "shortpj=$useShortProject" >>$GITHUB_ENV
 fi
 
 # if build
