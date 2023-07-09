@@ -46,7 +46,7 @@ jobs:
         with:
           context: ./gs
           file: ./gs/os-ubuntu-gc-action # use image tmp
-          platforms: ubuntu
+          platforms: ${{ github.event.inputs.platforms }}
           push: true
           tags: |
             ${{ env.ver1 }}
