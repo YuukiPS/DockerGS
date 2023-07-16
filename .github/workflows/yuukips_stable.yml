@@ -1,0 +1,49 @@
+name: YuukiPS Alpine (3.7) (16) (Stable)
+on:
+  push:
+    paths:
+      - "gs/os-loc-alpine-gc"
+      - "gs/ver_GSServer-GC-3.7"
+      - "gs/run.sh"
+      - "gs/entrypoint_gc.sh"
+      - ".github/workflows/yuukips_stable.yml"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync DockerGS
+        uses: actions/checkout@v3
+      - name: Sync YuukiPS
+        uses: actions/checkout@v3
+        with:
+          repository: YuukiPS/GSServer-GC
+          ref: "3.7"
+          token: ${{ secrets.HUB_TOKEN }}
+          path: gs/GSServer-GC
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: "gradle"
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          registry: repo.yuuki.me
+          username: ${{secrets.DOCKER_USER_PRIVATE}}
+          password: ${{secrets.DOCKER_PASSWORD_PRIVATE}}
+      - name: Build Local Jar
+        run: cd gs && chmod +x run.sh && sh run.sh alpine build 16 docker_action pv
+      - name: Build Image Docker and Push
+        uses: docker/build-push-action@v3
+        with:
+          context: ./gs
+          file: ./gs/os-loc-alpine-gc
+          push: true
+          tags: |
+            ${{ env.ver1 }}
+            ${{ env.ver2 }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

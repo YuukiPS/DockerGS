@@ -1,4 +1,4 @@
-name: YuukiPS Alpine (3.7) (Quest v1)
+name: YuukiPS Alpine (3.7) (17) (Quest)
 on:
   push:
     paths:
@@ -34,7 +34,7 @@ jobs:
           registry: repo.yuuki.me
           username: ${{secrets.DOCKER_USER_PRIVATE}}
           password: ${{secrets.DOCKER_PASSWORD_PRIVATE}}
-      - name: Build Local Jar # 1=alpine,2=build,3=
+      - name: Build Local Jar
         run: cd gs && chmod +x run.sh && sh run.sh alpine build 17 docker_action pv
       - name: Build Image Docker and Push
         uses: docker/build-push-action@v3
