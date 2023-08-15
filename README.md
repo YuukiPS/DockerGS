@@ -50,13 +50,13 @@ TODO
 ## Available
 | Versions | OS | Platform |
 | ------ | ------ | ------ |
-| [3.7 (17)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.7) | Alpine | linux/amd64 |
+| [3.7 (18)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.7) | Alpine | linux/amd64 |
 
 ## Download (Jar Only)
 
 | Versions | Platform |
 | ------ | ------ |
-| [3.7 (17)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.7_Public/main/DockerGS-GC.zip) | linux/amd64 |
+| [3.7 (18)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.7_Public/main/DockerGS-GC.zip) | linux/amd64 |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
@@ -77,25 +77,25 @@ Clone this with
 git clone https://github.com/YuukiPS/DockerGS
 cd DockerGS
 cd gs
-# 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8, 7=3.0, 8=3.1, 9=3.2, 10=3.3, 11=3.4, 12=3.5, 14=3.6, 15=3.6 public,16=3.7 private, 17=3.7
+# 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8, 7=3.0, 8=3.1, 9=3.2, 10=3.3, 11=3.4, 12=3.5, 14=3.6, 15=3.6 public,16=3.7 private stable, 17=3.7 private quest, 18=3.7 public, 19=4.0 private, 20=4.0 public (later)
 
 # 2.0.0.100 is your ip computer, make sure you have mongodb installed
 
 sh run.sh # default build localhost
 
-sh run.sh local res 16 # Get Resources File Based Version Server
+sh run.sh local res 18 # Get Resources File Based Version Server
 
-sh run.sh local start 16 # run localhost server for without docker
-sh run.sh alpine start 16 2.0.0.100 # run localhost server for with docker alpine
-sh run.sh ubuntu start 16 2.0.0.100 # run localhost server for with docker ubuntu
+sh run.sh local start 18 # run localhost server for without docker
+sh run.sh alpine start 18 2.0.0.100 # run localhost server for with docker alpine
+sh run.sh ubuntu start 18 2.0.0.100 # run localhost server for with docker ubuntu
 
-sh run.sh local build 16 # Build local aja jar only
-sh run.sh alpine build 16 # Build Docker Image Alpine
-sh run.sh ubuntu build 16 # Build Docker Image Ubuntu
+sh run.sh local build 18 # Build local aja jar only
+sh run.sh alpine build 18 # Build Docker Image Alpine
+sh run.sh ubuntu build 18 # Build Docker Image Ubuntu
 
-sh run.sh ubuntu build 16 multi # Build Docker Image Ubuntu
+sh run.sh ubuntu build 18 multi # Build Docker Image Ubuntu
 
-sh run.sh local sync 16 # Sync Grasscutters to Yuuki
+sh run.sh local sync 18 # Sync Grasscutters to Yuuki
 
 sh run.sh data core # Clone Patch Version
 ```

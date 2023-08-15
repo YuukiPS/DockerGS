@@ -1,4 +1,4 @@
-name: DockerGS (Multi Platform) (Ubuntu Build)
+name: DockerGS (Multi Platform) (Ubuntu Build) (18)
 on:
   workflow_dispatch:
     inputs:

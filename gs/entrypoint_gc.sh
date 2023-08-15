@@ -128,7 +128,7 @@ OSVS=$(. /etc/os-release && printf '%s\n' "$NAME")
 SUB="Alpine"
 version=$(cat ver)
 version_res="main"
-resmd5="e7754c155a4668606fc3695aced65717"
+resmd5="e7754c155a4668606fc3695aced65717" # TODO: auto update md5 if res update
 
 # Switch RS
 if echo "$version" | grep -F -w "2.6"; then
@@ -153,6 +153,10 @@ elif echo "$version" | grep -F -w "3.6"; then
   version_res="3.6"
 elif echo "$version" | grep -F -w "3.7"; then
   version_res="3.7"
+elif echo "$version" | grep -F -w "3.8"; then
+  version_res="3.8"
+elif echo "$version" | grep -F -w "4.0"; then
+  version_res="4.0"
 fi
 
 echo "Runs with OS $OSVS"

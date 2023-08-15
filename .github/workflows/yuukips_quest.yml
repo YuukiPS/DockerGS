@@ -1,4 +1,4 @@
-name: YuukiPS Alpine (3.7) (17) (Quest)
+name: YuukiPS Alpine (3.7) (17) (Quest) (Stable)
 on:
   push:
     paths:

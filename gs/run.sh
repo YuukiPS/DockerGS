@@ -24,19 +24,24 @@ userHub="siakbary"
 # Version Control by User
 if [ "$2" != "version_action" ]; then
 
-  if [ "$versioncontrol" = "16" ]; then # for private stable
+  if [ "$versioncontrol" = "16" ]; then # for private stable, TODO: move quest here or just keep in 17
     useBranchesProject="3.7"
     useBranchesRes="3.7"
     useShortProject="yuukips"
     useProject="GSServer-GC"
-  elif [ "$versioncontrol" = "17" ]; then # for private quest (no-stable)
+  elif [ "$versioncontrol" = "17" ]; then # for private quest (stable)
     useBranchesProject="3.7-quest"
     useBranchesRes="3.7"
     useShortProject="yuukips"
     useProject="GSServer-GC"
-  elif [ "$versioncontrol" = "18" ]; then # for public
+  elif [ "$versioncontrol" = "18" ]; then # for public (stable)
     useBranchesProject="3.7"
     useBranchesRes="3.7"
+  elif [ "$versioncontrol" = "19" ]; then # for private (broke)
+    useBranchesProject="4.0"
+    useBranchesRes="4.0"
+    useShortProject="yuukips"
+    useProject="GSServer-GC"
   fi
 
 fi
