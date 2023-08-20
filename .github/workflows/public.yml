@@ -1,4 +1,4 @@
-name: DockerGS (Multi Platform) (Ubuntu Build) (18)
+name: DockerGS (Multi Platform) (Ubuntu Build) (20)
 on:
   workflow_dispatch:
     inputs:
@@ -9,11 +9,11 @@ on:
       branches:
         description: "Branches Repo"
         required: true
-        default: "3.7"
+        default: "4.0"
       resources:
         description: "Branches Resources"
         required: true
-        default: "3.7"
+        default: "4.0"
       platforms:
         description: "Platforms"
         required: true

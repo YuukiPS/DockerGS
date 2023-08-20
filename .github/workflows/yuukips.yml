@@ -1,12 +1,12 @@
-name: YuukiPS Alpine (3.7) (17) (Quest) (Stable)
+name: YuukiPS Alpine (4.0) (19) (Stable)
 on:
   push:
     paths:
       - "gs/os-loc-alpine-gc"
-      - "gs/ver_GSServer-GC-3.7-quest"
+      - "gs/ver_GSServer-GC-4.0"
       - "gs/run.sh"
       - "gs/entrypoint_gc.sh"
-      - ".github/workflows/yuukips_quest.yml"
+      - ".github/workflows/yuukips.yml"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: YuukiPS/GSServer-GC
-          ref: "3.7-quest"
+          ref: "4.0"
           token: ${{ secrets.HUB_TOKEN }}
           path: gs/GSServer-GC
       - name: Setup Java
@@ -35,7 +35,7 @@ jobs:
           username: ${{secrets.DOCKER_USER_PRIVATE}}
           password: ${{secrets.DOCKER_PASSWORD_PRIVATE}}
       - name: Build Local Jar
-        run: cd gs && chmod +x run.sh && sh run.sh alpine build 17 docker_action pv
+        run: cd gs && chmod +x run.sh && sh run.sh alpine build 19 docker_action pv
       - name: Build Image Docker and Push
         uses: docker/build-push-action@v3
         with:

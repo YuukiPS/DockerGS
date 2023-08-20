@@ -15,7 +15,7 @@ docker run --rm -it \
 -v resources:/home/dockergs/resources \
 -p 22102:22102/udp \
 -p 80:80/tcp \
-siakbary/dockergs:alpine-gc-3.7 \
+siakbary/dockergs:alpine-gc-4.0 \
 --database 'mongodb://2.0.0.100:2777' \
 --web_ip '2.0.0.100' \
 --web_port '80' \
@@ -50,13 +50,13 @@ TODO
 ## Available
 | Versions | OS | Platform |
 | ------ | ------ | ------ |
-| [3.7 (18)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-3.7) | Alpine | linux/amd64 |
+| [4.0 (20)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-4.0) | Alpine | linux/amd64 |
 
 ## Download (Jar Only)
 
 | Versions | Platform |
 | ------ | ------ |
-| [3.7 (18)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_3.7_Public/main/DockerGS-GC.zip) | linux/amd64 |
+| [4.0 (20)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_4.0_Public/main/DockerGS-GC.zip) | linux/amd64 |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
@@ -83,19 +83,19 @@ cd gs
 
 sh run.sh # default build localhost
 
-sh run.sh local res 18 # Get Resources File Based Version Server
+sh run.sh local res 20 # Get Resources File Based Version Server
 
-sh run.sh local start 18 # run localhost server for without docker
-sh run.sh alpine start 18 2.0.0.100 # run localhost server for with docker alpine
-sh run.sh ubuntu start 18 2.0.0.100 # run localhost server for with docker ubuntu
+sh run.sh local start 20 # run localhost server for without docker
+sh run.sh alpine start 20 2.0.0.100 # run localhost server for with docker alpine
+sh run.sh ubuntu start 20 2.0.0.100 # run localhost server for with docker ubuntu
 
-sh run.sh local build 18 # Build local aja jar only
-sh run.sh alpine build 18 # Build Docker Image Alpine
-sh run.sh ubuntu build 18 # Build Docker Image Ubuntu
+sh run.sh local build 20 # Build local aja jar only
+sh run.sh alpine build 20 # Build Docker Image Alpine
+sh run.sh ubuntu build 20 # Build Docker Image Ubuntu
 
-sh run.sh ubuntu build 18 multi # Build Docker Image Ubuntu
+sh run.sh ubuntu build 20 multi # Build Docker Image Ubuntu
 
-sh run.sh local sync 18 # Sync Grasscutters to Yuuki
+sh run.sh local sync 20 # Sync Grasscutters to Yuuki
 
 sh run.sh data core # Clone Patch Version
 ```

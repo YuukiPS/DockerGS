@@ -34,14 +34,17 @@ if [ "$2" != "version_action" ]; then
     useBranchesRes="3.7"
     useShortProject="yuukips"
     useProject="GSServer-GC"
-  elif [ "$versioncontrol" = "18" ]; then # for public (stable)
+  elif [ "$versioncontrol" = "18" ]; then # for public (dev)
     useBranchesProject="3.7"
     useBranchesRes="3.7"
-  elif [ "$versioncontrol" = "19" ]; then # for private (broke)
+  elif [ "$versioncontrol" = "19" ]; then # for private (unstable)
     useBranchesProject="4.0"
     useBranchesRes="4.0"
     useShortProject="yuukips"
     useProject="GSServer-GC"
+  elif [ "$versioncontrol" = "20" ]; then # for public (dev)
+    useBranchesProject="4.0"
+    useBranchesRes="4.0"
   fi
 
 fi
@@ -285,10 +288,10 @@ if [ "$metode" = "sync" ]; then
     whosm="Grasscutters"
   fi
   if [ -z "$getme" ]; then
-    if [ "$useBranchesProject" = "3.7" ]; then
-      getme="development"
+    if [ "$useBranchesProject" = "4.0" ]; then
+      getme="dev-4.0"
     else
-      getme="unstable"
+      getme="development"
     fi
   fi
   echo "pull $useProject"
