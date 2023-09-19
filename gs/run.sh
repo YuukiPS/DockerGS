@@ -289,7 +289,7 @@ if [ "$metode" = "sync" ]; then
   fi
   if [ -z "$getme" ]; then
     if [ "$useBranchesProject" = "4.0" ]; then
-      getme="dev-4.0"
+      getme="development"
     else
       getme="development"
     fi
