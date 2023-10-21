@@ -1,6 +1,10 @@
 name: DockerGS (Multi Platform) (Ubuntu Build) (20)
 on:
-  workflow_dispatch:
+  push:
+    paths: # auto update
+      - "gs/ver_GSServer-GCOriginal-4.0"
+      - ".github/workflows/public.yml"
+  workflow_dispatch: # manual update
     inputs:
       repo:
         description: "Repo"
