@@ -1,0 +1,9 @@
+name: DockerGS (Public) (Auto Update)
+on:
+  push:
+    paths:
+      - "gs/ver_GSServer-GCOriginal-4.0"
+      - ".github/workflows/public-auto.yml"
+jobs:
+  update:
+    uses: ./.github/workflows/public-manual.yml
