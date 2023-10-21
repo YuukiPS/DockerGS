@@ -1,6 +1,10 @@
 name: DockerGS (Public)
 on:
-  workflow_dispatch:
+  push: # auto
+    paths:
+      - "gs/ver_GSServer-GCOriginal-4.0"
+      - ".github/workflows/public.yml"
+  workflow_dispatch: # manual
     inputs:
       repo:
         description: "Repo"
@@ -27,8 +31,8 @@ jobs:
       - name: Sync Repo
         uses: actions/checkout@v3
         with:
-          repository: ${{ github.event.inputs.repo }}
-          ref: ${{ github.event.inputs.branches }}
+          repository: ${{ github.event.inputs.repo || 'YuukiPS/Grasscutters-Original' }}
+          ref: ${{ github.event.inputs.branches || '4.0' }}
           path: gs/tmp
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -40,13 +44,13 @@ jobs:
           username: ${{secrets.DOCKER_USER}}
           password: ${{secrets.DOCKER_PASSWORD}}
       - name: Get Version only #1=os for ubuntu,2 metode for version_action, 3 for version branches, 4 for version resources (normal not need)
-        run: cd gs && chmod +x run.sh && sh run.sh ubuntu version_action ${{ github.event.inputs.branches }} ${{ github.event.inputs.resources }}
+        run: cd gs && chmod +x run.sh && sh run.sh ubuntu version_action ${{ github.event.inputs.branches || '4.0' }} ${{ github.event.inputs.resources || '4.0' }}
       - name: Build and Push
         uses: docker/build-push-action@v3
         with:
           context: ./gs
           file: ./gs/os-ubuntu-gc-action # use image tmp
-          platforms: ${{ github.event.inputs.platforms }}
+          platforms: ${{ github.event.inputs.platforms || 'linux/amd64,linux/arm64' }}
           push: true
           tags: |
             ${{ env.ver1 }}
