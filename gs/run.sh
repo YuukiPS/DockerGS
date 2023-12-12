@@ -119,12 +119,6 @@ if [ ! -d "$useData" ]; then
   sh run.sh repo gc_data
 fi
 
-# for YuukiPS (cmd5)
-if [ "$5" = "pv" ]; then
-  echo "Private Mode0"
-  userHub="registry.gitlab.com"
-fi
-
 echo "OS: $os - Metode: $metode - Branch: $useBranchesProject - Project: $useProject ($useShortProject) > $userHub"
 
 # Check Folder Project
@@ -445,12 +439,7 @@ if [ "$metode" = "build" ]; then
         --platform $platform \
         --push \
         .
-    elif [ "$4" = "docker_action" ]; then
-
-      if [ "$5" = "pv" ]; then
-        echo "Private Mode2"
-        userHub="registry.gitlab.com"
-      fi
+    elif [ "$4" = "docker_action" ]; then      
 
       echo "ver1=$userHub/$mainProject:$version_last_commit" >>$GITHUB_ENV
       echo "ver2=$userHub/$mainProject:$version_last_sw" >>$GITHUB_ENV
@@ -459,6 +448,8 @@ if [ "$metode" = "build" ]; then
       # Version Docker
       echo "Copy file version docker"
       echo -n "$version_last_commit" >$folderwork/ver
+
+      echo "Push > $userHub"
 
     elif [ "$4" = "docker_loc" ]; then
       sh run.sh local build $versioncontrol $4 $5
