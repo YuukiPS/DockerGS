@@ -43,7 +43,7 @@ if [ "$2" != "version_action" ]; then
     useBranchesRes="4.0"
     useShortProject="yuukips"
     useProject="GSServer-GC"
-    userHub="yuukips"
+    userHub="registry.gitlab.com/yuukips"
   elif [ "$versioncontrol" = "20" ]; then # for public (dev)
     useBranchesProject="4.0"
     useBranchesRes="4.0"
@@ -467,8 +467,8 @@ if [ "$metode" = "build" ]; then
       echo "Copy file version docker"
       echo -n "$version_last_commit" >$folderwork/ver
 
-      docker build -t "registry.gitlab.com/$userHub/$mainProject:$version_last_commit" -f os-loc-$os-$useOSProject .
-      docker push registry.gitlab.com/$userHub/$mainProject:$version_last_commit
+      docker build -t "$userHub/$mainProject:$version_last_commit" -f os-loc-$os-$useOSProject .
+      docker push $userHub/$mainProject:$version_last_commit
 
     elif [ "$4" = "docker_debug" ]; then
 
@@ -509,5 +509,5 @@ fi
 # Push Private
 if [ "$metode" = "private_push" ]; then
   echo "push private"
-  docker push registry.gitlab.com/$userHub/$mainProject:$version_last_commit
+  docker push $userHub/$mainProject:$version_last_commit
 fi
