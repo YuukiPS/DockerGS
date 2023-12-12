@@ -31,9 +31,9 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
-          registry: repo.yuuki.me
-          username: ${{secrets.DOCKER_USER_PRIVATE}}
-          password: ${{secrets.DOCKER_PASSWORD_PRIVATE}}
+          registry: registry.gitlab.com
+          username: ${{secrets.DOCKER_USER_PRIVATE_GITLAB}}
+          password: ${{secrets.DOCKER_PASSWORD_PRIVATE_GITLAB}}
       - name: Build Local Jar
         run: cd gs && chmod +x run.sh && sh run.sh alpine build 19 docker_action pv
       - name: Build Image Docker and Push
