@@ -1,7 +1,7 @@
 name: YuukiPS Alpine (4.0) (19) (Stable)
 on:
   push:
-    paths:
+    paths: # TES2
       - "gs/os-loc-alpine-gc"
       - "gs/ver_GSServer-GC-4.0"
       - "gs/run.sh"
