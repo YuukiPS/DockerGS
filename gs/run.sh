@@ -249,6 +249,7 @@ if [ "$metode" = "start" ]; then
     # -v $res:/home/dockergs/resources \
     # //c/Users/Administrator/Desktop/Projek/Docker/GS/gs/todo_gc/config.backup
     docker run \
+      --cpus=1 \
       --rm -it \
       -v $res:/home/dockergs/resources \
       -p 22102:22102/udp \

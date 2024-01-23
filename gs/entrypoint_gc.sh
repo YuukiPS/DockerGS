@@ -157,6 +157,7 @@ elif echo "$version" | grep -F -w "3.8"; then
   version_res="3.8"
 elif echo "$version" | grep -F -w "4.0"; then
   version_res="4.0"
+  resmd5="99c6662090d83386d5e81592139cf075"
 fi
 
 echo "Runs with OS $OSVS"
