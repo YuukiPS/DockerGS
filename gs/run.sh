@@ -13,7 +13,7 @@ useData="GC-Data"
 useStart="local"
 useMetode="build"
 useResFolder="GC-Resources"
-# for version
+# Main (Public)
 useProject="GSServer-GCOriginal" # folder project
 useShortProject="gc"
 useBranchesProject="3.7"
@@ -50,6 +50,13 @@ if [ "$2" != "version_action" ]; then
   elif [ "$versioncontrol" = "21" ]; then
     mainProject="yuukigc"
     useBranchesProject="4.5-broke"
+    useBranchesRes="4.6"
+    useShortProject="yuukips"
+    useProject="GSServer-GC"
+    userHub="registry.gitlab.com/yuukips"
+  elif [ "$versioncontrol" = "22" ]; then # for private
+    mainProject="yuukigc"
+    useBranchesProject="4.6-brokebroke"
     useBranchesRes="4.6"
     useShortProject="yuukips"
     useProject="GSServer-GC"
