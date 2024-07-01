@@ -1,7 +1,7 @@
-name: YuukiPS Alpine (4.0) (19) (Stable)
+name: YuukiPS Alpine (4.0) (19)
 on:
   push:
-    paths: # TES3
+    paths:
       - "gs/os-loc-alpine-gc"
       - "gs/ver_GSServer-GC-4.0"
       - "gs/run.sh"
@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Sync DockerGS
+      - name: Sync DockerGI
         uses: actions/checkout@v3
       - name: Sync YuukiPS
         uses: actions/checkout@v3

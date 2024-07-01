@@ -61,6 +61,13 @@ if [ "$2" != "version_action" ]; then
     useShortProject="yuukips"
     useProject="GSServer-GC"
     userHub="registry.gitlab.com/yuukips"
+  elif [ "$versioncontrol" = "23" ]; then # for private
+    mainProject="yuukigc"
+    useBranchesProject="4.7"
+    useBranchesRes="4.7"
+    useShortProject="yuukips"
+    useProject="GSServer-GC"
+    userHub="registry.gitlab.com/yuukips"
   fi
 
 fi
@@ -86,6 +93,10 @@ foldertodo="todo_$useFolderProject"
 folderworkdata="$folderwork/data"
 filejson="$folderwork/config.json"
 filejson_res="$foldertodo/config.backup"
+
+filejson_scene3_backup="$foldertodo/cache/scene3_grid.json" # BIG DATA
+filejson_scene3_work="$folderwork/cache/scene3_grid.json"
+
 filecache="$folderwork/cache/TextMapCache.bin"
 
 # Check OS
@@ -232,6 +243,12 @@ if [ "$metode" = "start" ]; then
     if test -f "$filejson_res"; then
       echo "Found file config.backup"
       cp -rTf $filejson_res $filejson
+    fi
+
+    if test -f "$filejson_scene3_backup"; then
+      echo "Found file scene 3 backup"
+      mkdir -p "$(dirname "$filejson_scene3_work")"
+      cp -rTf $filejson_scene3_backup $filejson_scene3_work
     fi
 
     cd $folderwork
