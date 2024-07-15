@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - "gs/os-loc-alpine-gc"
-      - "gs/ver_GSServer-GC-4.6-brokebroke"
+      - "gs/ver_GSServer-GC-4.6"
       - "gs/run.sh"
       - "gs/entrypoint_gc.sh"
       - ".github/workflows/yuukipsv2.yml"
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: YuukiPS/GSServer-GC
-          ref: "4.6-brokebroke"
+          ref: "4.6"
           token: ${{ secrets.HUB_TOKEN }}
           path: gs/GSServer-GC
       - name: Setup Java
