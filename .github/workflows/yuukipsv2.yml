@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: "17"
+          java-version: "22"
           cache: "gradle"
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
