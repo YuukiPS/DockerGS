@@ -9,7 +9,7 @@ on:
       - ".github/workflows/yuukipsv2.yml"
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # tes1
     steps:
       - name: Sync DockerGI
         uses: actions/checkout@v3
