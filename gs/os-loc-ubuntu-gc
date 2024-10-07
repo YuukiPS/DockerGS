@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:22-jdk
 RUN  \
      apt-get update && apt-get -y install git curl nodejs &&\
      # Install json utilities for config.json

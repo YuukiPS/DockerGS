@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:22-jdk-alpine
 RUN  \
      # Install json utilities for config.json, TODO: remove git after zip function in gc finished and nodejs, procps used for ps monitors
      apk add --no-cache nodejs git curl procps &&\
