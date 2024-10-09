@@ -45,7 +45,7 @@ COPY --chown=dockergs:dockergs --from=build /work/dockergs/grasscutter.jar ./doc
 RUN ls -a && echo 91b
 
 # Copy Version
-COPY --chown=dockergs:dockergs ver_tmp ./dockergs/ver_tmp
+COPY --chown=dockergs:dockergs work_gc ./dockergs
 
 # Copy Entrypoint
 COPY --chown=dockergs:dockergs entrypoint_gc.sh ./dockergs/entrypoint_gc.sh
