@@ -1,8 +1,9 @@
-FROM eclipse-temurin:22-jdk as build
+FROM eclipse-temurin:21-jdk as build
 
 WORKDIR /work
 
 # Add User
+RUN apt-get update && apt-get install -y adduser
 RUN adduser --system --group dockergs
 
 # Copy source code to work/dockergs
@@ -17,7 +18,7 @@ RUN ls -a &&\
     # rename stuff
     cp -rTf grasscutter*.jar grasscutter.jar
 
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:21-jdk
 RUN  \
     apt update && apt-get upgrade -y && apt-get -y install git curl nodejs &&\
     # Install json (TODO: remove this) utilities for config.json
@@ -31,6 +32,7 @@ WORKDIR /home
 EXPOSE 443 22102 80
 
 # Add User
+RUN apt-get update && apt-get install -y adduser
 RUN adduser --system --group dockergs
 
 # Copy jar file
