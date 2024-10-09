@@ -16,58 +16,24 @@ useResFolder="GC-Resources"
 # Main (Public)
 useProject="GSServer-GCOriginal" # folder project
 useShortProject="gc"
-useBranchesProject="3.7"
-useBranchesRes="3.7"
+useBranchesProject="5.0"
+useBranchesRes="5.0"
 
 userHub="siakbary"
 
 # Version Control by User
 if [ "$2" != "version_action" ]; then
 
-  if [ "$versioncontrol" = "16" ]; then # for private stable, TODO: move quest here or just keep in 17
-    useBranchesProject="3.7"
-    useBranchesRes="3.7"
-    useShortProject="yuukips"
-    useProject="GSServer-GC"
-  elif [ "$versioncontrol" = "17" ]; then # for private quest (stable)
-    useBranchesProject="3.7-quest"
-    useBranchesRes="3.7"
-    useShortProject="yuukips"
-    useProject="GSServer-GC"
-  elif [ "$versioncontrol" = "18" ]; then # for public (dev)
-    useBranchesProject="3.7"
-    useBranchesRes="3.7"
-  elif [ "$versioncontrol" = "19" ]; then # for private (unstable)
+  if [ "$versioncontrol" = "19" ]; then # for private
     mainProject="yuukigc"
     useBranchesProject="4.0"
     useBranchesRes="4.0"
     useShortProject="yuukips"
     useProject="GSServer-GC"
     userHub="registry.gitlab.com/yuukips"
-  elif [ "$versioncontrol" = "20" ]; then # for public (dev)
+  elif [ "$versioncontrol" = "20" ]; then # for public
     useBranchesProject="4.0"
     useBranchesRes="4.0"
-  elif [ "$versioncontrol" = "21" ]; then
-    mainProject="yuukigc"
-    useBranchesProject="4.5-broke"
-    useBranchesRes="4.6"
-    useShortProject="yuukips"
-    useProject="GSServer-GC"
-    userHub="registry.gitlab.com/yuukips"
-  elif [ "$versioncontrol" = "22" ]; then # for private
-    mainProject="yuukigc"
-    useBranchesProject="4.6"
-    useBranchesRes="4.6"
-    useShortProject="yuukips"
-    useProject="GSServer-GC"
-    userHub="registry.gitlab.com/yuukips"
-  elif [ "$versioncontrol" = "23" ]; then # for private
-    mainProject="yuukigc"
-    useBranchesProject="4.7"
-    useBranchesRes="4.7"
-    useShortProject="yuukips"
-    useProject="GSServer-GC"
-    userHub="registry.gitlab.com/yuukips"
   elif [ "$versioncontrol" = "24" ]; then # for private
     mainProject="yuukigc"
     useBranchesProject="5.0"
@@ -75,6 +41,9 @@ if [ "$2" != "version_action" ]; then
     useShortProject="yuukips"
     useProject="GSServer-GC"
     userHub="registry.gitlab.com/yuukips"
+  elif [ "$versioncontrol" = "25" ]; then # for public
+    useBranchesProject="5.0"
+    useBranchesRes="5.0"
   fi
 
 fi
@@ -323,8 +292,8 @@ if [ "$metode" = "sync" ]; then
     whosm="Grasscutters"
   fi
   if [ -z "$getme" ]; then
-    if [ "$useBranchesProject" = "4.0" ]; then
-      getme="development"
+    if [ "$useBranchesProject" = "5.0" ]; then
+      getme="unstable"
     else
       getme="development"
     fi

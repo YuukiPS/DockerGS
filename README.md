@@ -15,7 +15,7 @@ docker run --rm -it \
 -v resources:/home/dockergs/resources \
 -p 22102:22102/udp \
 -p 80:80/tcp \
-siakbary/dockergs:alpine-gc-4.0 \
+siakbary/dockergs:alpine-gc-5.0 \
 --database 'mongodb://2.0.0.100:2777' \
 --web_ip '2.0.0.100' \
 --web_port '80' \
@@ -40,7 +40,7 @@ docker-compose up -d # linux
 2. Download file zip, scroll down I'm sure you can find it easily
 3. Open file zip and unzip/open again file DockerGS_GC.tar
 4. When you successfully unzip/open you will find "work_gc" folder click it then Extract it to folder you want (if you have an "Official/other version" Grasscutter you can overwrite it)
-5. Make sure you have a (folder,file) "Resources" which you can get from [Yuuki](https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.4/GrasscutterResources-3.4.zip) or [tamilpp25](https://git.crepe.moe/grasscutters/Grasscutter_Resources/-/raw/main/Grasscutter_Resources-3.4.zip)
+5. Make sure you have a (folder,file) "Resources" which you can get from [Yuuki](https://gitlab.com/yukiz/GrasscutterResources/-/archive/5.0/GrasscutterResources-5.0.zip)
 6. Open Terminal (Make sure you open it by right-clicking on folder that has jar file) then type "java -jar grasscutter.jar"
 7. Have fun :)
 
@@ -50,13 +50,13 @@ TODO
 ## Available
 | Versions | OS | Platform |
 | ------ | ------ | ------ |
-| [4.0 (20)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-4.0) | Alpine | linux/amd64 |
+| [5.0 (25)](https://hub.docker.com/r/siakbary/dockergs/tags?page=1&name=alpine-gc-5.0) | Alpine | linux/amd64 |
 
 ## Download (Jar Only)
 
 | Versions | Platform |
 | ------ | ------ |
-| [4.0 (20)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_4.0_Public/main/DockerGS-GC.zip) | linux/amd64 |
+| [5.0 (25)](https://nightly.link/YuukiPS/DockerGS/workflows/DockerGS_GC_Alpine_5.0_Public/main/DockerGS-GC.zip) | linux/amd64 |
 
 ### Some Tips:
 * [Running a JVM in a Container Without Getting Killed](https://blog.csanchez.org/2017/05/31/running-a-jvm-in-a-container-without-getting-killed/)
@@ -77,25 +77,24 @@ Clone this with
 git clone https://github.com/YuukiPS/DockerGS
 cd DockerGS
 cd gs
-# 0=Patch-2.6, 1=Patch-2.6-Early, 2=Patch-2.7, 3=Patch-2.7-Early, 4=Patch-2.8, 7=3.0, 8=3.1, 9=3.2, 10=3.3, 11=3.4, 12=3.5, 14=3.6, 15=3.6 public,16=3.7 private stable, 17=3.7 private quest, 18=3.7 public, 19=4.0 private, 20=4.0 public (later)
 
 # 2.0.0.100 is your ip computer, make sure you have mongodb installed
 
 sh run.sh # default build localhost
 
-sh run.sh local res 20 # Get Resources File Based Version Server
+sh run.sh local res 25 # Get Resources File Based Version Server
 
-sh run.sh local start 20 # run localhost server for without docker
-sh run.sh alpine start 20 2.0.0.100 # run localhost server for with docker alpine
-sh run.sh ubuntu start 20 2.0.0.100 # run localhost server for with docker ubuntu
+sh run.sh local start 25 # run localhost server for without docker
+sh run.sh alpine start 25 2.0.0.100 # run localhost server for with docker alpine
+sh run.sh ubuntu start 25 2.0.0.100 # run localhost server for with docker ubuntu
 
-sh run.sh local build 20 # Build local aja jar only
-sh run.sh alpine build 20 # Build Docker Image Alpine
-sh run.sh ubuntu build 20 # Build Docker Image Ubuntu
+sh run.sh local build 25 # Build local aja jar only
+sh run.sh alpine build 25 # Build Docker Image Alpine
+sh run.sh ubuntu build 25 # Build Docker Image Ubuntu
 
-sh run.sh ubuntu build 20 multi # Build Docker Image Ubuntu
+sh run.sh ubuntu build 25 multi # Build Docker Image Ubuntu
 
-sh run.sh local sync 20 # Sync Grasscutters to Yuuki
+sh run.sh local sync 25 # Sync Grasscutters to Yuuki
 
 sh run.sh data core # Clone Patch Version
 ```
