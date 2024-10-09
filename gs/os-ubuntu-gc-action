@@ -6,14 +6,14 @@ WORKDIR /work
 # Add User
 RUN useradd --system --create-home --home-dir /home/dockergs --shell /bin/bash dockergs
 
-RUN ls -a && echo aas
+RUN ls -a && echo 91e
 
 # Copy source code to folder tmp to folder work/dockergs
 COPY --chown=dockergs:dockergs tmp ./dockergs
 
 # Make jar
 RUN ls -a &&\
-    echo 1s &&\
+    echo 91d &&\
     cd dockergs &&\
     chmod +x gradlew &&\
     ./gradlew jar &&\
@@ -37,15 +37,15 @@ EXPOSE 443 22102 80
 # Add User
 RUN useradd --system --create-home --home-dir /home/dockergs --shell /bin/bash dockergs
 
-RUN ls -a && echo 2111ooo
+RUN ls -a && echo 91a
 
 # Copy jar file
 COPY --chown=dockergs:dockergs --from=build /work/dockergs/grasscutter.jar ./dockergs/grasscutter.jar
 
-RUN ls -a && echo 2b
+RUN ls -a && echo 91b
 
 # Copy Version
-COPY --chown=dockergs:dockergs work_gc/ver_tmp ./dockergs/ver_tmp
+COPY --chown=dockergs:dockergs ver_tmp ./dockergs/ver_tmp
 
 # Copy Entrypoint
 COPY --chown=dockergs:dockergs entrypoint_gc.sh ./dockergs/entrypoint_gc.sh
@@ -54,7 +54,7 @@ COPY --chown=dockergs:dockergs entrypoint_gc.sh ./dockergs/entrypoint_gc.sh
 RUN mkdir -p ./dockergs/resources &&\
     chown -R dockergs:dockergs ./dockergs/resources
 
-RUN ls dockergs -a && echo 3c
+RUN ls dockergs -a && echo 91c
 
 # User
 USER dockergs
