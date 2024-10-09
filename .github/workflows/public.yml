@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./gs
-          file: ./gs/os-ubuntu-gc-action # use image tmp
+          file: ./gs/os-ubuntu-gc-action # use image docker for folder tmp
           platforms: ${{ github.event.inputs.platforms || 'linux/amd64,linux/arm64' }}
           push: true
           tags: |
