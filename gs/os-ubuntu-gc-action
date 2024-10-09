@@ -6,9 +6,9 @@ WORKDIR /work
 RUN apt-get update && apt-get install -y adduser
 RUN adduser --system --group dockergs
 
-RUN ls -a
+RUN ls -a && echo a
 
-# Copy source code to tmp to work/dockergs
+# Copy source code to folder tmp to folder work/dockergs
 COPY --chown=dockergs:dockergs tmp ./dockergs
 
 # Make jar
@@ -40,20 +40,18 @@ RUN adduser --system --group dockergs
 # Copy jar file
 COPY --chown=dockergs:dockergs --from=build /work/dockergs/grasscutter.jar ./dockergs
 
-RUN ls -a
-
+RUN ls -a && echo b
 # Copy Version
-# COPY --chown=dockergs:dockergs tmp ./dockergs
+# COPY --chown=dockergs:dockergs work_gc ./dockergs
 
 # Copy Entrypoint
 COPY --chown=dockergs:dockergs entrypoint_gc.sh ./dockergs
 
-# Testing
-# RUN ls dockergs
-
 # Make Folder
-RUN mkdir -p ./dockergs/resources &&\
-    chown -R dockergs:dockergs ./dockergs/resources
+#RUN mkdir -p ./dockergs/resources &&\
+#    chown -R dockergs:dockergs ./dockergs/resources
+
+RUN ls dockergs -a && echo c
 
 # User
 USER dockergs
