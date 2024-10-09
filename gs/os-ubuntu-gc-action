@@ -6,7 +6,9 @@ WORKDIR /work
 RUN apt-get update && apt-get install -y adduser
 RUN adduser --system --group dockergs
 
-# Copy source code to work/dockergs
+RUN ls -a
+
+# Copy source code to tmp to work/dockergs
 COPY --chown=dockergs:dockergs tmp ./dockergs
 
 # Make jar
@@ -38,8 +40,10 @@ RUN adduser --system --group dockergs
 # Copy jar file
 COPY --chown=dockergs:dockergs --from=build /work/dockergs/grasscutter.jar ./dockergs
 
+RUN ls -a
+
 # Copy Version
-COPY --chown=dockergs:dockergs work_gc ./dockergs
+# COPY --chown=dockergs:dockergs tmp ./dockergs
 
 # Copy Entrypoint
 COPY --chown=dockergs:dockergs entrypoint_gc.sh ./dockergs
