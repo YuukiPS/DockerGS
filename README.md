@@ -15,7 +15,7 @@ docker run --rm -it \
 -v resources:/home/dockergs/resources \
 -p 22102:22102/udp \
 -p 80:80/tcp \
-siakbary/dockergs:alpine-gc-5.0 \
+siakbary/dockergs:ubuntu-gc-5.0 \
 --database 'mongodb://2.0.0.100:2777' \
 --web_ip '2.0.0.100' \
 --web_port '80' \
