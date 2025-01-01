@@ -44,6 +44,13 @@ if [ "$2" != "version_action" ]; then
   elif [ "$versioncontrol" = "25" ]; then # for public
     useBranchesProject="5.0"
     useBranchesRes="5.0"
+  elif [ "$versioncontrol" = "26" ]; then # for private
+    mainProject="yuukigc"
+    useBranchesProject="5.3"
+    useBranchesRes="5.3"
+    useShortProject="yuukips"
+    useProject="GSServer-GC"
+    userHub="registry.gitlab.com/yuukips"
   fi
 
 fi
@@ -292,7 +299,7 @@ if [ "$metode" = "sync" ]; then
     whosm="Grasscutters"
   fi
   if [ -z "$getme" ]; then
-    if [ "$useBranchesProject" = "5.0" ]; then
+    if [ "$useBranchesProject" = "5.3" ]; then
       getme="unstable"
     else
       getme="development"
