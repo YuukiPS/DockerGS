@@ -1,7 +1,9 @@
 # DockerGS
 DockerGS is a container that run [Grasscutter](https://github.com/Grasscutters/Grasscutter) (**some anime game**) with just a single command.<br>
 ## How to connect to server
-[Since I don't want to write same post, please visit this](https://www.yuuki.me/2022/09/how-to-connect-genshin-impact-private.html)
+- ~[Since I don't want to write same post, please visit this](https://www.yuuki.me/2022/09/how-to-connect-genshin-impact-private.html)~
+- [The original instructions post is no longer there but the Wayback Machine has a backup](https://web.archive.org/web/20230326014653/https://www.yuuki.me/2022/12/genshin-impact-private-server-pc.html)
+
 ## How to create a server:
 ### Docker Version
 - Install [Docker](https://docs.docker.com/engine/install/) + ([MongoDB](https://www.mongodb.com/try/download/community) If you want to run outside container)
