@@ -177,6 +177,8 @@ elif echo "$version" | grep -F -w "5.4"; then
   version_res="5.0"
 elif echo "$version" | grep -F -w "5.5"; then
   version_res="5.0"
+elif echo "$version" | grep -F -w "5.6"; then
+  version_res="5.0"
   # resmd5=""
 fi
 
